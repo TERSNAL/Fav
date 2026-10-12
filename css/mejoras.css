@@ -1,0 +1,2716 @@
+/* =========================================================
+   ✨ MEJORAS DE FAVORITEDEX
+   Estilos de: buscador del encabezado, explorador con filtros,
+   minijuego de altura, récords, análisis del equipo, Pokémon del día,
+   botón de sonido, accesibilidad (foco y movimiento reducido).
+   Este archivo solo AÑADE estilos; no cambia los existentes.
+   ========================================================= */
+
+/* ---------- 🔎 Buscador (ahora en el encabezado) ---------- */
+#pokedex-app .pokemon-search {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 560px;
+    margin: 14px auto 0;
+}
+#pokedex-app .pokemon-search input {
+    flex: 1 1 240px;
+    min-width: 0;
+    padding: 10px 16px;
+    border-radius: 22px;
+    border: 1px solid var(--borde-suave);
+    font: inherit;
+    font-size: .9rem;
+}
+#pokedex-app .pokemon-search input::placeholder { color: #9aa6c4; }
+#pokedex-app .pokemon-search input:focus { outline: 2px solid var(--pokedex-azul-claro); outline-offset: 1px; }
+#pokemonSearchBtn { color: #fff; }
+
+/* ---------- 🏠 Portada: extras y Pokémon del día ---------- */
+.inicio-extras {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 12px auto 0;
+}
+.btn-inicio-extra {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-height: 40px;
+    padding: 8px 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(160,185,255,.38);
+    background: linear-gradient(180deg, rgba(30,42,100,.92), rgba(10,14,50,.96));
+    color: #eaf0ff;
+    font-family: var(--fuente-texto);
+    font-weight: 700;
+    font-size: .72rem;
+    letter-spacing: .3px;
+    cursor: pointer;
+    transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.btn-inicio-extra:hover {
+    transform: translateY(-2px);
+    border-color: #9db4ff;
+    box-shadow: 0 8px 18px rgba(0,0,0,.35), 0 0 16px rgba(90,120,255,.3);
+}
+
+.pokemon-del-dia {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: min(460px, 100%);
+    margin: 16px auto 0;
+    padding: 10px 16px;
+    border-radius: 16px;
+    border: 1px solid rgba(255,215,64,.45);
+    background: rgba(10,16,60,.62);
+    box-shadow: 0 8px 22px rgba(0,0,0,.35);
+    text-align: left;
+}
+.pokemon-del-dia[hidden] { display: none !important; }
+.pokemon-del-dia img { width: 84px; height: 84px; object-fit: contain; flex: 0 0 84px; }
+.pdd-texto { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1; }
+.pdd-texto small { color: #ffd54a; font-weight: 800; letter-spacing: .6px; font-size: .68rem; }
+.pdd-texto strong { font-family: var(--fuente-titulos); font-size: 1.15rem; color: #fff; overflow-wrap: anywhere; }
+.pdd-texto span { color: #b8c4e6; font-size: .8rem; }
+
+/* ---------- 🔊 Botón de sonido ---------- */
+.btn-sonido-toggle[aria-pressed="true"] { border-color: rgba(255,120,120,.6); }
+
+/* ---------- 🧭 Explorador ---------- */
+.explorar-filtros {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 12px;
+    align-items: end;
+}
+.explorar-filtros select.campo-sitio { background: #181818; color: #fff; font-size: .85rem; padding-inline: 10px; }
+.modal-contenido .explorar-check {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 32px;
+    cursor: pointer;
+}
+.explorar-check input { width: 18px; height: 18px; }
+
+/* ---------- 📏 Minijuego de altura ---------- */
+.altura-opciones {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 14px;
+    align-items: center;
+    margin: 16px 0 4px;
+}
+.altura-opciones > .nota-sitio { grid-column: 1 / -1; text-align: center; }
+.altura-carta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 14px 10px;
+    border-radius: 16px;
+    border: 2px solid rgba(255,255,255,.25);
+    background: rgba(255,255,255,.06);
+    color: #fff;
+    font: inherit;
+    cursor: pointer;
+    transition: transform .2s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease;
+}
+.altura-carta:hover:not(:disabled) { transform: translateY(-3px); border-color: #9db4ff; background: rgba(255,255,255,.1); }
+.altura-carta:disabled { cursor: default; }
+.altura-carta img { width: 130px; height: 130px; object-fit: contain; }
+.altura-carta strong { font-family: var(--fuente-titulos); font-size: 1.05rem; overflow-wrap: anywhere; }
+.altura-dato { min-height: 1.4em; font-weight: 800; color: #ffd54a; }
+.altura-vs { font-family: var(--fuente-titulos); font-weight: 800; font-size: 1.3rem; color: #ffd54a; }
+.altura-correcta { border-color: #4caf50; background: rgba(76,175,80,.16); box-shadow: 0 0 18px rgba(76,175,80,.35); }
+.altura-incorrecta { border-color: #e53935; background: rgba(229,57,53,.12); opacity: .88; }
+
+/* ---------- 🏅 Récords ---------- */
+.records-usuario { margin: 12px 0 8px; color: #d7deef; }
+.records-tabla-wrap { overflow-x: auto; }
+.records-tabla { width: 100%; border-collapse: collapse; font-size: .85rem; }
+.records-tabla th, .records-tabla td { padding: 8px 10px; border-bottom: 1px solid rgba(255,255,255,.14); text-align: center; }
+.records-tabla thead th { color: #ffd54a; font-size: .78rem; }
+.records-tabla tbody th { text-align: left; font-weight: 700; color: #fff; }
+.records-subtitulo { margin: 18px 0 6px; font-size: 1rem; }
+.records-ranking { margin: 0; padding-left: 22px; line-height: 1.8; color: #d7deef; }
+
+/* ---------- 🏟️ Compartir y analizar el equipo ---------- */
+.equipo-compartir { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 12px; }
+.equipo-analisis {
+    margin-top: 18px;
+    padding: 16px;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,.16);
+    background: rgba(255,255,255,.04);
+    text-align: left;
+}
+.analisis-titulo { margin: 0 0 12px; font-size: 1.05rem; }
+.analisis-vacio { margin: 0; color: #b8c0d8; }
+.analisis-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); gap: 8px; }
+.analisis-celda {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 7px 8px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,.14);
+    background: rgba(255,255,255,.04);
+    font-size: .72rem;
+}
+.analisis-celda.peligro { border-color: #e53935; background: rgba(229,57,53,.16); }
+.analisis-celda.atencion { border-color: #fb8c00; background: rgba(251,140,0,.13); }
+.analisis-celda.seguro { border-color: #43a047; background: rgba(67,160,71,.14); }
+.analisis-tipo, .chip-tipo {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 9px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--color-tipo), color-mix(in srgb, var(--color-tipo) 45%, #000));
+    border: 1px solid rgba(255,255,255,.3);
+    color: #fff;
+    font-weight: 800;
+    font-size: .72rem;
+    text-shadow: 0 1px 2px rgba(0,0,0,.55);
+}
+.analisis-tipo { align-self: flex-start; }
+.analisis-numeros { color: #d0d7ea; }
+.analisis-linea { margin: 12px 0 0; line-height: 2; color: #e3e8f7; }
+.equipo-analisis .analisis-leyenda, .equipo-analisis .analisis-nota { margin: 10px 0 0; font-size: .74rem; line-height: 1.45; color: #9aa6c4; }
+.equipo-analisis .analisis-linea { font-size: .92rem; }
+
+/* ---------- 💬 Nota "solo en este navegador" ---------- */
+.nota-local { display: block; margin: 2px 0 8px; color: #9aa6c4; font-size: .74rem; }
+
+/* ---------- ♿ Accesibilidad ---------- */
+:where(button, a, input, select, textarea, [role="button"]):focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ---------- 📱 Móvil ---------- */
+@media (max-width: 520px) {
+    .altura-opciones { gap: 8px; }
+    .altura-carta { padding: 10px 6px; }
+    .altura-carta img { width: 88px; height: 88px; }
+    .altura-carta strong { font-size: .9rem; }
+    .pokemon-del-dia { flex-wrap: wrap; justify-content: center; text-align: center; }
+    .pdd-texto { align-items: center; flex-basis: 100%; }
+    .equipo-compartir .minijuego-btn { flex: 1 1 100%; }
+    .analisis-grid { grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); }
+}
+
+/* ---------- 📱 Título de la portada en pantallas muy estrechas ----------
+   En móvil "DE FAVORITOS" se cortaba. Por debajo de 480 px el título se apila:
+   MI POKÉDEX / Poké Ball / DE FAVORITOS (mismo texto, mismos elementos). */
+@media (max-width: 480px) {
+    body.en-inicio:not(.en-comunidad):not(.en-centro) .inicio-marca h1 {
+        grid-template-columns: 1fr !important;
+        justify-items: center !important;
+        gap: 6px !important;
+        font-size: clamp(1.3rem, 7.2vw, 1.8rem) !important;
+    }
+    body.en-inicio:not(.en-comunidad):not(.en-centro) .titulo-izquierdo,
+    body.en-inicio:not(.en-comunidad):not(.en-centro) .titulo-derecho {
+        transform: none !important;
+        text-align: center !important;
+        justify-self: center !important;
+    }
+}
+
+
+/* =========================================================
+   🌌 FONDOS CINEMÁTICOS DENTRO DEL MARCO DEL POKÉMON
+   Estos escenarios reemplazan el fondo de toda la página por una
+   composición contenida dentro del <figure>, igual que Arceus.
+   ========================================================= */
+
+.fondo-legendario-dinamico {
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 0 !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+    display: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    isolation: isolate;
+}
+
+.fondo-legendario-dinamico.fondo-activo {
+    display: block;
+}
+
+/* Lienzo de partículas en movimiento libre (lo crea js/fondos-particulas.js). */
+.fondo-legendario-dinamico > canvas.fondo-particulas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* El contenido del Pokémon siempre queda por encima del escenario. */
+.slide figure > .fondo-legendario-dinamico ~ * {
+    position: relative;
+    z-index: 2;
+}
+
+/* =========================================================
+   🎨 PARTÍCULAS POR TIPO PRINCIPAL
+   Capa transparente (solo partículas, sin fondo propio) que ocupa el
+   marco del Pokémon, detrás de la imagen y de sus controles. La crea
+   app-core.js para los Pokémon sin fondo legendario y la anima
+   js/fondos-particulas.js según la clase "tipo-<tipo>".
+   ========================================================= */
+.slide figure > .fondo-tipo-particulas {
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 0 !important;
+    border-radius: 16px;
+    overflow: hidden;
+    pointer-events: none;
+    isolation: isolate;
+}
+
+.fondo-tipo-particulas > canvas.fondo-particulas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+@media (max-width: 600px) {
+    .slide figure > .fondo-tipo-particulas { border-radius: 14px; }
+}
+
+/* =========================================================
+   🔴✨ AURA DE TRANSFORMACIÓN (Gigantamax / Mega)
+   Envuelve el sprite en un halo del color de su transformación:
+   rojo para Gigantamax, color de su Mega Piedra para Mega
+   (excepto Mega-Rayquaza y las Mega de Mewtwo, que no la usan).
+   ========================================================= */
+.contenedor-pokemon-img {
+    position: relative;
+    display: inline-block;
+    line-height: 0;
+}
+
+.aura-transformacion {
+    position: absolute;
+    inset: -14%;
+    z-index: -1;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .4s ease;
+}
+
+.aura-transformacion.aura-gigantamax,
+.aura-transformacion.aura-mega {
+    opacity: 1;
+}
+
+/* Resplandor base común a ambas auras (color vía --color-aura). */
+.aura-transformacion.aura-gigantamax::before,
+.aura-transformacion.aura-mega::before,
+.aura-transformacion.aura-gigantamax::after,
+.aura-transformacion.aura-mega::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+}
+
+/* 💥 GIGANTAMAX — aura roja, intensa y pulsante, con destellos de energía */
+.aura-transformacion.aura-gigantamax::before {
+    background: radial-gradient(circle, color-mix(in srgb, var(--color-aura) 55%, transparent) 0%, color-mix(in srgb, var(--color-aura) 22%, transparent) 45%, transparent 72%);
+    filter: blur(6px);
+    animation: pulsoAuraGigantamax 1.6s ease-in-out infinite;
+}
+
+.aura-transformacion.aura-gigantamax::after {
+    inset: 6%;
+    border: 3px solid color-mix(in srgb, var(--color-aura) 75%, transparent);
+    box-shadow:
+        0 0 22px 4px color-mix(in srgb, var(--color-aura) 65%, transparent),
+        inset 0 0 30px color-mix(in srgb, var(--color-aura) 40%, transparent);
+    animation: anilloAuraGigantamax 2.4s linear infinite;
+}
+
+@keyframes pulsoAuraGigantamax {
+    0%, 100% { transform: scale(1);    opacity: .85; }
+    50%      { transform: scale(1.10); opacity: 1;   }
+}
+
+@keyframes anilloAuraGigantamax {
+    0%   { transform: scale(.96) rotate(0deg);   opacity: .55; }
+    50%  { transform: scale(1.05) rotate(180deg); opacity: 1;   }
+    100% { transform: scale(.96) rotate(360deg); opacity: .55; }
+}
+
+/* 🌟 MEGA — aura estable con el color de la Mega Piedra, con un anillo
+   orbital sutil que evoca el símbolo de la Mega Evolución. */
+.aura-transformacion.aura-mega::before {
+    background: radial-gradient(circle, color-mix(in srgb, var(--color-aura) 48%, transparent) 0%, color-mix(in srgb, var(--color-aura) 18%, transparent) 48%, transparent 74%);
+    filter: blur(5px);
+    animation: respiracionAuraMega 3.2s ease-in-out infinite;
+}
+
+.aura-transformacion.aura-mega::after {
+    inset: 8%;
+    border: 2px dashed color-mix(in srgb, var(--color-aura) 70%, transparent);
+    box-shadow: 0 0 16px 3px color-mix(in srgb, var(--color-aura) 50%, transparent);
+    animation: orbitaAuraMega 6s linear infinite;
+}
+
+@keyframes respiracionAuraMega {
+    0%, 100% { transform: scale(1);    opacity: .8; }
+    50%      { transform: scale(1.06); opacity: 1;  }
+}
+
+@keyframes orbitaAuraMega {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .aura-transformacion.aura-gigantamax::before,
+    .aura-transformacion.aura-gigantamax::after,
+    .aura-transformacion.aura-mega::before,
+    .aura-transformacion.aura-mega::after {
+        animation: none;
+    }
+}
+
+/* Las formas Mega / Primigenia / Origen intensifican el mismo escenario
+   con un resplandor interior del color del Pokémon (y más partículas). */
+.fondo-dialga   { --fx-glow: rgba(120,200,255,.42); }
+.fondo-palkia   { --fx-glow: rgba(255,130,210,.42); }
+.fondo-giratina { --fx-glow: rgba(180,90,255,.42); }
+.fondo-kyogre   { --fx-glow: rgba(60,180,255,.42); }
+.fondo-groudon  { --fx-glow: rgba(255,190,50,.42); }
+.fondo-rayquaza { --fx-glow: rgba(70,255,170,.42); }
+
+.fondo-legendario-dinamico.fondo-forma-especial {
+    box-shadow: inset 0 0 70px 6px var(--fx-glow);
+}
+
+/* ⏳ DIALGA — el tiempo gira alrededor de él (azul acero) */
+.fondo-dialga {
+    background-image:
+        radial-gradient(circle at 50% 50%, rgba(235,250,255,.85) 0 1.5%, rgba(80,170,255,.42) 9%, transparent 26%),
+        repeating-conic-gradient(from 0deg at 50% 50%, rgba(110,190,255,0) 0deg 12deg, rgba(130,205,255,.20) 13deg 14deg, rgba(110,190,255,0) 15deg 30deg),
+        radial-gradient(circle at 50% 50%, transparent 0 24%, rgba(130,210,255,.38) 24.5% 25.2%, transparent 25.8% 34%, rgba(90,175,255,.18) 34.5% 35.1%, transparent 36%),
+        linear-gradient(160deg, #020a1f 0%, #0a2a63 42%, #1660b0 74%, #040f2c 100%);
+    animation: escenarioDialgaMarco 24s ease-in-out infinite;
+}
+
+.fondo-dialga::before {
+    content: "";
+    position: absolute;
+    inset: -18%;
+    border: 2px solid rgba(150,215,255,.24);
+    border-radius: 50%;
+    box-shadow: 0 0 35px rgba(70,160,255,.22), inset 0 0 35px rgba(150,220,255,.10);
+    animation: anillosTiempoMarco 16s linear infinite;
+}
+
+.fondo-dialga::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        repeating-radial-gradient(circle at 50% 50%, transparent 0 52px, rgba(140,210,255,.08) 53px 55px, transparent 56px 104px);
+    animation: anillosTiempoMarco 20s linear infinite reverse;
+}
+
+/* 🌌 PALKIA — el espacio se dobla a su alrededor (rosa de sus perlas) */
+.fondo-palkia {
+    background-image:
+        radial-gradient(circle at 50% 50%, rgba(255,235,250,.85) 0 1%, rgba(255,120,200,.50) 8%, transparent 26%),
+        repeating-conic-gradient(from 12deg at 50% 50%, rgba(255,120,200,0) 0deg 17deg, rgba(255,140,210,.20) 18deg 19deg, rgba(255,120,200,0) 20deg 34deg),
+        radial-gradient(ellipse at 50% 50%, transparent 0 25%, rgba(255,150,215,.36) 25.5% 26.2%, transparent 27% 39%, rgba(240,90,175,.28) 39.5% 40.2%, transparent 41%),
+        linear-gradient(160deg, #16020f 0%, #520a3c 40%, #b02a78 72%, #22041a 100%);
+    animation: escenarioPalkiaMarco 20s ease-in-out infinite;
+}
+
+.fondo-palkia::before {
+    content: "";
+    position: absolute;
+    inset: 7%;
+    border: 2px solid rgba(255,160,220,.26);
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(255,90,190,.24), inset 0 0 25px rgba(255,190,230,.10);
+    animation: distorsionEspacioMarco 12s linear infinite;
+}
+
+.fondo-palkia::after {
+    content: "";
+    position: absolute;
+    inset: -20%;
+    background:
+        conic-gradient(from 0deg at 50% 50%, transparent 0 22deg, rgba(255,150,215,.13) 23deg 25deg, transparent 26deg 68deg, rgba(255,120,200,.11) 69deg 72deg, transparent 73deg 360deg),
+        repeating-radial-gradient(ellipse at 50% 50%, transparent 0 65px, rgba(255,150,215,.06) 66px 69px, transparent 70px 135px);
+    animation: distorsionEspacioMarco 14s linear infinite reverse;
+}
+
+/* 🌀 GIRATINA — Mundo Distorsión (morado que se funde a negro) */
+.fondo-giratina {
+    background-image:
+        radial-gradient(circle at 50% 48%, rgba(200,120,255,.50) 0 5%, rgba(120,40,200,.28) 15%, transparent 30%),
+        repeating-conic-gradient(from 8deg at 50% 50%, rgba(170,90,255,0) 0deg 14deg, rgba(160,80,240,.15) 15deg 17deg, rgba(170,90,255,0) 18deg 31deg),
+        linear-gradient(150deg, transparent 0 30%, rgba(0,0,0,.6) 31% 34%, transparent 35% 63%, rgba(0,0,0,.55) 64% 68%, transparent 69%),
+        linear-gradient(155deg, #7a2fd0 0%, #4a1594 28%, #1c0640 60%, #000000 100%);
+    animation: escenarioGiratinaMarco 17s ease-in-out infinite;
+}
+
+.fondo-giratina::before {
+    content: "";
+    position: absolute;
+    inset: -12%;
+    border: 2px solid rgba(190,110,255,.24);
+    border-radius: 46% 54% 51% 49%;
+    box-shadow: 0 0 35px rgba(150,60,240,.26), inset 0 0 25px rgba(200,130,255,.10);
+    animation: mundoDistorsionMarco 13s ease-in-out infinite;
+}
+
+.fondo-giratina::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        repeating-linear-gradient(117deg, transparent 0 60px, rgba(180,100,255,.08) 61px 63px, transparent 64px 125px);
+    animation: particulasDistorsionMarco 10s linear infinite;
+}
+
+/* 🌊 KYOGRE (forma normal) — océano profundo (sin rayos: solo agua y partículas) */
+.fondo-kyogre {
+    background-image:
+        radial-gradient(ellipse at 50% 78%, rgba(30,160,255,.55), transparent 50%),
+        radial-gradient(circle at 50% 52%, transparent 0 28%, rgba(100,210,255,.24) 28.5% 29.2%, transparent 30% 43%, rgba(70,170,255,.18) 43.5% 44.2%, transparent 45%),
+        linear-gradient(180deg, #051227 0%, #093a7c 42%, #0d68bb 74%, #04234d 100%);
+    animation: tormentaKyogreMarco 12s ease-in-out infinite;
+}
+
+.fondo-kyogre::before {
+    content: "";
+    position: absolute;
+    inset: -8%;
+    border: 2px solid rgba(120,215,255,.24);
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(20,160,255,.26), inset 0 0 30px rgba(90,205,255,.12);
+    animation: corrienteKyogreMarco 9s linear infinite;
+}
+
+.fondo-kyogre::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 25% 20%, rgba(90,200,255,.16), transparent 34%),
+        radial-gradient(ellipse at 78% 62%, rgba(60,170,255,.14), transparent 38%);
+    animation: brilloOceanoKyogre 10s ease-in-out infinite;
+}
+
+/* 🌊🌀 KYOGRE PRIMIGENIO — escenario propio: el maremoto/vórtice absoluto
+   que desata al recuperar toda su fuerza primigenia (más oscuro, más
+   violento y con relámpagos de tormenta, distinto del océano normal). */
+.fondo-kyogre.fondo-var-primal {
+    background-image:
+        radial-gradient(circle at 50% 50%, rgba(200,250,255,.9) 0 1%, rgba(90,220,255,.55) 6%, transparent 22%),
+        repeating-conic-gradient(from 0deg at 50% 50%, rgba(30,200,255,0) 0deg 10deg, rgba(60,220,255,.22) 11deg 12deg, rgba(30,200,255,0) 13deg 24deg),
+        radial-gradient(ellipse at 50% 85%, rgba(20,120,255,.55), transparent 55%),
+        linear-gradient(190deg, #010208 0%, #071233 26%, #0c2c74 52%, #124aa8 76%, #1f0d4a 100%);
+    animation: maelstromKyogrePrimalMarco 6s ease-in-out infinite;
+}
+
+.fondo-kyogre.fondo-var-primal::before {
+    content: "";
+    position: absolute;
+    inset: -14%;
+    border: 3px solid rgba(140,230,255,.40);
+    border-radius: 50%;
+    box-shadow: 0 0 46px rgba(30,180,255,.42), inset 0 0 42px rgba(120,225,255,.20);
+    animation: verticeKyogrePrimal 5s linear infinite;
+}
+
+.fondo-kyogre.fondo-var-primal::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        repeating-linear-gradient(108deg, transparent 0 45px, rgba(200,240,255,.10) 46px 48px, transparent 49px 95px),
+        radial-gradient(ellipse at 30% 15%, rgba(180,235,255,.22), transparent 30%);
+    mix-blend-mode: screen;
+    animation: relampagoKyogrePrimal 2.6s steps(1, end) infinite;
+}
+
+/* 🌋 GROUDON (forma normal) — el nacimiento de la tierra: continentes
+   formándose bajo un sol cálido, polvo y grietas que anuncian su poder. */
+.fondo-groudon {
+    background-image:
+        radial-gradient(ellipse at 50% 12%, rgba(255,225,150,.75) 0 5%, rgba(255,185,90,.35) 18%, transparent 40%),
+        repeating-conic-gradient(from 20deg at 50% 60%, rgba(120,70,20,0) 0deg 16deg, rgba(150,90,30,.20) 17deg 18deg, rgba(120,70,20,0) 19deg 34deg),
+        radial-gradient(circle at 50% 92%, rgba(255,190,90,.30), transparent 55%),
+        linear-gradient(170deg, #2a1608 0%, #5a3212 32%, #8a5423 58%, #c98a3c 82%, #e8c88a 100%);
+    animation: tierraFormandoseMarco 10s ease-in-out infinite;
+}
+
+.fondo-groudon::before {
+    content: "";
+    position: absolute;
+    inset: -9%;
+    border: 2px solid rgba(210,160,90,.30);
+    border-radius: 46% 54% 50% 50%;
+    box-shadow: 0 0 30px rgba(200,120,40,.24), inset 0 0 26px rgba(255,210,140,.14);
+    animation: anilloTierraGroudon 14s linear infinite;
+}
+
+.fondo-groudon::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg, transparent 0 60%, rgba(40,20,6,.32) 100%),
+        radial-gradient(ellipse at 50% 100%, rgba(255,200,110,.28), transparent 55%);
+    animation: resplandorTierraGroudon 9s ease-in-out infinite;
+}
+
+/* 🌋🔥 GROUDON PRIMIGENIO — mismo carmesí→amarillo de siempre, pero
+   intensificado: más contraste, grietas de magma y un pulso más violento
+   que transmite mejor su furia primigenia. */
+.fondo-groudon.fondo-var-primal {
+    background-image:
+        radial-gradient(ellipse at 50% 84%, rgba(255,230,90,.85) 0 6%, rgba(255,140,20,.55) 18%, transparent 44%),
+        repeating-conic-gradient(from 0deg at 50% 56%, transparent 0deg 9deg, rgba(255,150,40,.20) 10deg 11deg, transparent 12deg 20deg),
+        radial-gradient(circle at 50% 54%, transparent 0 26%, rgba(255,170,50,.30) 26.5% 27.4%, transparent 28% 40%, rgba(255,110,20,.22) 40.5% 41.4%, transparent 42%),
+        linear-gradient(200deg, #17000a 0%, #5c000f 24%, #a30f16 48%, #e0420f 72%, #ffcb1f 100%);
+    animation: furiaGroudonPrimalMarco 4.5s ease-in-out infinite;
+}
+
+.fondo-groudon.fondo-var-primal::before {
+    content: "";
+    position: absolute;
+    inset: -12%;
+    border: 3px solid rgba(255,200,60,.36);
+    border-radius: 50%;
+    box-shadow: 0 0 46px rgba(255,90,15,.42), inset 0 0 38px rgba(255,210,70,.20);
+    animation: grietasGroudonPrimal 5s linear infinite;
+}
+
+.fondo-groudon.fondo-var-primal::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        repeating-linear-gradient(64deg, transparent 0 30px, rgba(255,120,20,.16) 31px 34px, transparent 35px 68px),
+        linear-gradient(170deg, transparent 0 50%, rgba(50,0,4,.36) 100%);
+    animation: oleadaGroudonPrimal 3.4s ease-in-out infinite;
+}
+
+/* 🐉 RAYQUAZA (forma normal) — guardián del cielo (verde esmeralda a verde oscuro) */
+.fondo-rayquaza {
+    background-image:
+        radial-gradient(circle at 50% 48%, rgba(150,255,205,.45) 0 4%, rgba(40,220,140,.24) 15%, transparent 32%),
+        repeating-conic-gradient(from 0deg at 50% 48%, rgba(80,255,170,0) 0deg 28deg, rgba(90,255,175,.20) 29deg 31deg, rgba(80,255,170,0) 32deg 58deg),
+        linear-gradient(155deg, #12c47c 0%, #0b9060 28%, #06503a 62%, #011f18 100%);
+    animation: escenarioRayquazaMarco 18s ease-in-out infinite;
+}
+
+.fondo-rayquaza::before {
+    content: "";
+    position: absolute;
+    inset: -10% -24%;
+    border: 3px solid rgba(120,255,190,.30);
+    border-radius: 50%;
+    transform: rotate(-12deg);
+    box-shadow: 0 0 32px rgba(60,240,150,.28), inset 0 0 26px rgba(150,255,200,.10);
+    animation: orbitaRayquazaMarco 11s linear infinite;
+}
+
+.fondo-rayquaza::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        repeating-radial-gradient(ellipse at 50% 90%, transparent 0 48px, rgba(120,255,190,.08) 49px 51px, transparent 52px 105px);
+    animation: brilloOceanoKyogre 9s ease-in-out infinite;
+}
+
+/* 🐉🌟 MEGA-RAYQUAZA — la capa de ozono al límite: el mismo esmeralda,
+   pero con la imponencia cósmica (destellos dorados y estelas de meteoro)
+   que explica por qué puede rivalizar con Groudon y Kyogre Primigenios. */
+.fondo-rayquaza.fondo-var-mega {
+    background-image:
+        radial-gradient(circle at 50% 46%, rgba(220,255,235,.55) 0 3%, rgba(120,255,190,.30) 12%, transparent 30%),
+        repeating-conic-gradient(from 10deg at 50% 46%, rgba(255,215,110,0) 0deg 20deg, rgba(255,215,110,.16) 21deg 23deg, rgba(80,255,170,0) 24deg 44deg),
+        radial-gradient(ellipse at 50% 96%, rgba(255,215,110,.20), transparent 50%),
+        linear-gradient(150deg, #0bffa0 0%, #0a9a5f 24%, #063c2c 54%, #030e0c 82%, #010402 100%);
+    animation: dominioRayquazaMegaMarco 7s ease-in-out infinite;
+}
+
+.fondo-rayquaza.fondo-var-mega::before {
+    content: "";
+    position: absolute;
+    inset: -12% -26%;
+    border: 3px solid rgba(160,255,210,.34);
+    border-radius: 50%;
+    transform: rotate(-12deg);
+    box-shadow: 0 0 46px rgba(70,255,170,.36), 0 0 26px rgba(255,215,110,.22), inset 0 0 30px rgba(180,255,220,.14);
+    animation: aureolaRayquazaMega 9s linear infinite;
+}
+
+.fondo-rayquaza.fondo-var-mega::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        repeating-linear-gradient(-35deg, transparent 0 60px, rgba(255,230,150,.14) 61px 63px, transparent 64px 150px),
+        repeating-radial-gradient(ellipse at 50% 90%, transparent 0 44px, rgba(120,255,190,.10) 45px 47px, transparent 48px 96px);
+    animation: meteorosRayquazaMega 6s linear infinite;
+}
+
+@keyframes escenarioDialgaMarco {
+    0%, 100% { filter: saturate(1); }
+    50% { filter: brightness(1.08) saturate(1.12); }
+}
+
+@keyframes anillosTiempoMarco {
+    from { transform: rotate(0deg) scale(.98); opacity: .55; }
+    to { transform: rotate(360deg) scale(1.04); opacity: .88; }
+}
+
+@keyframes escenarioPalkiaMarco {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.025); }
+}
+
+@keyframes distorsionEspacioMarco {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.035); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes escenarioGiratinaMarco {
+    0%, 100% { background-position: center, center, center, center; filter: saturate(1); }
+    50% { background-position: center, center, 2% -1%, center; filter: brightness(1.08) saturate(1.18); }
+}
+
+@keyframes mundoDistorsionMarco {
+    0%, 100% { transform: rotate(0deg) scale(.96,1); border-radius: 46% 54% 51% 49%; }
+    50% { transform: rotate(180deg) scale(1.04,.94); border-radius: 54% 46% 48% 52%; }
+}
+
+@keyframes particulasDistorsionMarco {
+    from { background-position: 0 0; }
+    to { background-position: 120px 0; }
+}
+
+/* Sin destellos de luz: solo un vaivén suave del color. */
+@keyframes tormentaKyogreMarco {
+    0%, 100% { filter: saturate(1); }
+    50% { filter: saturate(1.15) brightness(1.04); }
+}
+
+@keyframes corrienteKyogreMarco {
+    from { transform: rotate(0deg) scale(.94); }
+    to { transform: rotate(360deg) scale(1.04); }
+}
+
+@keyframes brilloOceanoKyogre {
+    0%, 100% { opacity: .55; transform: translate3d(0,0,0); }
+    50% { opacity: 1; transform: translate3d(0,-1.5%,0); }
+}
+
+@keyframes volcanGroudonMarco {
+    0%, 100% { background-position: center; filter: saturate(1); }
+    50% { background-position: center -1.5%; filter: brightness(1.10) saturate(1.16); }
+}
+
+@keyframes magmaGroudonMarco {
+    from { transform: rotate(0deg) scale(.95); opacity: .5; }
+    50% { transform: rotate(180deg) scale(1.04); opacity: .9; }
+    to { transform: rotate(360deg) scale(.95); opacity: .5; }
+}
+
+@keyframes escenarioRayquazaMarco {
+    0%, 100% { filter: saturate(1); }
+    50% { filter: brightness(1.08) saturate(1.15); }
+}
+
+@keyframes orbitaRayquazaMarco {
+    from { transform: rotate(-12deg) scale(.96); opacity: .5; }
+    50% { transform: rotate(168deg) scale(1.04); opacity: .95; }
+    to { transform: rotate(348deg) scale(.96); opacity: .5; }
+}
+
+/* ---- Kyogre Primigenio: maremoto ---- */
+@keyframes maelstromKyogrePrimalMarco {
+    0%, 100% { filter: saturate(1) brightness(1); }
+    50% { filter: saturate(1.3) brightness(1.16); }
+}
+
+@keyframes verticeKyogrePrimal {
+    from { transform: rotate(0deg) scale(.92); }
+    to { transform: rotate(-360deg) scale(1.06); }
+}
+
+@keyframes relampagoKyogrePrimal {
+    0%, 78%, 100% { opacity: .35; }
+    82%, 90% { opacity: .9; }
+    86% { opacity: .5; }
+}
+
+/* ---- Groudon (forma normal): nacimiento de la tierra ---- */
+@keyframes tierraFormandoseMarco {
+    0%, 100% { filter: saturate(1) brightness(1); }
+    50% { filter: saturate(1.1) brightness(1.06); }
+}
+
+@keyframes anilloTierraGroudon {
+    from { transform: rotate(0deg) scale(.97); }
+    to { transform: rotate(360deg) scale(1.03); }
+}
+
+@keyframes resplandorTierraGroudon {
+    0%, 100% { opacity: .6; transform: translate3d(0,0,0); }
+    50% { opacity: 1; transform: translate3d(0,-1%,0); }
+}
+
+/* ---- Groudon Primigenio: furia volcánica ---- */
+@keyframes furiaGroudonPrimalMarco {
+    0%, 100% { background-position: center; filter: saturate(1) brightness(1); }
+    50% { background-position: center -2%; filter: brightness(1.22) saturate(1.30); }
+}
+
+@keyframes grietasGroudonPrimal {
+    from { transform: rotate(0deg) scale(.94); opacity: .55; }
+    50% { transform: rotate(180deg) scale(1.06); opacity: 1; }
+    to { transform: rotate(360deg) scale(.94); opacity: .55; }
+}
+
+@keyframes oleadaGroudonPrimal {
+    0%, 100% { opacity: .6; transform: translate3d(0,0,0) scale(1); }
+    50% { opacity: 1; transform: translate3d(0,-1.5%,0) scale(1.015); }
+}
+
+/* ---- Mega-Rayquaza: dominio del cielo ---- */
+@keyframes dominioRayquazaMegaMarco {
+    0%, 100% { filter: saturate(1) brightness(1); }
+    50% { filter: saturate(1.22) brightness(1.14); }
+}
+
+@keyframes aureolaRayquazaMega {
+    from { transform: rotate(-12deg) scale(.95); opacity: .55; }
+    50% { transform: rotate(168deg) scale(1.07); opacity: 1; }
+    to { transform: rotate(348deg) scale(.95); opacity: .55; }
+}
+
+@keyframes meteorosRayquazaMega {
+    from { background-position: 0 0, center; }
+    to { background-position: -220px 220px, center; }
+}
+
+/* =========================================================
+   🌟 SEGUNDA TANDA DE ESCENARIOS
+   Mewtwo, Mew, Entei, Lugia, Ho-Oh, Jirachi, Darkrai, Reshiram,
+   Zekrom, Kyurem, Solgaleo, Lunala, Necrozma, Regidrago y Zacian.
+   ========================================================= */
+
+.fondo-mewtwo::before, .fondo-mewtwo::after,
+.fondo-mew::before, .fondo-mew::after,
+.fondo-entei::before, .fondo-entei::after,
+.fondo-lugia::before, .fondo-lugia::after,
+.fondo-hooh::before, .fondo-hooh::after,
+.fondo-jirachi::before, .fondo-jirachi::after,
+.fondo-darkrai::before, .fondo-darkrai::after,
+.fondo-reshiram::before, .fondo-reshiram::after,
+.fondo-zekrom::before, .fondo-zekrom::after,
+.fondo-kyurem::before, .fondo-kyurem::after,
+.fondo-solgaleo::before, .fondo-solgaleo::after,
+.fondo-lunala::before, .fondo-lunala::after,
+.fondo-necrozma::before, .fondo-necrozma::after,
+.fondo-regidrago::before, .fondo-regidrago::after,
+.fondo-zacian::before, .fondo-zacian::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+}
+
+.fondo-mewtwo   { --fx-glow: rgba(190,120,255,.42); }
+.fondo-mew      { --fx-glow: rgba(255,150,210,.42); }
+.fondo-entei    { --fx-glow: rgba(255,120,40,.42); }
+.fondo-lugia    { --fx-glow: rgba(140,215,255,.40); }
+.fondo-hooh     { --fx-glow: rgba(255,200,70,.44); }
+.fondo-jirachi  { --fx-glow: rgba(255,225,110,.42); }
+.fondo-darkrai  { --fx-glow: rgba(110,120,255,.36); }
+.fondo-reshiram { --fx-glow: rgba(255,190,110,.44); }
+.fondo-zekrom   { --fx-glow: rgba(70,160,255,.44); }
+.fondo-kyurem   { --fx-glow: rgba(170,230,255,.42); }
+.fondo-solgaleo { --fx-glow: rgba(255,200,70,.44); }
+.fondo-lunala   { --fx-glow: rgba(170,150,255,.42); }
+.fondo-necrozma { --fx-glow: rgba(200,150,255,.42); }
+.fondo-regidrago{ --fx-glow: rgba(255,90,160,.42); }
+.fondo-zacian   { --fx-glow: rgba(140,240,225,.42); }
+
+/* 🧬 MEWTWO — laboratorio genético y aura psíquica (violeta) */
+.fondo-mewtwo {
+    --mw-a: #0a0318; --mw-b: #2b0f5c; --mw-c: #5a2aa8;
+    --mw-luz: rgba(240,220,255,.55); --mw-nucleo: rgba(170,90,255,.34); --mw-red: rgba(200,150,255,.08);
+    background-image:
+        radial-gradient(circle at 50% 40%, var(--mw-luz) 0 3%, var(--mw-nucleo) 14%, transparent 34%),
+        repeating-linear-gradient(60deg, transparent 0 34px, var(--mw-red) 35px 36px),
+        repeating-linear-gradient(-60deg, transparent 0 34px, var(--mw-red) 35px 36px),
+        linear-gradient(160deg, var(--mw-a) 0%, var(--mw-b) 42%, var(--mw-c) 72%, var(--mw-a) 100%);
+    animation: fxRespirar 12s ease-in-out infinite;
+}
+.fondo-mewtwo.fondo-var-x {
+    --mw-a: #14020c; --mw-b: #4a0f3a; --mw-c: #9a1f5a;
+    --mw-luz: rgba(255,210,225,.55); --mw-nucleo: rgba(255,80,120,.34); --mw-red: rgba(255,150,180,.08);
+}
+.fondo-mewtwo.fondo-var-y {
+    --mw-a: #150a2b; --mw-b: #6a3fa0; --mw-c: #c79cf0;
+    --mw-luz: rgba(255,245,255,.65); --mw-nucleo: rgba(240,190,255,.38); --mw-red: rgba(255,230,255,.10);
+}
+.fondo-mewtwo::before {
+    inset: 8%;
+    border: 2px solid rgba(215,170,255,.30);
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(170,90,255,.28), inset 0 0 26px rgba(220,180,255,.12);
+    animation: fxPulso 5s ease-in-out infinite;
+}
+.fondo-mewtwo::after {
+    inset: 0;
+    background:
+        radial-gradient(circle at 7% 50%, rgba(235,200,255,.85) 0 2.2px, transparent 3.5px) 0 0 / 100% 48px,
+        radial-gradient(circle at 12% 50%, rgba(180,110,255,.85) 0 2.2px, transparent 3.5px) 0 24px / 100% 48px,
+        radial-gradient(circle at 93% 50%, rgba(235,200,255,.85) 0 2.2px, transparent 3.5px) 0 0 / 100% 48px,
+        radial-gradient(circle at 88% 50%, rgba(180,110,255,.85) 0 2.2px, transparent 3.5px) 0 24px / 100% 48px;
+    opacity: .75;
+    animation: fxAdn 7s linear infinite;
+}
+
+/* 🌸 MEW — burbuja rosa, juguetón y luminoso */
+.fondo-mew {
+    background-image:
+        radial-gradient(circle at 20% 22%, rgba(255,255,255,.30), transparent 22%),
+        radial-gradient(circle at 80% 70%, rgba(120,220,255,.22), transparent 30%),
+        radial-gradient(circle at 50% 44%, rgba(255,205,235,.55) 0 4%, rgba(255,120,190,.30) 17%, transparent 38%),
+        linear-gradient(165deg, #e8479c 0%, #b02c86 38%, #6a1f78 70%, #2d0d3e 100%);
+    animation: fxRespirar 9s ease-in-out infinite;
+}
+.fondo-mew::before {
+    inset: 6%;
+    border: 2px solid rgba(255,225,242,.38);
+    border-radius: 50%;
+    box-shadow: 0 0 34px rgba(255,150,210,.30), inset 0 0 30px rgba(255,220,240,.14);
+    animation: fxPulso 6s ease-in-out infinite;
+}
+.fondo-mew::after {
+    inset: 0;
+    background:
+        radial-gradient(circle at 18% 60%, rgba(255,235,250,.5) 0 5px, transparent 6px) 0 0 / 150px 150px,
+        radial-gradient(circle at 70% 30%, rgba(190,235,255,.45) 0 4px, transparent 5px) 0 0 / 190px 190px;
+    animation: fxAsciendeMew 14s linear infinite;
+}
+
+/* 🔥 ENTEI — volcán en erupción (marrón, rojo y naranja) */
+.fondo-entei {
+    background-image:
+        radial-gradient(ellipse at 50% 74%, rgba(255,200,80,.85) 0 3%, rgba(255,110,25,.50) 14%, transparent 34%),
+        radial-gradient(circle at 50% 30%, rgba(255,120,40,.20), transparent 42%),
+        linear-gradient(180deg, #1a0a06 0%, #5a1c0c 38%, #b53a0c 70%, #e0731a 100%);
+    animation: volcanGroudonMarco 8s ease-in-out infinite;
+}
+.fondo-entei::before {
+    inset: auto 0 0 0;
+    height: 42%;
+    background: linear-gradient(180deg, #170805 0%, #0a0403 100%);
+    clip-path: polygon(0 100%, 0 66%, 12% 50%, 24% 64%, 40% 28%, 46% 22%, 54% 22%, 60% 28%, 76% 60%, 88% 46%, 100% 64%, 100% 100%);
+}
+.fondo-entei::after {
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent 0 46px, rgba(255,150,50,.08) 47px 62px, transparent 63px 110px);
+    animation: fxAsciende 9s linear infinite;
+}
+
+/* 🌊 LUGIA — cueva marina profunda (plata, azul y turquesa) */
+.fondo-lugia {
+    background-image:
+        radial-gradient(ellipse 60% 70% at 50% 45%, rgba(150,220,255,.28), transparent 70%),
+        radial-gradient(ellipse 85% 95% at 50% 50%, transparent 52%, rgba(1,6,16,.90) 100%),
+        linear-gradient(180deg, #03101f 0%, #0a3556 45%, #1b6d94 78%, #062b46 100%);
+    animation: tormentaKyogreMarco 14s ease-in-out infinite;
+}
+.fondo-lugia::before {
+    inset: -10% 0 0 0;
+    background: conic-gradient(from 168deg at 50% -8%, transparent 0 4deg, rgba(190,235,255,.10) 6deg 10deg, transparent 12deg 17deg, rgba(190,235,255,.07) 19deg 22deg, transparent 24deg 360deg);
+    transform-origin: 50% 0;
+    animation: fxOscilar 11s ease-in-out infinite;
+}
+.fondo-lugia::after {
+    inset: 10%;
+    border: 2px solid rgba(160,225,255,.20);
+    border-radius: 50%;
+    box-shadow: 0 0 28px rgba(90,190,255,.20), inset 0 0 24px rgba(160,225,255,.10);
+    animation: fxPulso 8s ease-in-out infinite;
+}
+
+/* 🌈 HO-OH — arcoíris y fuego sagrado al amanecer */
+.fondo-hooh {
+    background-image:
+        radial-gradient(circle farthest-corner at 50% 118%, transparent 0 60%, rgba(255,60,60,.34) 60% 63%, rgba(255,150,40,.34) 63% 66%, rgba(255,230,70,.34) 66% 69%, rgba(70,220,120,.32) 69% 72%, rgba(70,170,255,.32) 72% 75%, rgba(160,110,255,.32) 75% 78%, transparent 78%),
+        radial-gradient(circle at 50% 38%, rgba(255,235,160,.55) 0 4%, rgba(255,150,50,.28) 18%, transparent 38%),
+        linear-gradient(180deg, #1b0a2e 0%, #7a1a2a 34%, #e0521a 68%, #ffb43a 100%);
+    animation: fxRespirar 10s ease-in-out infinite;
+}
+.fondo-hooh::before {
+    inset: -30%;
+    background: repeating-conic-gradient(from 0deg at 50% 45%, rgba(255,220,120,0) 0 10deg, rgba(255,220,120,.10) 11deg 13deg, rgba(255,220,120,0) 14deg 26deg);
+    animation: fxGirar 60s linear infinite;
+}
+.fondo-hooh::after {
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 100%, rgba(255,215,90,.40), transparent 55%);
+    animation: brilloOceanoKyogre 8s ease-in-out infinite;
+}
+
+/* ⭐ JIRACHI — noche de deseos y estrellas */
+.fondo-jirachi {
+    background-image:
+        radial-gradient(circle at 50% 38%, rgba(255,246,180,.50) 0 3%, rgba(255,220,90,.22) 16%, transparent 36%),
+        radial-gradient(ellipse at 20% 80%, rgba(90,120,255,.26), transparent 40%),
+        radial-gradient(ellipse at 85% 20%, rgba(120,220,255,.20), transparent 38%),
+        linear-gradient(170deg, #050b2d 0%, #10246b 42%, #1f4aa8 74%, #070e33 100%);
+    animation: fxRespirar 12s ease-in-out infinite;
+}
+.fondo-jirachi::before {
+    left: 15%; right: 15%; top: 8%;
+    aspect-ratio: 1;
+    background: radial-gradient(circle at 50% 50%, rgba(255,235,140,.55), rgba(255,200,60,.14) 70%);
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    animation: fxGirar 90s linear infinite;
+    opacity: .5;
+}
+.fondo-jirachi::after {
+    inset: 0;
+    background:
+        radial-gradient(circle at 12% 18%, rgba(255,255,255,.9) 0 1px, transparent 2px) 0 0 / 210px 180px,
+        radial-gradient(circle at 70% 60%, rgba(255,240,170,.85) 0 1.4px, transparent 2.6px) 0 0 / 260px 220px,
+        radial-gradient(circle at 40% 85%, rgba(190,225,255,.8) 0 1px, transparent 2px) 0 0 / 190px 210px;
+    animation: fxPulso 5s ease-in-out infinite;
+}
+
+/* 🌑 DARKRAI — pesadilla: niebla negra y azul apagado */
+.fondo-darkrai {
+    background-image:
+        radial-gradient(circle at 50% 42%, rgba(120,140,255,.22) 0 6%, rgba(50,55,140,.18) 20%, transparent 42%),
+        radial-gradient(ellipse 90% 60% at 50% 100%, rgba(150,10,40,.34), transparent 70%),
+        linear-gradient(180deg, #000000 0%, #070914 40%, #141634 72%, #02020a 100%);
+    animation: fxRespirar 14s ease-in-out infinite;
+}
+.fondo-darkrai::before {
+    inset: -12%;
+    background:
+        radial-gradient(ellipse at 22% 30%, rgba(45,50,120,.45), transparent 32%),
+        radial-gradient(ellipse at 78% 62%, rgba(40,45,110,.42), transparent 34%),
+        radial-gradient(ellipse at 45% 88%, rgba(60,30,90,.38), transparent 30%);
+    animation: fxDeriva 16s ease-in-out infinite;
+}
+.fondo-darkrai::after {
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, transparent 38%, rgba(0,0,0,.78) 100%);
+}
+
+/* 🌑✨ MEGA-DARKRAI — la pesadilla se desborda y desgarra la realidad:
+   una grieta dimensional se abre bajo una luna menguante pálida, mientras
+   incontables ojos rojos acechan desde la oscuridad más profunda */
+.fondo-darkrai.fondo-var-mega {
+    --fx-glow: rgba(180,20,70,.62);
+    background-image:
+        radial-gradient(circle at 78% 16%, rgba(225,225,240,.5) 0 5%, rgba(225,225,240,.14) 7%, transparent 12%),
+        radial-gradient(circle at 50% 42%, rgba(160,60,255,.36) 0 8%, rgba(80,10,160,.30) 22%, transparent 48%),
+        radial-gradient(ellipse 100% 70% at 50% 100%, rgba(200,10,50,.5), transparent 74%),
+        linear-gradient(180deg, #000000 0%, #0c0620 36%, #22083a 70%, #04010a 100%);
+    animation: fxRespirar 8s ease-in-out infinite;
+}
+.fondo-darkrai.fondo-var-mega::before {
+    inset: -18%;
+    background:
+        repeating-conic-gradient(from 0deg, transparent 0 10deg, rgba(120,20,180,.20) 11deg 13deg, transparent 14deg 26deg),
+        linear-gradient(115deg, transparent 46%, rgba(230,210,255,.22) 48% 49%, transparent 51% 58%, rgba(230,210,255,.16) 60% 61%, transparent 63%),
+        linear-gradient(25deg, transparent 40%, rgba(230,210,255,.14) 42% 43%, transparent 45%),
+        radial-gradient(ellipse at 30% 30%, rgba(70,10,140,.5), transparent 36%),
+        radial-gradient(ellipse at 74% 66%, rgba(150,10,40,.42), transparent 34%);
+    animation: fxGirar 18s linear infinite;
+}
+.fondo-darkrai.fondo-var-mega::after {
+    inset: 0;
+    background:
+        radial-gradient(circle at 50% 50%, transparent 24%, rgba(0,0,0,.88) 100%),
+        radial-gradient(circle at 14% 68%, rgba(255,20,40,.9) 0 1.2px, transparent 2.4px) 0 0 / 130px 130px,
+        radial-gradient(circle at 62% 22%, rgba(255,20,40,.85) 0 1.2px, transparent 2.4px) 0 0 / 160px 160px,
+        radial-gradient(circle at 40% 82%, rgba(255,20,40,.8) 0 1.2px, transparent 2.4px) 0 0 / 110px 110px;
+    animation: fxPulso 4s ease-in-out infinite, fxParpadeo 2.6s steps(1) infinite;
+}
+
+/* 🤍🔥 RESHIRAM — Blanco Veraz: resplandor blanco y llamas */
+.fondo-reshiram {
+    background-image:
+        radial-gradient(circle at 50% 36%, rgba(255,250,235,.95) 0 3%, rgba(255,214,150,.60) 10%, rgba(255,140,50,.35) 26%, transparent 50%),
+        linear-gradient(180deg, #2a0c06 0%, #8a2a0e 38%, #d9601c 72%, #ee8a2e 100%);
+    animation: volcanGroudonMarco 9s ease-in-out infinite;
+}
+.fondo-reshiram::before {
+    inset: -30%;
+    background: repeating-conic-gradient(from 0deg at 50% 45%, rgba(255,210,140,0) 0 12deg, rgba(255,215,150,.14) 13deg 15deg, rgba(255,210,140,0) 16deg 30deg);
+    animation: fxGirar 70s linear infinite;
+}
+.fondo-reshiram::after {
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent 0 46px, rgba(255,235,200,.08) 47px 62px, transparent 63px 110px);
+    animation: fxAsciende 10s linear infinite;
+}
+
+/* ⚡ ZEKROM — Negro Ideal: oscuridad y electricidad azul */
+.fondo-zekrom {
+    background-image:
+        radial-gradient(circle at 50% 40%, rgba(150,220,255,.50) 0 3%, rgba(40,120,255,.28) 15%, transparent 36%),
+        repeating-linear-gradient(90deg, transparent 0 46px, rgba(70,150,255,.10) 47px 48px),
+        repeating-linear-gradient(0deg, transparent 0 46px, rgba(70,150,255,.10) 47px 48px),
+        linear-gradient(160deg, #000000 0%, #040b1f 40%, #0b2a72 74%, #010409 100%);
+    animation: fxRespirar 7s ease-in-out infinite;
+}
+.fondo-zekrom::before {
+    inset: 6%;
+    border: 2px solid rgba(90,170,255,.30);
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(50,130,255,.32), inset 0 0 26px rgba(90,170,255,.14);
+    animation: fxPulso 4s ease-in-out infinite;
+}
+.fondo-zekrom::after {
+    inset: 0;
+    background:
+        radial-gradient(circle at 12% 88%, rgba(60,150,255,.30), transparent 30%),
+        radial-gradient(circle at 90% 14%, rgba(60,150,255,.24), transparent 28%);
+    animation: fxPulso 6s ease-in-out infinite;
+}
+
+/* ❄️ KYUREM — mundo congelado (Negro y Blanco cambian la paleta) */
+.fondo-kyurem {
+    --ky-a: #061a30; --ky-b: #12507c; --ky-c: #3f9ccc; --ky-nucleo: rgba(140,215,255,.30);
+    background-image:
+        radial-gradient(circle at 50% 42%, rgba(230,250,255,.55) 0 3%, var(--ky-nucleo) 16%, transparent 38%),
+        repeating-conic-gradient(from 20deg at 50% 45%, rgba(200,240,255,0) 0deg 22deg, rgba(200,240,255,.12) 23deg 24deg, rgba(200,240,255,0) 25deg 60deg),
+        linear-gradient(170deg, var(--ky-a) 0%, var(--ky-b) 45%, var(--ky-c) 76%, var(--ky-a) 100%);
+    animation: fxRespirar 12s ease-in-out infinite;
+}
+.fondo-kyurem.fondo-var-negro {
+    --ky-a: #020407; --ky-b: #0a1a2e; --ky-c: #123f66; --ky-nucleo: rgba(70,200,255,.42);
+}
+.fondo-kyurem.fondo-var-blanco {
+    --ky-a: #14243a; --ky-b: #4f7fa6; --ky-c: #a9cbe3; --ky-nucleo: rgba(255,165,70,.42);
+}
+.fondo-kyurem::before {
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, transparent 52%, rgba(210,240,255,.30) 100%);
+}
+.fondo-kyurem::after {
+    inset: auto 0 0 0;
+    height: 30%;
+    background: linear-gradient(0deg, rgba(200,240,255,.55), rgba(200,240,255,.06));
+    clip-path: polygon(0 100%, 0 78%, 5% 60%, 9% 80%, 15% 46%, 21% 82%, 28% 62%, 34% 84%, 42% 52%, 48% 82%, 55% 58%, 62% 84%, 70% 48%, 76% 82%, 84% 60%, 90% 80%, 95% 64%, 100% 78%, 100% 100%);
+    animation: fxPulso 7s ease-in-out infinite;
+}
+
+/* ☀️ SOLGALEO — corona solar sobre el cosmos */
+.fondo-solgaleo {
+    background-image:
+        radial-gradient(circle at 50% 36%, #fff6c8 0 3.5%, rgba(255,205,70,.65) 9%, rgba(255,140,30,.32) 21%, transparent 40%),
+        radial-gradient(circle at 15% 25%, rgba(255,255,255,.9) 0 1px, transparent 2px),
+        radial-gradient(circle at 80% 70%, rgba(255,235,170,.85) 0 1px, transparent 2px),
+        linear-gradient(165deg, #050820 0%, #141a58 44%, #2a2f8f 76%, #070a25 100%);
+    background-size: 100% 100%, 240px 200px, 280px 230px, 100% 100%;
+    animation: fxRespirar 9s ease-in-out infinite;
+}
+.fondo-solgaleo::before {
+    inset: 8%;
+    border: 2px solid rgba(255,205,80,.32);
+    border-radius: 50%;
+    box-shadow: 0 0 34px rgba(255,170,40,.34), inset 0 0 28px rgba(255,210,90,.14);
+    animation: fxPulso 6s ease-in-out infinite;
+}
+.fondo-solgaleo::after {
+    inset: -30%;
+    background: repeating-conic-gradient(from 0deg at 50% 45%, rgba(255,210,90,0) 0 9deg, rgba(255,210,90,.15) 10deg 11.5deg, rgba(255,210,90,0) 13deg 24deg);
+    animation: fxGirar 50s linear infinite;
+}
+
+/* 🌙 LUNALA — noche de luna (violeta y azul pálido) */
+.fondo-lunala {
+    background-image:
+        radial-gradient(circle at 74% 24%, rgba(230,235,255,.55) 0 5%, rgba(170,170,255,.30) 12%, transparent 32%),
+        radial-gradient(circle at 25% 78%, rgba(150,90,255,.28), transparent 38%),
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.85) 0 1px, transparent 2px),
+        radial-gradient(circle at 60% 60%, rgba(200,210,255,.8) 0 1px, transparent 2px),
+        linear-gradient(165deg, #04051a 0%, #141052 42%, #37237a 74%, #080622 100%);
+    background-size: 100% 100%, 100% 100%, 230px 200px, 270px 230px, 100% 100%;
+    animation: fxRespirar 13s ease-in-out infinite;
+}
+.fondo-lunala::before {
+    top: 7%; right: 9%;
+    width: 30%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: transparent;
+    box-shadow: inset -16px 6px 0 -2px #eceeff, 0 0 44px 6px rgba(190,190,255,.35);
+    animation: fxPulso 8s ease-in-out infinite;
+}
+.fondo-lunala::after {
+    inset: -10%;
+    background:
+        radial-gradient(ellipse at 30% 70%, rgba(140,90,255,.30), transparent 34%),
+        radial-gradient(ellipse at 75% 88%, rgba(90,120,255,.24), transparent 36%);
+    animation: fxDeriva 18s ease-in-out infinite;
+}
+
+/* 🔷 NECROZMA — prisma, brechas dimensionales (Melena y Alas cambian la paleta) */
+.fondo-necrozma {
+    --nz-prisma: rgba(255,60,90,.22), rgba(255,200,60,.22), rgba(80,255,150,.22), rgba(60,180,255,.24), rgba(170,90,255,.24), rgba(255,60,90,.22);
+    --nz-nucleo: rgba(200,160,255,.28);
+    background-image:
+        radial-gradient(circle at 50% 40%, rgba(255,255,255,.55) 0 2.5%, var(--nz-nucleo) 14%, transparent 34%),
+        conic-gradient(from 0deg at 50% 40%, var(--nz-prisma)),
+        linear-gradient(160deg, #03020a 0%, #0c0620 45%, #150a34 75%, #02010a 100%);
+    animation: fxRespirar 10s ease-in-out infinite;
+}
+.fondo-necrozma.fondo-var-melena {
+    --nz-prisma: rgba(255,170,30,.30), rgba(255,90,20,.26), rgba(255,220,90,.30), rgba(200,60,20,.24), rgba(255,170,30,.30);
+    --nz-nucleo: rgba(255,190,80,.34);
+}
+.fondo-necrozma.fondo-var-alas {
+    --nz-prisma: rgba(80,200,255,.28), rgba(120,110,255,.26), rgba(190,230,255,.30), rgba(70,120,255,.26), rgba(80,200,255,.28);
+    --nz-nucleo: rgba(150,200,255,.34);
+}
+.fondo-necrozma.fondo-var-ultra {
+    --nz-prisma: rgba(255,250,220,.4), rgba(255,255,255,.42), rgba(255,225,150,.4), rgba(255,255,255,.42), rgba(255,250,220,.4);
+    --nz-nucleo: rgba(255,255,255,.6);
+    background-image:
+        radial-gradient(circle at 50% 40%, rgba(255,255,255,.9) 0 5%, rgba(255,240,200,.55) 18%, transparent 46%),
+        repeating-conic-gradient(from 0deg at 50% 40%, rgba(255,255,255,.14) 0 3deg, transparent 4deg 16deg),
+        radial-gradient(circle at 15% 20%, #ffffff 0 1px, transparent 2px) 0 0 / 70px 70px,
+        radial-gradient(circle at 75% 70%, #ffffff 0 1px, transparent 2px) 0 0 / 90px 90px,
+        linear-gradient(160deg, #04030a 0%, #150c1e 40%, #3a2408 78%, #06030a 100%);
+}
+.fondo-necrozma::before {
+    inset: 0;
+    background:
+        repeating-linear-gradient(115deg, transparent 0 78px, rgba(0,0,0,.55) 79px 82px, rgba(210,170,255,.20) 82px 83px, transparent 84px 160px);
+    animation: fxDeriva 20s ease-in-out infinite;
+}
+.fondo-necrozma::after {
+    inset: 10%;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, var(--nz-prisma));
+    -webkit-mask: radial-gradient(circle, transparent 58%, #000 59% 62%, transparent 63%);
+            mask: radial-gradient(circle, transparent 58%, #000 59% 62%, transparent 63%);
+    opacity: .9;
+    animation: fxGirar 24s linear infinite;
+}
+
+/* 🐲 REGIDRAGO — energía dragón cristalizada en ruinas antiguas */
+.fondo-regidrago {
+    background-image:
+        radial-gradient(circle at 50% 42%, rgba(255,130,190,.50) 0 4%, rgba(220,40,100,.28) 16%, transparent 36%),
+        linear-gradient(90deg, rgba(0,0,0,.28) 0 2px, transparent 2px) 0 0 / 92px 62px,
+        linear-gradient(0deg, rgba(0,0,0,.28) 0 2px, transparent 2px) 0 0 / 92px 62px,
+        linear-gradient(165deg, #0d0208 0%, #3d0a1c 40%, #7a1230 72%, #0a0106 100%);
+    animation: fxRespirar 9s ease-in-out infinite;
+}
+.fondo-regidrago::before {
+    inset: 9%;
+    border: 2px solid rgba(255,110,170,.30);
+    border-radius: 50%;
+    box-shadow: 0 0 32px rgba(255,60,130,.34), inset 0 0 26px rgba(255,130,190,.14);
+    animation: fxPulso 5s ease-in-out infinite;
+}
+.fondo-regidrago::after {
+    inset: 0;
+    background:
+        radial-gradient(circle at 12% 88%, rgba(255,70,140,.30), transparent 30%),
+        radial-gradient(circle at 90% 14%, rgba(110,200,255,.20), transparent 28%);
+    animation: fxPulso 7s ease-in-out infinite;
+}
+
+/* 🌲 ZACIAN — bosque encantado (Espada Suprema añade aura dorada) */
+.fondo-zacian {
+    --za-a: #03121f; --za-b: #0c4a5a; --za-c: #1f8f8a;
+    --za-luz: rgba(190,240,255,.50); --za-luz2: rgba(120,220,230,.22);
+    background-image:
+        radial-gradient(circle at 50% 38%, var(--za-luz) 0 3%, var(--za-luz2) 16%, transparent 38%),
+        linear-gradient(90deg, rgba(0,10,12,.85) 0 5%, transparent 12%, transparent 88%, rgba(0,10,12,.85) 95% 100%),
+        radial-gradient(ellipse at 50% 100%, rgba(170,240,230,.28), transparent 55%),
+        linear-gradient(180deg, var(--za-a) 0%, var(--za-b) 50%, var(--za-c) 82%, var(--za-a) 100%);
+    animation: fxRespirar 12s ease-in-out infinite;
+}
+.fondo-zacian.fondo-var-suprema {
+    --za-a: #041a2e; --za-b: #0f5a86; --za-c: #3fa8d8;
+    --za-luz: rgba(255,240,180,.62); --za-luz2: rgba(255,210,100,.28);
+}
+.fondo-zacian::before {
+    inset: 0 0 auto 0;
+    height: 26%;
+    background: linear-gradient(180deg, rgba(1,10,12,.92), rgba(1,10,12,0));
+    clip-path: polygon(0 0, 100% 0, 100% 70%, 94% 52%, 88% 78%, 80% 55%, 72% 82%, 62% 58%, 52% 80%, 42% 56%, 32% 84%, 22% 58%, 12% 80%, 6% 56%, 0 76%);
+}
+.fondo-zacian::after {
+    inset: -10%;
+    background:
+        radial-gradient(ellipse at 25% 85%, rgba(180,245,235,.24), transparent 34%),
+        radial-gradient(ellipse at 78% 75%, rgba(255,190,235,.16), transparent 32%);
+    animation: fxDeriva 16s ease-in-out infinite;
+}
+
+
+/* ---- Reinicio de pseudo-elementos y variable de brillo para los
+   38 legendarios/míticos añadidos en 2026 (necesario para que
+   ::before/::after se muestren y posicionen correctamente) ---- */
+.fondo-articuno::before, .fondo-articuno::after,
+.fondo-zapdos::before, .fondo-zapdos::after,
+.fondo-moltres::before, .fondo-moltres::after,
+.fondo-raikou::before, .fondo-raikou::after,
+.fondo-suicune::before, .fondo-suicune::after,
+.fondo-celebi::before, .fondo-celebi::after,
+.fondo-latias::before, .fondo-latias::after,
+.fondo-latios::before, .fondo-latios::after,
+.fondo-regirock::before, .fondo-regirock::after,
+.fondo-regice::before, .fondo-regice::after,
+.fondo-registeel::before, .fondo-registeel::after,
+.fondo-deoxys::before, .fondo-deoxys::after,
+.fondo-heatran::before, .fondo-heatran::after,
+.fondo-regigigas::before, .fondo-regigigas::after,
+.fondo-cresselia::before, .fondo-cresselia::after,
+.fondo-manaphy::before, .fondo-manaphy::after,
+.fondo-shaymin::before, .fondo-shaymin::after,
+.fondo-victini::before, .fondo-victini::after,
+.fondo-cobalion::before, .fondo-cobalion::after,
+.fondo-terrakion::before, .fondo-terrakion::after,
+.fondo-virizion::before, .fondo-virizion::after,
+.fondo-keldeo::before, .fondo-keldeo::after,
+.fondo-genesect::before, .fondo-genesect::after,
+.fondo-xerneas::before, .fondo-xerneas::after,
+.fondo-yveltal::before, .fondo-yveltal::after,
+.fondo-zygarde::before, .fondo-zygarde::after,
+.fondo-diancie::before, .fondo-diancie::after,
+.fondo-hoopa::before, .fondo-hoopa::after,
+.fondo-volcanion::before, .fondo-volcanion::after,
+.fondo-tapukoko::before, .fondo-tapukoko::after,
+.fondo-magearna::before, .fondo-magearna::after,
+.fondo-marshadow::before, .fondo-marshadow::after,
+.fondo-zeraora::before, .fondo-zeraora::after,
+.fondo-zamazenta::before, .fondo-zamazenta::after,
+.fondo-eternatus::before, .fondo-eternatus::after,
+.fondo-calyrex::before, .fondo-calyrex::after,
+.fondo-koraidon::before, .fondo-koraidon::after,
+.fondo-miraidon::before, .fondo-miraidon::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+}
+
+.fondo-articuno { --fx-glow: rgba(150,220,255,.42); }
+.fondo-zapdos { --fx-glow: rgba(255,225,80,.44); }
+.fondo-moltres { --fx-glow: rgba(255,150,60,.44); }
+.fondo-raikou { --fx-glow: rgba(255,225,80,.42); }
+.fondo-suicune { --fx-glow: rgba(150,220,255,.42); }
+.fondo-celebi { --fx-glow: rgba(140,240,150,.42); }
+.fondo-latias { --fx-glow: rgba(255,150,190,.42); }
+.fondo-latios { --fx-glow: rgba(120,170,255,.42); }
+.fondo-regirock { --fx-glow: rgba(210,170,120,.40); }
+.fondo-regice { --fx-glow: rgba(170,230,255,.42); }
+.fondo-registeel { --fx-glow: rgba(190,210,225,.40); }
+.fondo-deoxys { --fx-glow: rgba(230,120,255,.40); }
+.fondo-heatran { --fx-glow: rgba(255,140,60,.44); }
+.fondo-regigigas { --fx-glow: rgba(255,210,150,.38); }
+.fondo-cresselia { --fx-glow: rgba(230,200,255,.40); }
+.fondo-manaphy { --fx-glow: rgba(150,230,255,.40); }
+.fondo-shaymin { --fx-glow: rgba(150,230,150,.40); }
+.fondo-victini { --fx-glow: rgba(255,210,90,.42); }
+.fondo-cobalion { --fx-glow: rgba(150,200,255,.40); }
+.fondo-terrakion { --fx-glow: rgba(220,180,120,.40); }
+.fondo-virizion { --fx-glow: rgba(150,230,180,.40); }
+.fondo-keldeo { --fx-glow: rgba(150,220,255,.40); }
+.fondo-genesect { --fx-glow: rgba(150,220,255,.40); }
+.fondo-xerneas { --fx-glow: rgba(150,255,220,.42); }
+.fondo-yveltal { --fx-glow: rgba(190,20,45,.45); }
+.fondo-zygarde { --fx-glow: rgba(150,220,150,.40); }
+.fondo-diancie { --fx-glow: rgba(255,150,210,.42); }
+.fondo-hoopa { --fx-glow: rgba(200,150,255,.40); }
+.fondo-volcanion { --fx-glow: rgba(255,170,90,.42); }
+.fondo-tapukoko { --fx-glow: rgba(255,225,120,.42); }
+.fondo-magearna { --fx-glow: rgba(210,225,255,.40); }
+.fondo-marshadow { --fx-glow: rgba(150,150,220,.38); }
+.fondo-zeraora { --fx-glow: rgba(255,225,80,.42); }
+.fondo-zamazenta { --fx-glow: rgba(180,200,220,.40); }
+.fondo-eternatus { --fx-glow: rgba(220,120,255,.40); }
+.fondo-calyrex { --fx-glow: rgba(150,230,180,.40); }
+.fondo-koraidon { --fx-glow: rgba(255,110,90,.42); }
+.fondo-miraidon { --fx-glow: rgba(150,230,255,.42); }
+
+/* =========================================================
+   🆕 AMPLIACIÓN 2026 (v2) — escenarios propios para cada
+   legendario/mítico nuevo, con siluetas y texturas propias
+   (no solo partículas + degradado + anillo).
+   ========================================================= */
+
+/* ---------- ARTICUNO: viento helado desde picos nevados ---------- */
+.fondo-articuno {
+    background-image:
+        radial-gradient(circle at 50% 34%, rgba(220,245,255,.5) 0 3%, transparent 30%),
+        repeating-linear-gradient(100deg, transparent 0 50px, rgba(200,235,255,.07) 51px 54px, transparent 55px 130px),
+        linear-gradient(180deg, #030d17 0%, #0f3a5c 55%, #bfeaff 100%);
+    animation: fxRespirar 10s ease-in-out infinite;
+}
+.fondo-articuno::before {
+    inset: auto 0 0 0; height: 34%;
+    background: linear-gradient(180deg, #d8f3ff 0%, #eaf8ff 100%);
+    clip-path: polygon(0 100%, 0 60%, 14% 30%, 24% 55%, 38% 10%, 50% 40%, 62% 8%, 76% 46%, 88% 22%, 100% 55%, 100% 100%);
+    opacity: .9;
+}
+.fondo-articuno::after {
+    inset: 0;
+    background: repeating-linear-gradient(96deg, transparent 0 60px, rgba(255,255,255,.16) 61px 64px, transparent 65px 150px);
+    animation: fxOscilar 6s ease-in-out infinite;
+}
+.fondo-articuno.fondo-var-galar {
+    --fx-glow: rgba(150,90,255,.55);
+    background-image:
+        radial-gradient(circle at 50% 36%, rgba(210,170,255,.55) 0 4%, transparent 34%),
+        repeating-linear-gradient(100deg, transparent 0 50px, rgba(150,90,255,.10) 51px 54px, transparent 55px 130px),
+        linear-gradient(180deg, #0c0420 0%, #3a0f6a 55%, #8f5cff 100%);
+}
+.fondo-articuno.fondo-var-galar::before {
+    background: linear-gradient(180deg, #d9c2ff 0%, #eee0ff 100%);
+}
+
+/* ---------- ZAPDOS: viento + tormenta eléctrica ---------- */
+.fondo-zapdos {
+    background-image:
+        radial-gradient(circle at 50% 30%, rgba(255,240,150,.5) 0 3%, transparent 32%),
+        linear-gradient(180deg, #0a0a10 0%, #2c2a10 55%, #ffe74a 100%);
+    animation: fxRespirar 8s ease-in-out infinite;
+}
+.fondo-zapdos::before {
+    inset: 6% 30% auto 30%; height: 60%;
+    background: linear-gradient(180deg, #fff6c2, #ffe74a);
+    clip-path: polygon(45% 0, 100% 0, 55% 45%, 80% 45%, 20% 100%, 38% 52%, 0 52%);
+    filter: drop-shadow(0 0 14px rgba(255,231,74,.65));
+    animation: fxPulso 2.6s ease-in-out infinite;
+}
+.fondo-zapdos::after {
+    inset: 0;
+    background: repeating-linear-gradient(105deg, transparent 0 40px, rgba(255,255,255,.10) 41px 43px, transparent 44px 100px);
+    animation: fxOscilar 5s ease-in-out infinite;
+}
+.fondo-zapdos.fondo-var-galar {
+    --fx-glow: rgba(255,50,30,.55);
+    background-image:
+        radial-gradient(circle at 50% 30%, rgba(255,120,80,.5) 0 4%, transparent 34%),
+        linear-gradient(180deg, #0e0303 0%, #3a0a0a 55%, #ff3a1f 100%);
+}
+.fondo-zapdos.fondo-var-galar::before {
+    background: linear-gradient(180deg, #ffb199, #ff3a1f);
+    filter: drop-shadow(0 0 14px rgba(255,58,31,.65));
+}
+
+/* ---------- MOLTRES: viento ígneo ---------- */
+.fondo-moltres {
+    background-image:
+        radial-gradient(ellipse at 50% 76%, rgba(255,190,90,.85) 0 3%, rgba(255,110,25,.45) 15%, transparent 36%),
+        linear-gradient(180deg, #1a0703 0%, #5a1c0c 45%, #ff8a2a 100%);
+    animation: volcanGroudonMarco 8s ease-in-out infinite;
+}
+.fondo-moltres::before {
+    inset: auto 0 0 0; height: 40%;
+    background: linear-gradient(180deg, #170805, #0a0403);
+    clip-path: polygon(0 100%, 0 70%, 16% 50%, 30% 68%, 44% 24%, 56% 40%, 66% 20%, 80% 58%, 92% 40%, 100% 66%, 100% 100%);
+}
+.fondo-moltres::after {
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent 0 46px, rgba(255,150,50,.10) 47px 62px, transparent 63px 110px);
+    animation: fxAsciende 8s linear infinite;
+}
+.fondo-moltres.fondo-var-galar {
+    --fx-glow: rgba(122,26,42,.55);
+    background-image:
+        radial-gradient(ellipse at 50% 78%, rgba(122,26,42,.7) 0 3%, rgba(58,10,18,.5) 16%, transparent 38%),
+        linear-gradient(180deg, #060202 0%, #2a0812 50%, #5a0f1f 100%);
+}
+.fondo-moltres.fondo-var-galar::before { background: linear-gradient(180deg, #0a0303, #050101); }
+
+/* ---------- RAIKOU: nacimiento del rayo ---------- */
+.fondo-raikou {
+    background-image:
+        radial-gradient(circle at 50% 26%, rgba(255,255,255,.6) 0 2%, rgba(255,231,74,.4) 10%, transparent 30%),
+        linear-gradient(180deg, #0b0c1a 0%, #232a63 55%, #ffe74a 100%);
+    animation: fxRespirar 6s ease-in-out infinite;
+}
+.fondo-raikou::before {
+    inset: 4% 34% auto 34%; height: 66%;
+    background: #ffe74a;
+    clip-path: polygon(50% 0, 62% 34%, 90% 34%, 42% 100%, 52% 56%, 10% 56%);
+    filter: drop-shadow(0 0 20px rgba(255,231,74,.8));
+    animation: fxLatido 1.4s ease-in-out infinite;
+}
+.fondo-raikou::after {
+    inset: 0;
+    background: radial-gradient(circle at 50% 24%, rgba(255,255,255,.9) 0 3px, transparent 4px) 50% 24% / 100% 100% no-repeat;
+    animation: fxPulso 1.4s ease-in-out infinite;
+}
+
+/* ---------- SUICUNE: agua pura y cristales ---------- */
+.fondo-suicune {
+    background-image:
+        radial-gradient(circle at 50% 40%, rgba(230,255,255,.5) 0 4%, transparent 34%),
+        linear-gradient(180deg, #04131a 0%, #0f4a5c 55%, #9be7ff 100%);
+    animation: fxRespirar 9s ease-in-out infinite;
+}
+.fondo-suicune::before {
+    inset: 10%;
+    clip-path: polygon(50% 0, 61% 35%, 100% 35%, 68% 57%, 79% 100%, 50% 74%, 21% 100%, 32% 57%, 0 35%, 39% 35%);
+    background: linear-gradient(180deg, rgba(255,255,255,.55), rgba(150,230,255,.25));
+    filter: drop-shadow(0 0 16px rgba(150,230,255,.5));
+    animation: fxGirar 26s linear infinite;
+    opacity: .5;
+}
+.fondo-suicune::after {
+    inset: 0;
+    background: radial-gradient(circle at 50% 60%, rgba(200,245,255,.30), transparent 55%);
+    animation: fxOscilar 7s ease-in-out infinite;
+}
+
+/* ---------- CELEBI: viaje en el tiempo ---------- */
+.fondo-celebi {
+    background-image:
+        radial-gradient(circle at 50% 40%, rgba(200,255,220,.5) 0 4%, transparent 34%),
+        linear-gradient(180deg, #040f08 0%, #0f3a20 55%, #5fffa0 100%);
+    animation: fxRespirar 9s ease-in-out infinite;
+}
+.fondo-celebi::before {
+    inset: 6%;
+    border-radius: 50%;
+    background: repeating-conic-gradient(from 0deg, transparent 0 24deg, rgba(150,255,190,.16) 25deg 27deg, transparent 28deg 48deg);
+    animation: fxGirar 18s linear infinite;
+}
+.fondo-celebi::after {
+    inset: 12%;
+    border: 2px dashed rgba(150,255,190,.35);
+    border-radius: 50%;
+    animation: fxGirar 30s linear reverse infinite;
+}
+
+/* ---------- REGIROCK: tallado por Regigigas en roca ---------- */
+.fondo-regirock {
+    background-image:
+        radial-gradient(circle at 50% 42%, rgba(230,200,150,.35) 0 4%, transparent 34%),
+        linear-gradient(180deg, #0e0a06 0%, #3a2c18 55%, #c98a3c 100%);
+    animation: fxRespirar 12s ease-in-out infinite;
+}
+.fondo-regirock::before {
+    inset: auto 8% 6% 8%; height: 52%;
+    background: linear-gradient(180deg, #7a5528, #3a2410);
+    clip-path: polygon(0 100%, 4% 60%, 18% 66%, 22% 40%, 34% 52%, 40% 20%, 52% 46%, 60% 12%, 70% 44%, 82% 30%, 88% 58%, 100% 48%, 100% 100%);
+}
+.fondo-regirock::after {
+    inset: 0;
+    background: repeating-linear-gradient(64deg, transparent 0 30px, rgba(0,0,0,.10) 31px 33px, transparent 34px 70px);
+}
+
+/* ---------- REGICE: tallado por Regigigas en hielo ---------- */
+.fondo-regice {
+    background-image:
+        radial-gradient(circle at 50% 40%, rgba(230,250,255,.55) 0 4%, transparent 34%),
+        linear-gradient(180deg, #040d14 0%, #123a4a 55%, #bfeeff 100%);
+    animation: fxRespirar 10s ease-in-out infinite;
+}
+.fondo-regice::before {
+    inset: 14% 20%;
+    background: linear-gradient(160deg, rgba(255,255,255,.55), rgba(150,220,255,.20));
+    clip-path: polygon(50% 0, 80% 18%, 100% 55%, 70% 100%, 30% 100%, 0 55%, 20% 18%);
+    filter: drop-shadow(0 0 22px rgba(150,220,255,.55));
+    animation: fxPulso 6s ease-in-out infinite;
+}
+.fondo-regice::after {
+    inset: 0;
+    background: repeating-linear-gradient(45deg, transparent 0 26px, rgba(255,255,255,.10) 27px 29px, transparent 30px 60px);
+}
+
+/* ---------- REGISTEEL: tallado por Regigigas en metal puro ---------- */
+.fondo-registeel {
+    background-image:
+        radial-gradient(circle at 50% 40%, rgba(220,230,240,.45) 0 4%, transparent 34%),
+        linear-gradient(180deg, #0a0d10 0%, #2c343c 55%, #b8c8d4 100%);
+    animation: fxRespirar 11s ease-in-out infinite;
+}
+.fondo-registeel::before {
+    inset: 14% 22%;
+    background: linear-gradient(160deg, #e8f0f6, #9fb8c8, #5c6c78);
+    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+    filter: drop-shadow(0 0 16px rgba(200,220,230,.5));
+}
+.fondo-registeel::after {
+    inset: 0;
+    background: repeating-linear-gradient(90deg, transparent 0 44px, rgba(255,255,255,.10) 45px 47px, transparent 48px 90px);
+    animation: fxOscilar 8s ease-in-out infinite;
+}
+
+/* ---------- DEOXYS: parásito espacial de ADN ---------- */
+.fondo-deoxys {
+    --dx-a: #0a0512; --dx-b: #2c1040; --dx-c: #7a2fd6;
+    background-image:
+        radial-gradient(circle at 50% 40%, rgba(230,180,255,.5) 0 3%, rgba(160,90,255,.28) 16%, transparent 36%),
+        repeating-linear-gradient(60deg, transparent 0 34px, rgba(200,150,255,.08) 35px 36px),
+        repeating-linear-gradient(-60deg, transparent 0 34px, rgba(200,150,255,.08) 35px 36px),
+        linear-gradient(160deg, var(--dx-a) 0%, var(--dx-b) 46%, var(--dx-c) 100%);
+    animation: fxRespirar 9s ease-in-out infinite;
+}
+.fondo-deoxys::after {
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 50%, rgba(235,200,255,.85) 0 2.2px, transparent 3.5px) 0 0 / 100% 46px,
+        radial-gradient(circle at 27% 50%, rgba(180,110,255,.85) 0 2.2px, transparent 3.5px) 0 23px / 100% 46px,
+        radial-gradient(circle at 78% 50%, rgba(235,200,255,.85) 0 2.2px, transparent 3.5px) 0 0 / 100% 46px,
+        radial-gradient(circle at 73% 50%, rgba(180,110,255,.85) 0 2.2px, transparent 3.5px) 0 23px / 100% 46px;
+    opacity: .7;
+    animation: fxAdn 6s linear infinite;
+}
+
+/* ---------- LATIOS / LATIAS: poder psíquico ---------- */
+.fondo-latios {
+    background-image:
+        radial-gradient(circle at 50% 40%, rgba(190,220,255,.5) 0 4%, transparent 34%),
+        linear-gradient(160deg, #050a16 0%, #10204a 46%, #5f9fff 100%);
+    animation: fxRespirar 10s ease-in-out infinite;
+}
+.fondo-latios::before {
+    inset: 10%;
+    border-radius: 50%;
+    background: repeating-conic-gradient(from 0deg, transparent 0 20deg, rgba(150,190,255,.14) 21deg 23deg, transparent 24deg 40deg);
+    animation: fxGirar 16s linear infinite;
+}
+.fondo-latios::after { inset: 0; background: radial-gradient(circle at 50% 50%, rgba(150,190,255,.25), transparent 60%); animation: fxPulso 4s ease-in-out infinite; }
+.fondo-latios.fondo-var-mega {
+    --fx-glow: rgba(140,120,255,.55);
+    background-image:
+        radial-gradient(circle at 50% 40%, rgba(190,150,255,.6) 0 6%, transparent 42%),
+        linear-gradient(160deg, #0a0530 0%, #2a1050 40%, #7a4fff 100%);
+}
+.fondo-latios.fondo-var-mega::before { animation-duration: 8s; background: repeating-conic-gradient(from 0deg, transparent 0 14deg, rgba(190,160,255,.22) 15deg 17deg, transparent 18deg 30deg); }
+
+.fondo-latias {
+    background-image:
+        radial-gradient(circle at 50% 40%, rgba(255,200,220,.5) 0 4%, transparent 34%),
+        linear-gradient(160deg, #2a0512 0%, #7a1030 46%, #ff5c8a 100%);
+    animation: fxRespirar 10s ease-in-out infinite;
+}
+.fondo-latias::before {
+    inset: 10%;
+    border-radius: 50%;
+    background: repeating-conic-gradient(from 0deg, transparent 0 20deg, rgba(255,150,190,.14) 21deg 23deg, transparent 24deg 40deg);
+    animation: fxGirar 16s linear reverse infinite;
+}
+.fondo-latias::after { inset: 0; background: radial-gradient(circle at 50% 50%, rgba(255,150,190,.25), transparent 60%); animation: fxPulso 4s ease-in-out infinite; }
+.fondo-latias.fondo-var-mega {
+    --fx-glow: rgba(255,60,150,.55);
+    background-image:
+        radial-gradient(circle at 50% 40%, rgba(255,150,220,.6) 0 6%, transparent 42%),
+        linear-gradient(160deg, #2a0a3a 0%, #7a1a5c 40%, #ff2f6d 100%);
+}
+.fondo-latias.fondo-var-mega::before { animation-duration: 8s; background: repeating-conic-gradient(from 0deg, transparent 0 14deg, rgba(255,160,210,.22) 15deg 17deg, transparent 18deg 30deg); }
+
+/* ---------- HEATRAN: lava, fuego, ceniza y hierro ---------- */
+.fondo-heatran {
+    background-image:
+        radial-gradient(ellipse at 50% 78%, rgba(255,190,90,.8) 0 3%, rgba(255,110,25,.4) 15%, transparent 36%),
+        linear-gradient(180deg, #170805 0%, #5a1c0c 45%, #ff8a2a 100%);
+    animation: volcanGroudonMarco 9s ease-in-out infinite;
+}
+.fondo-heatran::before {
+    inset: auto 0 0 0; height: 30%;
+    background: repeating-linear-gradient(90deg, #2c2c2c 0 18px, #1a1a1a 18px 36px);
+    clip-path: polygon(0 100%, 0 40%, 20% 60%, 40% 30%, 60% 55%, 80% 25%, 100% 50%, 100% 100%);
+}
+.fondo-heatran::after {
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent 0 40px, rgba(120,120,120,.14) 41px 44px, transparent 45px 90px);
+    animation: fxAsciende 10s linear infinite;
+}
+
+/* 🌋✨ MEGA-HEATRAN — el núcleo del planeta se desborda: más lava, más hierro fundido */
+.fondo-heatran.fondo-var-mega {
+    --fx-glow: rgba(255,120,40,.64);
+    background-image:
+        radial-gradient(ellipse at 50% 72%, rgba(255,230,150,.92) 0 6%, rgba(255,120,20,.58) 20%, transparent 46%),
+        linear-gradient(180deg, #200402 0%, #7a1c06 38%, #ff5a12 100%);
+    animation: volcanGroudonMarco 5s ease-in-out infinite;
+}
+.fondo-heatran.fondo-var-mega::before {
+    inset: auto 0 0 0; height: 36%;
+    background: repeating-linear-gradient(90deg, #3a2a1a 0 16px, #1a1008 16px 32px);
+    clip-path: polygon(0 100%, 0 28%, 18% 54%, 36% 18%, 55% 50%, 74% 12%, 92% 44%, 100% 18%, 100% 100%);
+    filter: drop-shadow(0 -6px 18px rgba(255,140,40,.75));
+}
+.fondo-heatran.fondo-var-mega::after {
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent 0 28px, rgba(255,170,90,.24) 29px 32px, transparent 33px 66px);
+    animation: fxAsciende 5s linear infinite;
+}
+
+/* ---------- REGIGIGAS: el guardián que movió los continentes ---------- */
+.fondo-regigigas {
+    background-image:
+        radial-gradient(circle at 50% 34%, rgba(255,220,160,.35) 0 4%, transparent 40%),
+        linear-gradient(180deg, #0e0a04 0%, #3a2c10 55%, #e0a83c 100%);
+    animation: fxRespirar 14s ease-in-out infinite;
+}
+.fondo-regigigas::before {
+    inset: 4% 14% 0 14%;
+    background: linear-gradient(180deg, rgba(60,44,20,.9), transparent);
+    clip-path: polygon(38% 0, 62% 0, 70% 30%, 60% 32%, 66% 60%, 50% 58%, 34% 60%, 40% 32%, 30% 30%);
+    opacity: .8;
+}
+.fondo-regigigas::after {
+    inset: auto 0 0 0; height: 20%;
+    background: repeating-linear-gradient(90deg, #3a2c10 0 40px, #241a0a 40px 80px);
+}
+
+/* ---------- CRESSELIA: protectora de los sueños ---------- */
+.fondo-cresselia {
+    background-image:
+        radial-gradient(circle at 50% 40%, rgba(230,215,255,.5) 0 4%, transparent 38%),
+        linear-gradient(180deg, #0a0a16 0%, #2c2050 55%, #c7b0ff 100%);
+    animation: fxRespirar 13s ease-in-out infinite;
+}
+.fondo-cresselia::before {
+    inset: 8%;
+    border-radius: 50%;
+    background: radial-gradient(circle, transparent 55%, rgba(255,240,255,.10) 60% 62%, transparent 66%);
+    animation: fxGirar 40s linear infinite;
+}
+.fondo-cresselia::after {
+    inset: 0;
+    background: radial-gradient(circle at 30% 70%, rgba(255,255,255,.18), transparent 30%),
+                radial-gradient(circle at 70% 25%, rgba(255,255,255,.14), transparent 26%);
+    animation: fxOscilar 9s ease-in-out infinite;
+}
+
+/* ---------- MANAPHY: vegetación marina ---------- */
+.fondo-manaphy {
+    background-image:
+        radial-gradient(circle at 50% 40%, rgba(200,255,255,.5) 0 4%, transparent 34%),
+        linear-gradient(180deg, #04121a 0%, #0f405c 55%, #6fe0ff 100%);
+    animation: fxRespirar 9s ease-in-out infinite;
+}
+.fondo-manaphy::before {
+    inset: auto 0 0 0; height: 38%;
+    background-image:
+        radial-gradient(ellipse 16px 100px at 8% 100%, rgba(60,190,140,.72), transparent 74%),
+        radial-gradient(ellipse 13px 74px at 18% 100%, rgba(50,170,120,.66), transparent 74%),
+        radial-gradient(ellipse 19px 112px at 30% 100%, rgba(80,210,150,.72), transparent 74%),
+        radial-gradient(ellipse 14px 80px at 42% 100%, rgba(50,170,120,.66), transparent 74%),
+        radial-gradient(ellipse 18px 104px at 55% 100%, rgba(80,210,150,.72), transparent 74%),
+        radial-gradient(ellipse 13px 76px at 66% 100%, rgba(50,170,120,.66), transparent 74%),
+        radial-gradient(ellipse 19px 108px at 78% 100%, rgba(80,210,150,.72), transparent 74%),
+        radial-gradient(ellipse 14px 84px at 90% 100%, rgba(50,170,120,.66), transparent 74%);
+    transform-origin: bottom center;
+    opacity: .95;
+    animation: fxAlgaVaiven 5s ease-in-out infinite;
+}
+
+/* ---------- SHAYMIN: campo floral ---------- */
+.fondo-shaymin {
+    background-image:
+        radial-gradient(circle at 50% 40%, rgba(255,220,235,.5) 0 4%, transparent 34%),
+        linear-gradient(180deg, #050f06 0%, #123a1a 55%, #ff9ac4 100%);
+    animation: fxRespirar 9s ease-in-out infinite;
+}
+.fondo-shaymin::before {
+    inset: auto 0 0 0; height: 24%;
+    background: repeating-linear-gradient(90deg, #123a1a 0 24px, #1a4a24 24px 48px);
+    clip-path: polygon(0 100%, 0 40%, 10% 60%, 20% 30%, 30% 55%, 40% 20%, 50% 50%, 60% 25%, 70% 55%, 80% 30%, 90% 58%, 100% 35%, 100% 100%);
+}
+.fondo-shaymin::after {
+    inset: 0;
+    background: radial-gradient(circle at 20% 30%, rgba(255,154,196,.4) 0 4px, transparent 5px) 0 0 / 90px 90px,
+                radial-gradient(circle at 60% 70%, rgba(255,220,235,.4) 0 4px, transparent 5px) 0 0 / 110px 110px;
+    animation: fxOscilar 7s ease-in-out infinite;
+}
+.fondo-shaymin.fondo-var-cielo {
+    --fx-glow: rgba(255,220,235,.5);
+    background-image:
+        radial-gradient(circle at 50% 30%, rgba(255,255,255,.5) 0 6%, transparent 34%),
+        linear-gradient(180deg, #bfe6ff 0%, #eaf6ff 55%, #ffd9ec 100%);
+}
+.fondo-shaymin.fondo-var-cielo::before {
+    background: transparent;
+    clip-path: none;
+    inset: 0;
+    background-image:
+        radial-gradient(ellipse 90px 24px at 20% 20%, rgba(255,255,255,.85), transparent 70%),
+        radial-gradient(ellipse 120px 30px at 70% 35%, rgba(255,255,255,.75), transparent 70%),
+        radial-gradient(ellipse 80px 20px at 40% 60%, rgba(255,255,255,.7), transparent 70%);
+    animation: fxDeriva 16s linear infinite;
+}
+
+/* ---------- VICTINI: poder contenido y victoria ---------- */
+.fondo-victini {
+    background-image:
+        radial-gradient(circle at 50% 40%, rgba(255,235,180,.6) 0 5%, rgba(255,180,70,.3) 18%, transparent 38%),
+        linear-gradient(180deg, #140a03 0%, #4a2c0c 55%, #ffb347 100%);
+    animation: fxRespirar 5s ease-in-out infinite;
+}
+.fondo-victini::before {
+    inset: 20%;
+    border-radius: 50%;
+    border: 3px solid rgba(255,224,138,.5);
+    box-shadow: 0 0 30px rgba(255,180,70,.5), inset 0 0 22px rgba(255,224,138,.3);
+    animation: fxLatido 1.6s ease-in-out infinite;
+}
+.fondo-victini::after {
+    inset: 0;
+    background: conic-gradient(from 0deg, transparent 0 10deg, rgba(255,224,138,.14) 11deg 13deg, transparent 14deg 30deg);
+    animation: fxGirar 12s linear infinite;
+}
+
+/* ---------- TRÍO DE ESPADAS (Cobalion / Terrakion / Virizion) + Keldeo ---------- */
+.fondo-cobalion, .fondo-terrakion, .fondo-virizion, .fondo-keldeo {
+    animation: fxRespirar 9s ease-in-out infinite;
+}
+.fondo-cobalion::before, .fondo-terrakion::before, .fondo-virizion::before, .fondo-keldeo::before {
+    inset: 10% 42%; 
+    clip-path: polygon(50% 0, 62% 14%, 58% 66%, 76% 66%, 50% 100%, 24% 66%, 42% 66%, 38% 14%);
+    filter: drop-shadow(0 0 14px var(--fx-glow));
+    animation: fxPulso 3.4s ease-in-out infinite;
+}
+.fondo-cobalion::after, .fondo-terrakion::after, .fondo-virizion::after, .fondo-keldeo::after {
+    inset: 0;
+    background: repeating-linear-gradient(70deg, transparent 0 50px, rgba(255,255,255,.08) 51px 53px, transparent 54px 120px);
+    animation: fxOscilar 6s ease-in-out infinite;
+}
+.fondo-cobalion { background-image: radial-gradient(circle at 50% 40%, rgba(200,225,255,.4) 0 4%, transparent 34%), linear-gradient(180deg, #070a12 0%, #243a5c 55%, #b8d8ff 100%); }
+.fondo-cobalion::before { background: linear-gradient(180deg, #e8f2ff, #7fb0ff); }
+.fondo-terrakion { background-image: radial-gradient(circle at 50% 40%, rgba(230,200,150,.4) 0 4%, transparent 34%), linear-gradient(180deg, #0e0a06 0%, #3a2c18 55%, #e0c090 100%); }
+.fondo-terrakion::before { background: linear-gradient(180deg, #f0e0c0, #d0a05a); }
+.fondo-virizion { background-image: radial-gradient(circle at 50% 40%, rgba(200,255,220,.4) 0 4%, transparent 34%), linear-gradient(180deg, #050f0a 0%, #0f3a28 55%, #b0ffd8 100%); }
+.fondo-virizion::before { background: linear-gradient(180deg, #e8fff2, #5fffb0); }
+.fondo-keldeo { background-image: radial-gradient(circle at 50% 40%, rgba(190,225,255,.4) 0 4%, transparent 34%), linear-gradient(180deg, #04101a 0%, #0f3a5c 55%, #a8d8ff 100%); }
+.fondo-keldeo::before { background: linear-gradient(180deg, #eaf6ff, #6fc9ff); opacity: .75; }
+.fondo-keldeo.fondo-var-resolute {
+    --fx-glow: rgba(191,230,255,.6);
+    background-image: radial-gradient(circle at 50% 40%, rgba(220,240,255,.6) 0 6%, transparent 40%), linear-gradient(180deg, #04101a 0%, #0f3a5c 46%, #bfe6ff 100%);
+}
+.fondo-keldeo.fondo-var-resolute::before { filter: drop-shadow(0 0 22px rgba(191,230,255,.8)); opacity: 1; }
+
+/* ---------- GENESECT: fósil prehistórico + máquina ---------- */
+.fondo-genesect {
+    background-image:
+        radial-gradient(circle at 50% 40%, rgba(150,220,255,.4) 0 4%, transparent 34%),
+        linear-gradient(90deg, #1c1608 0%, #3a2c10 48%, #0a1420 52%, #16324a 100%);
+    animation: fxRespirar 9s ease-in-out infinite;
+}
+.fondo-genesect::before {
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent 0 30px, rgba(255,255,255,.06) 31px 32px, transparent 33px 60px);
+    opacity: .6;
+}
+.fondo-genesect::after {
+    inset: 0;
+    background: radial-gradient(circle at 76% 50%, rgba(150,220,255,.5) 0 2px, transparent 3px) 0 0 / 40px 40px;
+    animation: fxDeriva 8s ease-in-out infinite;
+}
+
+/* ---------- XERNEAS: protector de la vida ---------- */
+.fondo-xerneas {
+    background-image:
+        radial-gradient(circle at 50% 36%, rgba(220,255,245,.55) 0 4%, transparent 36%),
+        linear-gradient(180deg, #040f0e 0%, #0f3a38 55%, #baffe8 100%);
+    animation: fxRespirar 8s ease-in-out infinite;
+}
+.fondo-xerneas::before {
+    inset: -20%;
+    background: repeating-conic-gradient(from 0deg at 50% 60%, transparent 0 9deg, rgba(255,229,138,.10) 10deg 12deg, transparent 13deg 24deg);
+    animation: fxGirar 22s linear infinite;
+}
+.fondo-xerneas::after {
+    inset: 0;
+    background: radial-gradient(circle at 30% 65%, rgba(255,229,138,.5) 0 3px, transparent 4px) 0 0 / 70px 70px,
+                radial-gradient(circle at 70% 35%, rgba(95,255,207,.5) 0 3px, transparent 4px) 0 0 / 90px 90px;
+    animation: fxOscilar 7s ease-in-out infinite;
+}
+
+/* ---------- YVELTAL: el que trae la muerte (negro + carmesí, grietas de piedra) ---------- */
+.fondo-yveltal {
+    background-image:
+        radial-gradient(circle at 50% 34%, rgba(200,20,45,.45) 0 4%, transparent 38%),
+        linear-gradient(180deg, #030101 0%, #1c0508 45%, #4a0a12 75%, #8a0f1f 100%);
+    animation: fxRespirar 8s ease-in-out infinite;
+}
+.fondo-yveltal::before {
+    inset: -25%;
+    background: repeating-conic-gradient(from 20deg at 50% 40%, transparent 0 8deg, rgba(190,20,45,.16) 9deg 11deg, transparent 12deg 22deg);
+    animation: fxGirar 18s linear reverse infinite;
+}
+.fondo-yveltal::after {
+    inset: 0;
+    background:
+        linear-gradient(135deg, transparent 46%, rgba(0,0,0,.88) 47% 49%, transparent 50%) 0 0 / 36% 36% no-repeat,
+        linear-gradient(158deg, transparent 46%, rgba(0,0,0,.8) 47% 48.6%, transparent 50%) 4% 6% / 20% 22% no-repeat,
+        linear-gradient(-135deg, transparent 46%, rgba(0,0,0,.88) 47% 49%, transparent 50%) 100% 0 / 36% 36% no-repeat,
+        linear-gradient(-158deg, transparent 46%, rgba(0,0,0,.8) 47% 48.6%, transparent 50%) 96% 6% / 20% 22% no-repeat,
+        linear-gradient(48deg, transparent 46%, rgba(0,0,0,.85) 47% 49%, transparent 50%) 0 100% / 30% 30% no-repeat,
+        linear-gradient(-48deg, transparent 46%, rgba(0,0,0,.85) 47% 49%, transparent 50%) 100% 100% / 30% 30% no-repeat,
+        radial-gradient(ellipse at 50% 100%, rgba(0,0,0,.7), transparent 60%);
+}
+
+/* ---------- ZYGARDE: 10% / 50% / 100% — más detalle según forma ---------- */
+.fondo-zygarde {
+    background-image:
+        radial-gradient(circle at 50% 40%, rgba(160,255,120,.35) 0 3%, transparent 30%),
+        linear-gradient(180deg, #080f06 0%, #1c3a12 55%, #5fd048 100%);
+    animation: fxRespirar 11s ease-in-out infinite;
+}
+.fondo-zygarde::before {
+    inset: 0;
+    background: repeating-linear-gradient(60deg, transparent 0 46px, rgba(150,255,110,.10) 47px 49px, transparent 50px 92px),
+                repeating-linear-gradient(-60deg, transparent 0 46px, rgba(150,255,110,.10) 47px 49px, transparent 50px 92px);
+    opacity: .5;
+}
+.fondo-zygarde.fondo-var-10::before { opacity: .18; }
+.fondo-zygarde.fondo-var-10::after { display: none; }
+.fondo-zygarde.fondo-var-100 {
+    --fx-glow: rgba(150,220,150,.55);
+    background-image:
+        radial-gradient(circle at 50% 40%, rgba(200,255,170,.55) 0 6%, transparent 40%),
+        linear-gradient(180deg, #050d04 0%, #1c3a12 45%, #5fd048 100%);
+}
+.fondo-zygarde.fondo-var-100::before {
+    opacity: .9;
+    background: repeating-linear-gradient(60deg, transparent 0 30px, rgba(150,255,110,.18) 31px 34px, transparent 35px 60px),
+                repeating-linear-gradient(-60deg, transparent 0 30px, rgba(150,255,110,.18) 31px 34px, transparent 35px 60px),
+                repeating-linear-gradient(0deg, transparent 0 30px, rgba(150,255,110,.10) 31px 33px, transparent 34px 60px);
+    animation: fxOscilar 5s ease-in-out infinite;
+}
+.fondo-zygarde.fondo-var-100::after {
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(200,255,170,.3), transparent 60%);
+    animation: fxPulso 3s ease-in-out infinite;
+}
+
+/* 🧬✨ MEGA-ZYGARDE — todas las células reunidas al límite de su poder,
+   con las cuatro energías elementales asomando en las esquinas sin opacar
+   el verde característico (basado en el fondo de su Forma Completa) */
+.fondo-zygarde.fondo-var-mega {
+    --fx-glow: rgba(190,255,170,.55);
+    background-image:
+        radial-gradient(circle at 0% 0%,   rgba(255,70,70,.42) 0%, transparent 34%),
+        radial-gradient(circle at 100% 0%, rgba(70,130,255,.42) 0%, transparent 34%),
+        radial-gradient(circle at 0% 100%, rgba(190,110,255,.40) 0%, transparent 34%),
+        radial-gradient(circle at 100% 100%, rgba(255,255,255,.32) 0%, transparent 34%),
+        radial-gradient(circle at 50% 40%, rgba(230,255,210,.78) 0 9%, transparent 48%),
+        linear-gradient(180deg, #030905 0%, #123a12 38%, #7dfa55 100%);
+    animation: fxRespirar 5s ease-in-out infinite;
+}
+.fondo-zygarde.fondo-var-mega::before {
+    opacity: 1;
+    background: repeating-linear-gradient(60deg, transparent 0 22px, rgba(170,255,120,.28) 23px 26px, transparent 27px 44px),
+                repeating-linear-gradient(-60deg, transparent 0 22px, rgba(170,255,120,.28) 23px 26px, transparent 27px 44px),
+                repeating-linear-gradient(0deg, transparent 0 22px, rgba(170,255,120,.16) 23px 25px, transparent 26px 44px);
+    animation: fxOscilar 3s ease-in-out infinite;
+}
+.fondo-zygarde.fondo-var-mega::after { display: none; }
+
+/* ---------- DIANCIE: cristales rosados ---------- */
+.fondo-diancie {
+    background-image:
+        radial-gradient(circle at 50% 40%, rgba(255,210,235,.5) 0 4%, transparent 34%),
+        linear-gradient(160deg, #140510 0%, #4a1035 46%, #ff7fd6 100%);
+    animation: fxRespirar 9s ease-in-out infinite;
+}
+.fondo-diancie::before {
+    inset: 16%;
+    clip-path: polygon(50% 0, 90% 35%, 74% 100%, 26% 100%, 10% 35%);
+    background: linear-gradient(160deg, rgba(255,240,250,.6), rgba(255,127,214,.25));
+    filter: drop-shadow(0 0 20px rgba(255,127,214,.55));
+    animation: fxPulso 5s ease-in-out infinite;
+}
+.fondo-diancie::after {
+    inset: 0;
+    background: radial-gradient(circle at 25% 25%, rgba(255,210,235,.5) 0 3px, transparent 4px) 0 0 / 70px 70px;
+    animation: fxOscilar 8s ease-in-out infinite;
+}
+.fondo-diancie.fondo-var-mega {
+    --fx-glow: rgba(255,127,214,.6);
+    background-image:
+        radial-gradient(circle at 50% 40%, rgba(255,230,245,.65) 0 7%, transparent 44%),
+        linear-gradient(160deg, #1c0716 0%, #5c1442 46%, #ff7fd6 100%);
+}
+.fondo-diancie.fondo-var-mega::before { filter: drop-shadow(0 0 32px rgba(255,127,214,.8)); animation-duration: 3s; }
+
+/* ---------- HOOPA: anillos ---------- */
+.fondo-hoopa {
+    background-image:
+        radial-gradient(circle at 50% 40%, rgba(210,180,255,.5) 0 4%, transparent 34%),
+        linear-gradient(160deg, #0a0512 0%, #2c1040 46%, #a060ff 100%);
+    animation: fxRespirar 9s ease-in-out infinite;
+}
+.fondo-hoopa::before {
+    inset: 14%;
+    border-radius: 50%;
+    border: 6px solid #ffe74a;
+    box-shadow: 0 0 20px rgba(255,231,74,.6), inset 0 0 16px rgba(255,231,74,.3);
+    animation: fxGirar 10s linear infinite;
+}
+.fondo-hoopa::after {
+    inset: 24%;
+    border-radius: 50%;
+    border: 3px solid rgba(255,231,74,.6);
+    animation: fxGirar 7s linear reverse infinite;
+}
+.fondo-hoopa.fondo-var-unbound {
+    --fx-glow: rgba(92,15,174,.6);
+    background-image:
+        radial-gradient(circle at 50% 40%, rgba(160,80,220,.6) 0 6%, transparent 42%),
+        linear-gradient(160deg, #050208 0%, #1a0630 46%, #5c0fae 100%);
+}
+.fondo-hoopa.fondo-var-unbound::before { border-color: #ffe74a; box-shadow: 0 0 34px rgba(255,231,74,.8); animation-duration: 5s; }
+.fondo-hoopa.fondo-var-unbound::after { border-color: rgba(255,50,50,.6); animation-duration: 3.5s; }
+
+/* ---------- VOLCANION: agua + fuego = vapor ---------- */
+.fondo-volcanion {
+    background-image:
+        radial-gradient(ellipse at 50% 100%, rgba(120,210,255,.55) 0 10%, transparent 42%),
+        radial-gradient(ellipse at 50% 76%, rgba(255,190,90,.65) 0 4%, transparent 34%),
+        radial-gradient(circle at 50% 22%, rgba(255,120,40,.35), transparent 40%),
+        linear-gradient(180deg, #140a04 0%, #4a2c10 45%, #1c4a5c 78%, #0a2430 100%);
+    animation: fxRespirar 9s ease-in-out infinite;
+}
+.fondo-volcanion::before {
+    inset: auto 0 0 0; height: 20%;
+    background: repeating-linear-gradient(100deg, rgba(90,190,230,.5) 0 20px, rgba(30,110,150,.4) 20px 40px);
+    animation: fxOscilar 4s ease-in-out infinite;
+    opacity: .8;
+}
+.fondo-volcanion::after {
+    inset: 0;
+    background: radial-gradient(ellipse 70px 120px at 25% 88%, rgba(255,255,255,.45), transparent 70%),
+                radial-gradient(ellipse 90px 150px at 55% 92%, rgba(255,255,255,.35), transparent 70%),
+                radial-gradient(ellipse 60px 110px at 78% 86%, rgba(255,255,255,.4), transparent 70%);
+    animation: fxAsciendeMew 8s linear infinite;
+}
+
+/* ---------- TAPU KOKO: hada + trueno ---------- */
+.fondo-tapukoko {
+    background-image:
+        radial-gradient(circle at 50% 40%, rgba(255,240,180,.5) 0 4%, transparent 34%),
+        linear-gradient(180deg, #0e0c04 0%, #3a3212 55%, #ffd25a 100%);
+    animation: fxRespirar 7s ease-in-out infinite;
+}
+.fondo-tapukoko::before {
+    inset: 10% 40%; height: 56%;
+    background: #ff8fd6;
+    clip-path: polygon(50% 0, 60% 34%, 90% 34%, 42% 100%, 52% 56%, 10% 56%);
+    filter: drop-shadow(0 0 14px rgba(255,143,214,.6));
+    animation: fxLatido 1.8s ease-in-out infinite;
+}
+
+/* ---------- MAGEARNA: hada + hierro ---------- */
+.fondo-magearna {
+    background-image:
+        radial-gradient(circle at 50% 40%, rgba(220,230,255,.5) 0 4%, transparent 34%),
+        linear-gradient(180deg, #0a0d14 0%, #2c343c 55%, #dcc8ff 100%);
+    animation: fxRespirar 10s ease-in-out infinite;
+}
+.fondo-magearna::before {
+    inset: 16%;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, #a8c8ff, #ffc8ec, #a8c8ff);
+    -webkit-mask: radial-gradient(circle, transparent 62%, black 64% 70%, transparent 72%);
+            mask: radial-gradient(circle, transparent 62%, black 64% 70%, transparent 72%);
+    animation: fxGirar 14s linear infinite;
+}
+.fondo-magearna::after {
+    inset: 0;
+    background: radial-gradient(circle at 25% 30%, rgba(255,200,236,.55) 0 3px, transparent 4px) 0 0 / 80px 80px,
+                radial-gradient(circle at 70% 65%, rgba(200,220,255,.5) 0 3px, transparent 4px) 0 0 / 96px 96px;
+    animation: fxOscilar 7s ease-in-out infinite;
+}
+
+/* ⚙️✨ MEGA-MAGEARNA — el corazón-alma florece a plena potencia */
+.fondo-magearna.fondo-var-mega {
+    --fx-glow: rgba(255,200,236,.64);
+    background-image:
+        radial-gradient(circle at 22% 78%, rgba(255,106,60,.40) 0%, transparent 36%),
+        radial-gradient(circle at 78% 22%, rgba(255,210,74,.40) 0%, transparent 36%),
+        radial-gradient(circle at 50% 40%, rgba(255,235,250,.72) 0 8%, transparent 44%),
+        linear-gradient(180deg, #05060c 0%, #232c48 48%, #f0d4ff 100%);
+    animation: fxRespirar 6s ease-in-out infinite;
+}
+.fondo-magearna.fondo-var-mega::before {
+    inset: 9%;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, #ffd8f2, #a8c8ff, #ffd8f2);
+    -webkit-mask: radial-gradient(circle, transparent 56%, black 58% 66%, transparent 68% 76%, black 78% 84%, transparent 86%);
+            mask: radial-gradient(circle, transparent 56%, black 58% 66%, transparent 68% 76%, black 78% 84%, transparent 86%);
+    filter: drop-shadow(0 0 20px rgba(255,216,242,.75));
+    animation: fxGirar 7s linear infinite;
+}
+.fondo-magearna.fondo-var-mega::after {
+    inset: 0;
+    background: radial-gradient(circle at 25% 30%, rgba(255,220,246,.72) 0 3px, transparent 4px) 0 0 / 58px 58px,
+                radial-gradient(circle at 70% 65%, rgba(210,230,255,.66) 0 3px, transparent 4px) 0 0 / 68px 68px;
+    animation: fxOscilar 4s ease-in-out infinite;
+}
+
+/* ---------- MARSHADOW: ser de las sombras ---------- */
+.fondo-marshadow {
+    background-image:
+        radial-gradient(circle at 50% 55%, rgba(90,90,160,.35), transparent 45%),
+        linear-gradient(180deg, #07060f 0%, #1c1c3c 60%, #6f6fc0 100%);
+    animation: fxRespirar 9s ease-in-out infinite;
+}
+.fondo-marshadow::before {
+    inset: auto 20% 0 20%; height: 55%;
+    background: radial-gradient(ellipse at 50% 100%, rgba(0,0,0,.85), transparent 70%);
+}
+.fondo-marshadow::after {
+    inset: 0;
+    background: radial-gradient(circle at 30% 40%, rgba(150,150,255,.14), transparent 25%);
+    animation: fxOscilar 8s ease-in-out infinite;
+}
+
+/* ---------- ZERAORA: encarnación de los rayos ---------- */
+.fondo-zeraora {
+    background-image:
+        radial-gradient(circle at 50% 40%, rgba(255,255,220,.55) 0 4%, transparent 32%),
+        linear-gradient(180deg, #0e0c04 0%, #3a3212 55%, #ffe74a 100%);
+    animation: fxRespirar 5s ease-in-out infinite;
+}
+.fondo-zeraora::before {
+    inset: 6% 36%; height: 70%;
+    background: #ffffff;
+    clip-path: polygon(55% 0, 40% 40%, 62% 40%, 30% 100%, 42% 52%, 20% 52%);
+    filter: drop-shadow(0 0 16px rgba(255,231,74,.8));
+    animation: fxParpadeo 1.1s steps(1) infinite;
+}
+
+/* ⚡✨ MEGA-ZERAORA — tormenta eléctrica total: más rayos, más rápido, más brillo */
+.fondo-zeraora.fondo-var-mega {
+    --fx-glow: rgba(120,180,255,.6);
+    background-image:
+        radial-gradient(circle at 50% 40%, rgba(255,255,255,.62) 0 7%, transparent 42%),
+        linear-gradient(180deg, #0a1650 0%, #05050a 42%, #0a0a0a 62%, #fff35a 100%);
+    animation: fxRespirar 3s ease-in-out infinite;
+}
+.fondo-zeraora.fondo-var-mega::before {
+    inset: 4% 30%; height: 82%;
+    background: #ffffff;
+    clip-path: polygon(58% 0, 38% 42%, 64% 42%, 26% 100%, 40% 54%, 14% 54%);
+    filter: drop-shadow(0 0 26px rgba(120,180,255,.95));
+    animation: fxParpadeo .5s steps(1) infinite;
+}
+.fondo-zeraora.fondo-var-mega::after {
+    inset: 0;
+    background: repeating-conic-gradient(from 0deg, transparent 0 8deg, rgba(120,180,255,.20) 9deg 10deg, transparent 11deg 22deg);
+    animation: fxGirar 6s linear infinite;
+}
+
+/* ---------- ZAMAZENTA: bosque encantado, como Zacian ---------- */
+.fondo-zamazenta {
+    --fx-glow: rgba(140,240,200,.42);
+    background-image:
+        radial-gradient(circle at 50% 40%, rgba(200,255,220,.4) 0 4%, transparent 36%),
+        linear-gradient(160deg, #0a1c14 0%, #123a28 46%, #8ff5c8 100%);
+    animation: fxRespirar 11s ease-in-out infinite;
+}
+.fondo-zamazenta::before {
+    inset: 0;
+    background: radial-gradient(circle at 20% 30%, rgba(200,255,220,.5) 0 3px, transparent 4px) 0 0 / 90px 90px,
+                radial-gradient(circle at 70% 70%, rgba(200,255,220,.4) 0 3px, transparent 4px) 0 0 / 110px 110px;
+    animation: fxOscilar 9s ease-in-out infinite;
+}
+.fondo-zamazenta.fondo-var-crowned {
+    --fx-glow: rgba(255,255,255,.55);
+    background-image:
+        radial-gradient(circle at 50% 40%, rgba(255,255,255,.55) 0 7%, transparent 44%),
+        linear-gradient(160deg, #0a1408 0%, #1c3a28 40%, #c8f6a8 100%);
+}
+
+/* ---------- ETERNATUS: energía Gigantamax ---------- */
+.fondo-eternatus {
+    background-image:
+        radial-gradient(circle at 50% 26%, rgba(255,60,90,.6) 0 5%, transparent 28%),
+        radial-gradient(circle at 50% 78%, rgba(176,80,255,.5) 0 6%, transparent 34%),
+        linear-gradient(180deg, #05020a 0%, #ff1f3f 34%, #1c0630 52%, #b050ff 100%);
+    animation: fxRespirar 8s ease-in-out infinite;
+}
+.fondo-eternatus::before {
+    inset: -30%;
+    background: repeating-conic-gradient(from 0deg, transparent 0 6deg, rgba(255,47,79,.22) 7deg 8deg, transparent 9deg 18deg);
+    animation: fxGirar 10s linear infinite;
+}
+.fondo-eternatus.fondo-var-eternamax {
+    --fx-glow: rgba(190,20,45,.5);
+    background-image:
+        radial-gradient(circle at 50% 50%, transparent 30%, rgba(0,0,0,.65) 78%, rgba(0,0,0,.92) 100%),
+        radial-gradient(circle at 50% 30%, rgba(180,40,60,.45) 0 8%, transparent 44%),
+        radial-gradient(circle at 50% 75%, rgba(80,20,150,.35) 0 10%, transparent 48%),
+        linear-gradient(180deg, #020006 0%, #4a0a18 30%, #100418 55%, #3a0a18 100%);
+}
+.fondo-eternatus.fondo-var-eternamax::before {
+    animation-duration: 9s;
+    background: repeating-conic-gradient(from 0deg, transparent 0 4deg, rgba(180,20,45,.22) 5deg 6deg, transparent 7deg 12deg);
+}
+.fondo-eternatus.fondo-var-eternamax::after {
+    inset: 0;
+    background: radial-gradient(circle at 30% 40%, rgba(180,30,50,.4) 0 3px, transparent 4px) 0 0 / 50px 50px,
+                radial-gradient(circle at 70% 65%, rgba(100,30,150,.4) 0 3px, transparent 4px) 0 0 / 62px 62px;
+    animation: fxOscilar 4s ease-in-out infinite;
+}
+.fondo-eternatus.fondo-var-eternamax {
+    box-shadow: inset 0 0 100px 50px rgba(0,0,0,.75);
+}
+
+/* ---------- CALYREX: el rey ---------- */
+.fondo-calyrex {
+    background-image:
+        radial-gradient(circle at 50% 40%, rgba(220,255,220,.5) 0 4%, transparent 34%),
+        linear-gradient(180deg, #050f0a 0%, #123a28 55%, #ffe58a 100%);
+    animation: fxRespirar 10s ease-in-out infinite;
+}
+.fondo-calyrex::before {
+    inset: 4% 30% auto 30%; height: 26%;
+    background: linear-gradient(180deg, #ffe58a, #c8a03c);
+    clip-path: polygon(0 100%, 0 40%, 16% 60%, 24% 10%, 40% 55%, 50% 0, 60% 55%, 76% 10%, 84% 60%, 100% 40%, 100% 100%);
+    filter: drop-shadow(0 0 12px rgba(255,229,138,.6));
+}
+.fondo-calyrex::after {
+    inset: 0;
+    background: radial-gradient(circle at 30% 65%, rgba(255,229,138,.4) 0 3px, transparent 4px) 0 0 / 80px 80px;
+    animation: fxOscilar 8s ease-in-out infinite;
+}
+/* 🐴❄️ Jinete Glaciar: fondo de Calyrex + fondo de Glastrier combinados */
+.fondo-calyrex.fondo-var-jinete-glaciar {
+    --fx-glow: rgba(191,238,255,.5);
+    background-image:
+        radial-gradient(circle at 50% 40%, rgba(230,250,255,.55) 0 5%, transparent 38%),
+        linear-gradient(180deg, #030a12 0%, #123a4a 45%, #123a28 75%, #eafcff 100%);
+}
+.fondo-calyrex.fondo-var-jinete-glaciar::before {
+    filter: drop-shadow(0 0 14px rgba(191,238,255,.7));
+    background: linear-gradient(180deg, #eaf8ff, #bfe0ee);
+}
+.fondo-calyrex.fondo-var-jinete-glaciar::after {
+    background: repeating-linear-gradient(100deg, transparent 0 55px, rgba(255,255,255,.14) 56px 59px, transparent 60px 140px),
+                radial-gradient(circle at 30% 65%, rgba(255,229,138,.25) 0 3px, transparent 4px) 0 0 / 80px 80px;
+    animation: fxOscilar 6s ease-in-out infinite;
+}
+/* 🐴👻 Jinete Espectral: fondo de Calyrex + fondo de Spectrier combinados */
+.fondo-calyrex.fondo-var-jinete-espectral {
+    --fx-glow: rgba(160,96,255,.5);
+    background-image:
+        radial-gradient(circle at 50% 45%, rgba(180,140,255,.4), transparent 45%),
+        linear-gradient(180deg, #07030f 0%, #1c1040 55%, #123a28 80%, #5c3aa0 100%);
+}
+.fondo-calyrex.fondo-var-jinete-espectral::before {
+    filter: drop-shadow(0 0 14px rgba(160,96,255,.7));
+    background: linear-gradient(180deg, #d9c2ff, #7a4fd6);
+}
+.fondo-calyrex.fondo-var-jinete-espectral::after {
+    background: radial-gradient(circle at 25% 40%, rgba(220,200,255,.35) 0 5px, transparent 8px) 0 0 / 130px 130px,
+                radial-gradient(circle at 68% 25%, rgba(220,200,255,.30) 0 5px, transparent 8px) 0 0 / 160px 160px,
+                radial-gradient(circle at 30% 65%, rgba(255,229,138,.2) 0 3px, transparent 4px) 0 0 / 80px 80px;
+    animation: fxAsciendeMew 12s linear infinite;
+}
+
+/* ---------- KORAIDON: escarlata, del pasado ---------- */
+.fondo-koraidon {
+    background-image:
+        radial-gradient(circle at 50% 40%, rgba(255,150,100,.45) 0 4%, transparent 34%),
+        linear-gradient(180deg, #140503 0%, #4a150c 55%, #ff5a2f 100%);
+    animation: fxRespirar 8s ease-in-out infinite;
+}
+.fondo-koraidon::before {
+    inset: auto 0 0 0; height: 30%;
+    background: linear-gradient(180deg, #3a150c, #1c0703);
+    clip-path: polygon(0 100%, 0 55%, 14% 40%, 26% 62%, 40% 20%, 54% 48%, 68% 18%, 82% 50%, 100% 35%, 100% 100%);
+}
+.fondo-koraidon::after {
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent 0 40px, rgba(255,90,47,.10) 41px 44px, transparent 45px 90px);
+    animation: fxAsciende 9s linear infinite;
+}
+
+/* ---------- MIRAIDON: púrpura, del futuro (sol cyberpunk + rejilla) ---------- */
+.fondo-miraidon {
+    background-image:
+        radial-gradient(circle at 50% 32%, rgba(255,190,120,.35) 0 10%, transparent 34%),
+        linear-gradient(180deg, #03060f 0%, #0c1a3a 45%, #2a0c3a 78%, #c060ff 100%);
+    animation: fxRespirar 6s ease-in-out infinite;
+}
+.fondo-miraidon::before {
+    inset: 42% 0 0 0;
+    background: repeating-linear-gradient(90deg, rgba(255,95,214,.55) 0 2px, transparent 2px 40px),
+                repeating-linear-gradient(0deg, rgba(255,95,214,.45) 0 2px, transparent 2px 26px);
+    transform: perspective(220px) rotateX(58deg);
+    transform-origin: top center;
+    opacity: .8;
+    -webkit-mask-image: linear-gradient(180deg, black 0%, black 60%, transparent 100%);
+            mask-image: linear-gradient(180deg, black 0%, black 60%, transparent 100%);
+}
+.fondo-miraidon::after {
+    inset: 14% 26% auto 26%; height: 30%;
+    border-radius: 50%;
+    background: repeating-linear-gradient(180deg,
+        #ffe74a 0 10%, #ffb347 10% 20%, #ff8a2a 20% 30%,
+        #ff5fd6 30% 42%, #c060ff 42% 56%, #7a4fff 56% 100%);
+    box-shadow: 0 0 30px rgba(255,95,214,.5);
+    animation: fxPulso 5s ease-in-out infinite;
+}
+
+/* ---------- Animaciones nuevas de esta tanda ---------- */
+@keyframes fxLatido {
+    0%, 100% { transform: scale(1); opacity: .85; }
+    50% { transform: scale(1.08); opacity: 1; }
+}
+@keyframes fxParpadeo {
+    0%, 40%, 100% { opacity: 1; }
+    20%, 60% { opacity: .3; }
+}
+@keyframes fxAlgaVaiven {
+    0%, 100% { transform: skewX(-5deg); }
+    50% { transform: skewX(5deg); }
+}
+
+/* Animaciones compartidas de esta tanda */
+@keyframes fxRespirar {
+    0%, 100% { filter: brightness(1) saturate(1); }
+    50% { filter: brightness(1.10) saturate(1.16); }
+}
+@keyframes fxPulso {
+    0%, 100% { opacity: .55; transform: scale(.97); }
+    50% { opacity: 1; transform: scale(1.03); }
+}
+@keyframes fxGirar {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+@keyframes fxDeriva {
+    0%, 100% { transform: translate3d(-2%, 0, 0); }
+    50% { transform: translate3d(2%, -2%, 0); }
+}
+@keyframes fxOscilar {
+    0%, 100% { transform: rotate(-4deg); opacity: .7; }
+    50% { transform: rotate(4deg); opacity: 1; }
+}
+@keyframes fxAsciende {
+    from { background-position: 0 0, 0 0; }
+    to { background-position: 0 -220px, 0 -190px; }
+}
+@keyframes fxAsciendeMew {
+    from { background-position: 0 0, 0 0; }
+    to { background-position: 0 -150px, 0 -190px; }
+}
+@keyframes fxAdn {
+    from { background-position: 0 0, 0 24px, 0 0, 0 24px; }
+    to { background-position: 0 48px, 0 72px, 0 48px, 0 72px; }
+}
+
+
+@media (max-width: 600px) {
+    .fondo-legendario-dinamico {
+        border-radius: 14px !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .fondo-legendario-dinamico,
+    .fondo-legendario-dinamico::before,
+    .fondo-legendario-dinamico::after {
+        animation: none !important;
+    }
+}
+
+/* =========================================================
+   🛡️ MINIJUEGO: DEBILIDADES Y RESISTENCIAS DE TIPOS
+   ========================================================= */
+.minijuego-debilidades-enfrentamiento {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.debilidades-columna {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.debilidades-vs {
+    font-weight: 800;
+    font-size: 1.1rem;
+    opacity: .7;
+    letter-spacing: .05em;
+}
+
+.minijuego-debilidades-tipo .badge-tipo {
+    font-size: 1.05rem;
+    padding: 10px 16px;
+    cursor: default;
+}
+
+.minijuego-debilidades-opciones {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(140px, 1fr));
+    gap: 10px;
+    margin: 14px 0;
+}
+
+@media (max-width: 480px) {
+    .minijuego-debilidades-opciones { grid-template-columns: 1fr; }
+}
+
+.opcion-debilidad {
+    width: 100%;
+}
+
+.opcion-debilidad.opcion-correcta {
+    background: rgba(70, 200, 100, .22) !important;
+    border-color: rgba(70, 200, 100, .65) !important;
+    color: #eafff0 !important;
+}
+
+.opcion-debilidad.opcion-incorrecta {
+    background: rgba(220, 70, 70, .22) !important;
+    border-color: rgba(220, 70, 70, .65) !important;
+    color: #ffecec !important;
+}
+
+/* =========================================================
+   🌑 MINIJUEGO: ¿QUIÉN ES ESE POKÉMON? (SILUETA)
+   ========================================================= */
+.minijuego-silueta-marco {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 180px;
+    margin: 10px 0;
+    border-radius: 14px;
+    background: radial-gradient(circle at 50% 40%, rgba(255,255,255,.06), rgba(0,0,0,.35) 70%);
+}
+
+.minijuego-silueta-img {
+    max-width: 200px;
+    max-height: 200px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: brightness(0) saturate(100%);
+    transition: filter .5s ease;
+}
+
+.minijuego-silueta-img.silueta-revelada {
+    filter: none;
+    animation: reveloSilueta .5s ease;
+}
+
+@keyframes reveloSilueta {
+    from { filter: brightness(0) saturate(100%); }
+    to   { filter: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .minijuego-silueta-img { transition: none; }
+    .minijuego-silueta-img.silueta-revelada { animation: none; }
+}
+
+/* =========================================================
+   🆕 VIÑETA ATMOSFÉRICA para los legendarios/míticos nuevos
+   (mismo oscurecimiento suave en los bordes que ya tenían los
+   fondos "clásicos" como Mewtwo o Marshadow). No cambia colores,
+   partículas ni las siluetas propias de cada uno: solo agrega
+   esta capa de profundidad por encima.
+   ========================================================= */
+.fondo-articuno,
+.fondo-zapdos,
+.fondo-moltres,
+.fondo-raikou,
+.fondo-suicune,
+.fondo-celebi,
+.fondo-latias,
+.fondo-latios,
+.fondo-regirock,
+.fondo-regice,
+.fondo-registeel,
+.fondo-deoxys,
+.fondo-heatran,
+.fondo-regigigas,
+.fondo-cresselia,
+.fondo-manaphy,
+.fondo-shaymin,
+.fondo-victini,
+.fondo-cobalion,
+.fondo-terrakion,
+.fondo-virizion,
+.fondo-keldeo,
+.fondo-genesect,
+.fondo-xerneas,
+.fondo-yveltal,
+.fondo-zygarde,
+.fondo-diancie,
+.fondo-hoopa,
+.fondo-volcanion,
+.fondo-tapukoko,
+.fondo-magearna,
+.fondo-marshadow,
+.fondo-zeraora,
+.fondo-zamazenta,
+.fondo-eternatus,
+.fondo-calyrex,
+.fondo-koraidon,
+.fondo-miraidon {
+    box-shadow: inset 0 0 70px 34px rgba(6,6,10,.55);
+}
+
+/* =========================================================
+   🆕 AMPLIACIÓN 2026 (v3) — Tapus restantes, Glastrier/Spectrier
+   y los Ultraentes (fondo compartido de "ultraumbral" en el
+   espacio, cada uno con su propio color de energía).
+   ========================================================= */
+.fondo-tapulele::before, .fondo-tapulele::after,
+.fondo-tapubulu::before, .fondo-tapubulu::after,
+.fondo-tapufini::before, .fondo-tapufini::after,
+.fondo-glastrier::before, .fondo-glastrier::after,
+.fondo-spectrier::before, .fondo-spectrier::after,
+.fondo-nihilego::before, .fondo-nihilego::after,
+.fondo-buzzwole::before, .fondo-buzzwole::after,
+.fondo-pheromosa::before, .fondo-pheromosa::after,
+.fondo-xurkitree::before, .fondo-xurkitree::after,
+.fondo-celesteela::before, .fondo-celesteela::after,
+.fondo-kartana::before, .fondo-kartana::after,
+.fondo-guzzlord::before, .fondo-guzzlord::after,
+.fondo-poipole::before, .fondo-poipole::after,
+.fondo-naganadel::before, .fondo-naganadel::after,
+.fondo-stakataka::before, .fondo-stakataka::after,
+.fondo-blacephalon::before, .fondo-blacephalon::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+}
+.fondo-tapulele    { --fx-glow: rgba(255,154,224,.45); }
+.fondo-tapubulu    { --fx-glow: rgba(143,240,106,.42); }
+.fondo-tapufini    { --fx-glow: rgba(155,231,255,.42); }
+.fondo-glastrier   { --fx-glow: rgba(191,238,255,.45); }
+.fondo-spectrier   { --fx-glow: rgba(160,96,255,.40); }
+.fondo-nihilego    { --fx-glow: rgba(192,96,255,.48); }
+.fondo-buzzwole    { --fx-glow: rgba(255,95,214,.48); }
+.fondo-pheromosa   { --fx-glow: rgba(220,240,255,.45); }
+.fondo-xurkitree   { --fx-glow: rgba(255,231,74,.48); }
+.fondo-celesteela  { --fx-glow: rgba(127,224,208,.45); }
+.fondo-kartana     { --fx-glow: rgba(143,240,106,.42); }
+.fondo-guzzlord    { --fx-glow: rgba(122,79,214,.45); }
+.fondo-poipole     { --fx-glow: rgba(192,96,255,.45); }
+.fondo-naganadel   { --fx-glow: rgba(192,96,255,.48); }
+.fondo-stakataka   { --fx-glow: rgba(160,160,168,.42); }
+.fondo-blacephalon { --fx-glow: rgba(255,138,42,.48); }
+
+.fondo-tapulele,
+.fondo-tapubulu,
+.fondo-tapufini,
+.fondo-glastrier,
+.fondo-spectrier,
+.fondo-nihilego,
+.fondo-buzzwole,
+.fondo-pheromosa,
+.fondo-xurkitree,
+.fondo-celesteela,
+.fondo-kartana,
+.fondo-guzzlord,
+.fondo-poipole,
+.fondo-naganadel,
+.fondo-stakataka,
+.fondo-blacephalon {
+    box-shadow: inset 0 0 70px 34px rgba(6,6,10,.55);
+}
+
+/* ---------- TAPU LELE: escamas psíquicas de hada ---------- */
+.fondo-tapulele {
+    background-image:
+        radial-gradient(circle at 50% 40%, rgba(255,220,245,.5) 0 4%, transparent 34%),
+        linear-gradient(180deg, #0e0512 0%, #3a1240 55%, #ff9ae0 100%);
+    animation: fxRespirar 8s ease-in-out infinite;
+}
+.fondo-tapulele::before {
+    inset: 10%;
+    border-radius: 50%;
+    background: repeating-conic-gradient(from 0deg, transparent 0 16deg, rgba(255,154,224,.16) 17deg 19deg, transparent 20deg 36deg);
+    animation: fxGirar 14s linear infinite;
+}
+.fondo-tapulele::after {
+    inset: 0;
+    background: radial-gradient(circle at 25% 30%, rgba(255,220,245,.5) 0 3px, transparent 4px) 0 0 / 70px 70px;
+    animation: fxOscilar 7s ease-in-out infinite;
+}
+
+/* ---------- TAPU BULU: totem de árbol y hada ---------- */
+.fondo-tapubulu {
+    background-image:
+        radial-gradient(circle at 50% 40%, rgba(200,255,180,.4) 0 4%, transparent 34%),
+        linear-gradient(180deg, #0a1206 0%, #1c3a10 55%, #a8ff6a 100%);
+    animation: fxRespirar 10s ease-in-out infinite;
+}
+.fondo-tapubulu::before {
+    inset: auto 34% 0 34%; height: 58%;
+    background: linear-gradient(180deg, #3a2410, #1c1408);
+    clip-path: polygon(40% 100%, 40% 40%, 20% 30%, 44% 20%, 30% 0, 50% 14%, 70% 0, 56% 20%, 80% 30%, 60% 40%, 60% 100%);
+}
+.fondo-tapubulu::after {
+    inset: 0;
+    background: radial-gradient(circle at 30% 65%, rgba(255,229,138,.4) 0 3px, transparent 4px) 0 0 / 80px 80px;
+    animation: fxOscilar 8s ease-in-out infinite;
+}
+
+/* ---------- TAPU FINI: niebla marina y hada ---------- */
+.fondo-tapufini {
+    background-image:
+        radial-gradient(circle at 50% 40%, rgba(210,250,255,.5) 0 4%, transparent 34%),
+        linear-gradient(180deg, #04131a 0%, #0f4a5c 55%, #bfeeff 100%);
+    animation: fxRespirar 9s ease-in-out infinite;
+}
+.fondo-tapufini::before {
+    inset: -20%;
+    background: repeating-conic-gradient(from 10deg at 50% 55%, transparent 0 12deg, rgba(200,250,255,.10) 13deg 16deg, transparent 17deg 28deg);
+    animation: fxGirar 24s linear reverse infinite;
+}
+.fondo-tapufini::after {
+    inset: auto 0 0 0; height: 22%;
+    background: repeating-linear-gradient(96deg, rgba(200,250,255,.3) 0 20px, rgba(100,200,220,.2) 20px 40px);
+    animation: fxOscilar 5s ease-in-out infinite;
+}
+
+/* ---------- GLASTRIER: montañas nevadas y picos de hielo ---------- */
+.fondo-glastrier {
+    background-image:
+        radial-gradient(circle at 50% 34%, rgba(230,250,255,.4) 0 4%, transparent 34%),
+        linear-gradient(180deg, #030a12 0%, #123a4a 55%, #eafcff 100%);
+    animation: fxRespirar 10s ease-in-out infinite;
+}
+.fondo-glastrier::before {
+    inset: auto 0 0 0; height: 36%;
+    background: linear-gradient(180deg, #eaf8ff 0%, #bfe0ee 100%);
+    clip-path: polygon(0 100%, 0 60%, 12% 30%, 22% 55%, 34% 12%, 46% 42%, 58% 8%, 70% 46%, 82% 20%, 92% 52%, 100% 30%, 100% 100%);
+}
+.fondo-glastrier::after {
+    inset: 0;
+    background: repeating-linear-gradient(100deg, transparent 0 55px, rgba(255,255,255,.16) 56px 59px, transparent 60px 140px);
+    animation: fxOscilar 6s ease-in-out infinite;
+}
+
+/* ---------- SPECTRIER: bosque morado y fantasmas ---------- */
+.fondo-spectrier {
+    background-image:
+        radial-gradient(circle at 50% 50%, rgba(140,80,220,.30), transparent 45%),
+        linear-gradient(180deg, #07030f 0%, #1c1040 60%, #5c3aa0 100%);
+    animation: fxRespirar 10s ease-in-out infinite;
+}
+.fondo-spectrier::before {
+    inset: auto 0 0 0; height: 42%;
+    background: linear-gradient(180deg, transparent, #0e0620);
+    clip-path: polygon(4% 100%, 4% 44%, 10% 60%, 14% 20%, 20% 55%, 26% 15%, 32% 60%, 38% 25%, 44% 65%, 50% 10%, 56% 60%, 62% 22%, 68% 58%, 74% 18%, 80% 62%, 86% 28%, 92% 55%, 96% 40%, 96% 100%);
+}
+.fondo-spectrier::after {
+    inset: 0;
+    background: radial-gradient(circle at 25% 40%, rgba(220,200,255,.35) 0 5px, transparent 8px) 0 0 / 130px 130px,
+                radial-gradient(circle at 68% 25%, rgba(220,200,255,.30) 0 5px, transparent 8px) 0 0 / 160px 160px;
+    animation: fxAsciendeMew 12s linear infinite;
+}
+
+/* ---------- ULTRAENTES: ultraumbral compartido en el espacio ---------- */
+.fondo-nihilego, .fondo-buzzwole, .fondo-pheromosa, .fondo-xurkitree, .fondo-celesteela,
+.fondo-kartana, .fondo-guzzlord, .fondo-poipole, .fondo-naganadel, .fondo-stakataka, .fondo-blacephalon {
+    background-image:
+        radial-gradient(circle at 50% 45%, rgba(255,255,255,.7) 0 1.5%, var(--fx-glow) 0 8%, transparent 40%),
+        radial-gradient(circle at 15% 20%, #ffffff 0 1px, transparent 2px) 0 0 / 70px 70px,
+        radial-gradient(circle at 70% 75%, #ffffff 0 1px, transparent 2px) 0 0 / 90px 90px,
+        radial-gradient(circle at 40% 85%, #ffffff 0 1px, transparent 2px) 0 0 / 110px 110px,
+        linear-gradient(180deg, #020006 0%, #05030f 55%, #0a0518 100%);
+    animation: fxRespirar 9s ease-in-out infinite;
+}
+.fondo-nihilego::before, .fondo-buzzwole::before, .fondo-pheromosa::before, .fondo-xurkitree::before, .fondo-celesteela::before,
+.fondo-kartana::before, .fondo-guzzlord::before, .fondo-poipole::before, .fondo-naganadel::before, .fondo-stakataka::before, .fondo-blacephalon::before {
+    inset: 16%;
+    border-radius: 50%;
+    background: repeating-conic-gradient(from 0deg, transparent 0 5deg, var(--fx-glow) 5.5deg 6.5deg, transparent 7deg 14deg);
+    -webkit-mask: radial-gradient(circle, transparent 60%, black 62% 74%, transparent 76%);
+            mask: radial-gradient(circle, transparent 60%, black 62% 74%, transparent 76%);
+    animation: fxGirar 9s linear infinite;
+}
+.fondo-nihilego::after, .fondo-buzzwole::after, .fondo-pheromosa::after, .fondo-xurkitree::after, .fondo-celesteela::after,
+.fondo-kartana::after, .fondo-guzzlord::after, .fondo-poipole::after, .fondo-naganadel::after, .fondo-stakataka::after, .fondo-blacephalon::after {
+    inset: 28%;
+    border-radius: 50%;
+    border: 2px solid var(--fx-glow);
+    box-shadow: 0 0 30px var(--fx-glow), inset 0 0 24px var(--fx-glow);
+    animation: fxPulso 4s ease-in-out infinite;
+}
+
+
+/* ===== Doble clic en 3D / Pixel / Arte Oficial: aplica a todos ===== */
+.btn-3d, .btn-pixel { touch-action: manipulation; -webkit-user-select: none; user-select: none; }
+
+#aviso-visual-global {
+    position: fixed;
+    left: 50%;
+    bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+    transform: translate(-50%, 20px);
+    max-width: min(90vw, 420px);
+    padding: 10px 18px;
+    border-radius: 999px;
+    background: rgba(10, 14, 40, 0.94);
+    color: #fff;
+    border: 1px solid #D7E2F0;
+    font-weight: 600;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s ease, transform .25s ease;
+    z-index: 100000;
+}
+#aviso-visual-global.visible { opacity: 1; transform: translate(-50%, 0); }

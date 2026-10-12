@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Pokédex de Favoritos - XD</title>
+    <meta name="description" content="FavoriteDex: mi Pokédex de favoritos con 600 Pokémon, formas Mega y Gigantamax, minijuegos, equipo y comunidad.">
+<meta name="theme-color" content="#1238D8">
+<meta property="og:type" content="website">
+<meta property="og:title" content="FavoriteDex - Mi Pokédex de Favoritos">
+<meta property="og:description" content="Explora 600 Pokémon con formas especiales, gritos, minijuegos y más.">
+<meta property="og:image" content="icons/icon-512.png">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://raw.githubusercontent.com">
+    <link rel="stylesheet" href="css/FavoriteDex.css">
+    <link rel="stylesheet" href="css/mejoras.css">
+    <link rel="stylesheet" href="css/responsive-2026.css">
+    <link rel="stylesheet" href="css/contenido-nuevo.css">
+<link rel="stylesheet" href="css/fondos-nuevos.css">
+<link rel="stylesheet" href="css/extras.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script defer src="supabase-config.js"></script>
+</head>
+<body>
+
+    <!-- =========================================================
+         🏠 PANTALLA DE INICIO
+         ========================================================= -->
+    <section id="pantalla-inicio" aria-label="Pantalla principal">
+        <div id="fondo-inicio-1" class="fondo-inicio-pokemon"></div>
+        <div id="fondo-inicio-2" class="fondo-inicio-pokemon"></div>
+        <div class="velo-inicio"></div>
+
+        <div class="contenido-inicio">
+            <div id="inicio-presentacion">
+                <div class="inicio-cinta-superior">
+                    <span>POKÉDEX</span>
+                    <span class="inicio-punto">◆</span>
+                    <span>ENTRENADORES</span>
+                    <span class="inicio-punto">◆</span>
+                    <span>COMUNIDAD</span>
+                </div>
+
+                <div class="inicio-marca">
+                    <div class="inicio-marca-centro">
+                        <h1 aria-label="Mi Pokédex de Favoritos">
+                            <span class="titulo-lateral titulo-izquierdo">MI POKÉDEX</span>
+                            <span class="pokeball-logo" aria-hidden="true">◓</span>
+                            <span class="titulo-lateral titulo-derecho">DE FAVORITOS</span>
+                        </h1>
+                        <p>Explora, descubre y disfruta de tus Pokémon favoritos.</p>
+                    </div>
+<div class="inicio-linea-decorativa"><span></span><i>✦</i><span></span></div>
+
+                <button type="button" class="btn-entrar-pokedex menu-pokemon" onclick="abrirPokedex()"><span class="menu-icono">🔴</span><span class="menu-texto">VER POKÉMONES</span><span class="flecha-entrada">→</span></button>
+
+                <div class="inicio-toolbar-rapida" role="group" aria-label="Accesos rápidos">
+                    <button type="button" class="btn-inicio-extra" onclick="abrirExplorador()">🧭 Explorar y filtrar</button>
+                    <button type="button" class="btn-admin-pequeno menu-admin" onclick="abrirAdmin()"><span class="menu-icono">🛠️</span><span class="menu-texto">Admin</span></button>
+                    <button type="button" class="btn-inicio-extra btn-sonido-toggle" onclick="alternarSonido()" aria-pressed="false">🔊 Sonido: activado</button>
+                </div>
+
+                <div class="inicio-menu-desplegable">
+                    <button type="button" class="btn-menu-desplegable-toggle" id="toggle-menu-inicio" onclick="alternarMenuInicio()" aria-expanded="false" aria-controls="menu-inicio-lista">
+                        <span class="menu-icono">☰</span><span class="menu-texto">Más opciones</span><span class="flecha-menu-desplegable">▾</span>
+                    </button>
+                    <nav class="menu-inicio" id="menu-inicio-lista" aria-label="Menú principal" hidden>
+                        <button type="button" class="btn-menu-inicio menu-login" onclick="abrirModal('modal-cuenta')"><span class="menu-icono">👤</span><span class="menu-texto">Login / Register</span></button>
+                        <button type="button" class="btn-menu-inicio menu-comunidad" onclick="abrirComunidad()"><span class="menu-icono">👥</span><span class="menu-texto">Comunidad</span></button>
+                        <button type="button" class="btn-menu-inicio menu-favoritos" onclick="mostrarFavoritos()"><span class="menu-icono">⭐</span><span class="menu-texto">Mis favoritos</span></button>
+                        <button type="button" class="btn-menu-inicio menu-juegos" onclick="abrirCentroEntrenador()"><span class="menu-icono">🎮</span><span class="menu-texto">Minijuegos y equipo</span></button>
+                        <button type="button" class="btn-menu-inicio menu-votacion menu-destacado" onclick="abrirVotacionSemanal()"><span class="menu-icono">🗳️</span><span class="menu-texto">Pokémon de la semana</span></button>
+                        <button type="button" class="btn-menu-inicio menu-perfil" onclick="abrirPerfil()"><span class="menu-icono">👤</span><span class="menu-texto">Mi perfil</span></button>
+                        <button type="button" class="btn-menu-inicio menu-comparar" onclick="abrirComparador()"><span class="menu-icono">🆚</span><span class="menu-texto">Comparar Pokémon</span></button>
+                        <button type="button" class="btn-menu-inicio menu-progreso" onclick="abrirProgreso()"><span class="menu-icono">🏆</span><span class="menu-texto">Progreso y logros</span></button>
+                        <button type="button" class="btn-menu-inicio menu-peticiones" onclick="abrirModal('modal-peticiones')"><span class="menu-icono">📩</span><span class="menu-texto">Peticiones</span></button>
+                        <button type="button" class="btn-menu-inicio menu-reportes" onclick="abrirModal('modal-reportes')"><span class="menu-icono">🚨</span><span class="menu-texto">Reportar error</span></button>
+                        <button type="button" class="btn-menu-inicio menu-respaldo" onclick="abrirRespaldo()"><span class="menu-icono">💾</span><span class="menu-texto">Respaldo de mi progreso</span></button>
+                        <button type="button" class="btn-menu-inicio menu-atajos" onclick="abrirAtajosTeclado()"><span class="menu-icono">⌨️</span><span class="menu-texto">Personalizar teclas</span></button>
+                    </nav>
+                </div>
+
+                <div class="inicio-pie-info">
+                    <span>◈ <span data-total-pokemon>200</span> Pokémon</span>
+                    <span>◈ Formas especiales</span>
+                    <span>◈ Gritos y sprites</span>
+                </div>
+
+                <div id="pokemon-del-dia" class="pokemon-del-dia" hidden>
+                    <img id="pdd-img" alt="" width="84" height="84" decoding="async">
+                    <div class="pdd-texto">
+                        <small>🌟 POKÉMON DEL DÍA</small>
+                        <strong id="pdd-nombre"></strong>
+                        <span id="pdd-tipos"></span>
+                    </div>
+                    <button type="button" id="pdd-ver" class="btn-inicio-extra">VER FICHA →</button>
+                </div>
+                </div> <!-- /.inicio-marca -->
+            </div> <!-- /#inicio-presentacion -->
+
+            <section id="comunidad" aria-label="Comunidad Pokémon">
+                <div class="comunidad-navegacion">
+                    <button type="button" class="btn-volver-inicio" onclick="cerrarComunidad()">← VOLVER AL INICIO</button>
+                </div>
+                <div class="comunidad-titulo">
+                    <div class="comunidad-icono">👥</div>
+                    <h2>COMUNIDAD POKÉMON</h2>
+                    <p>Comparte tus partidas, capturas, logros y momentos Pokémon con otros entrenadores.</p>
+                </div>
+
+                <div class="comunidad-tabs" role="tablist" aria-label="Categorías de la comunidad">
+                    <button type="button" class="comunidad-tab activo" data-categoria="principales" role="tab">🎮 JUEGOS PRINCIPALES</button>
+                    <button type="button" class="comunidad-tab" data-categoria="go" role="tab">📱 POKÉMON GO</button>
+                    <button type="button" class="comunidad-tab" data-categoria="champions" role="tab">🏆 POKÉMON CHAMPIONS</button>
+                </div>
+
+                <div id="comunidad-cuenta-aviso" class="comunidad-aviso"></div>
+
+                <form id="comunidad-form" class="comunidad-form">
+                    <h3>📝 PUBLICAR</h3>
+                    <textarea id="comunidad-texto" maxlength="1000" placeholder="Cuéntale a la comunidad qué pasó en tu partida..." required></textarea>
+                    <div class="comunidad-form-fila">
+                        <label class="comunidad-archivo">
+                            📎 Imagen o vídeo
+                            <input id="comunidad-media" type="file" accept="image/*,video/*">
+                        </label>
+                        <button type="submit" class="comunidad-publicar-btn">🚀 PUBLICAR</button>
+                    </div>
+                    <small>Máximo recomendado: 20 MB por archivo. Las publicaciones se guardan online cuando conectes Supabase.</small>
+                    <div id="comunidad-form-mensaje" class="comunidad-form-mensaje"></div>
+                </form>
+
+                <div id="comunidad-estado" class="comunidad-estado">Cargando publicaciones...</div>
+                <div id="comunidad-feed" class="comunidad-feed"></div>
+            </section>
+
+            <section id="centro-entrenador" aria-label="Minijuegos y equipo de gimnasio">
+                <div class="centro-navegacion">
+                    <button type="button" class="btn-volver-inicio" onclick="cerrarCentroEntrenador()">← VOLVER AL INICIO</button>
+                </div>
+                <div class="centro-titulo">
+                    <div class="centro-icono">⚔️</div>
+                    <h2>CENTRO DE ENTRENAMIENTO</h2>
+                    <p>Minijuegos y armado de tu equipo de líder de gimnasio.</p>
+                </div>
+
+                <div id="contenido-minijuegos-equipo">
+            <div id="minijuego-pokemon" class="minijuego-pokemon" aria-label="Minijuego de adivinar Pokémon">
+                <div class="minijuego-cabecera">
+                    <span class="minijuego-icono">❓</span>
+                    <div>
+                        <h2>¿QUIÉN ES ESTE POKÉMON?</h2>
+                        <p>Adivina el Pokémon usando su descripción.</p>
+                    </div>
+                </div>
+
+                <div class="minijuego-pista">
+                    <span class="etiqueta-pista">🔎 PISTA</span>
+                    <p id="minijuego-descripcion">Cargando pista...</p>
+                </div>
+
+                <div class="minijuego-controles">
+                    <input
+                        type="text"
+                        id="minijuego-respuesta"
+                        class="minijuego-input"
+                        maxlength="40"
+                        autocomplete="off"
+                        placeholder="Escribe el nombre del Pokémon..."
+                        aria-label="Respuesta del minijuego"
+                    >
+                    <button type="button" id="minijuego-adivinar" class="minijuego-btn minijuego-btn-adivinar">
+                        🎯 ADIVINAR
+                    </button>
+                </div>
+
+                <div id="minijuego-resultado" class="minijuego-resultado" aria-live="polite"></div>
+
+                <div class="minijuego-acciones">
+                    <button type="button" id="minijuego-nueva-pista" class="minijuego-btn minijuego-btn-secundario">
+                        🎲 NUEVO POKÉMON
+                    </button>
+                    <button type="button" id="minijuego-ver-pokemon" class="minijuego-btn minijuego-btn-ver" hidden>
+                        📖 VER EN LA POKÉDEX
+                    </button>
+                </div>
+
+                <div class="minijuego-estadisticas">
+                    <span>🏆 Aciertos: <strong id="minijuego-aciertos">0</strong></span>
+                    <span>🔢 Intentos: <strong id="minijuego-intentos">0</strong></span>
+                </div>
+            </div>
+
+            <div id="minijuego-grito" class="minijuego-pokemon minijuego-grito" aria-label="Minijuego de adivinar Pokémon por su grito">
+                <div class="minijuego-cabecera">
+                    <span class="minijuego-icono">🔊</span>
+                    <div>
+                        <h2>¿QUIÉN ES ESTE POKÉMON? — GRITO</h2>
+                        <p>Escucha el grito y adivina qué Pokémon es.</p>
+                    </div>
+                </div>
+                <div class="minijuego-grito-reproductor">
+                    <button type="button" id="minijuego-grito-escuchar" class="minijuego-btn minijuego-btn-escuchar">🔊 ESCUCHAR GRITO</button>
+                    <span id="minijuego-grito-estado">Pulsa el botón para escuchar.</span>
+                </div>
+                <div class="minijuego-controles">
+                    <input type="text" id="minijuego-grito-respuesta" class="minijuego-input" maxlength="40" autocomplete="off" placeholder="Escribe el nombre del Pokémon..." aria-label="Respuesta del minijuego del grito">
+                    <button type="button" id="minijuego-grito-adivinar" class="minijuego-btn minijuego-btn-adivinar">🎯 ADIVINAR</button>
+                </div>
+                <div id="minijuego-grito-resultado" class="minijuego-resultado" aria-live="polite"></div>
+                <div class="minijuego-acciones">
+                    <button type="button" id="minijuego-grito-nuevo" class="minijuego-btn minijuego-btn-secundario">🎲 NUEVO POKÉMON</button>
+                    <button type="button" id="minijuego-grito-ver" class="minijuego-btn minijuego-btn-ver" hidden>📖 VER EN LA POKÉDEX</button>
+                </div>
+                <div class="minijuego-estadisticas">
+                    <span>🏆 Aciertos: <strong id="minijuego-grito-aciertos">0</strong></span>
+                    <span>🔢 Intentos: <strong id="minijuego-grito-intentos">0</strong></span>
+                </div>
+            </div>
+
+            <div id="minijuego-tipos" class="minijuego-pokemon minijuego-tipos" aria-label="Minijuego de adivinar Pokémon por combinación de tipos">
+                <div class="minijuego-cabecera">
+                    <span class="minijuego-icono">🧬</span>
+                    <div>
+                        <h2>¿QUIÉN TIENE ESTA COMBINACIÓN DE TIPOS?</h2>
+                        <p>Se te darán 2 tipos al azar (si se repiten, el Pokémon buscado es de un único tipo). Escribe el nombre de un Pokémon registrado con esa combinación exacta. ¡Solo tienes un intento!</p>
+                    </div>
+                </div>
+
+                <div class="minijuego-pista">
+                    <span class="etiqueta-pista">🎲 COMBINACIÓN</span>
+                    <div id="minijuego-tipos-badges" class="minijuego-tipos-badges">Cargando combinación...</div>
+                </div>
+
+                <div class="minijuego-controles">
+                    <input
+                        type="text"
+                        id="minijuego-tipos-respuesta"
+                        class="minijuego-input"
+                        maxlength="40"
+                        autocomplete="off"
+                        placeholder="Escribe el nombre del Pokémon..."
+                        aria-label="Respuesta del minijuego de tipos"
+                    >
+                    <button type="button" id="minijuego-tipos-adivinar" class="minijuego-btn minijuego-btn-adivinar">
+                        🎯 ADIVINAR
+                    </button>
+                </div>
+
+                <div id="minijuego-tipos-resultado" class="minijuego-resultado" aria-live="polite"></div>
+
+                <div class="minijuego-acciones">
+                    <button type="button" id="minijuego-tipos-nuevo" class="minijuego-btn minijuego-btn-secundario">
+                        🎲 NUEVA COMBINACIÓN
+                    </button>
+                    <button type="button" id="minijuego-tipos-ver" class="minijuego-btn minijuego-btn-ver" hidden>
+                        📖 VER EN LA POKÉDEX
+                    </button>
+                </div>
+
+                <div class="minijuego-estadisticas">
+                    <span>🏆 Aciertos: <strong id="minijuego-tipos-aciertos">0</strong></span>
+                    <span>🔢 Intentos: <strong id="minijuego-tipos-intentos">0</strong></span>
+                </div>
+            </div>
+
+            <div id="minijuego-altura" class="minijuego-pokemon minijuego-altura" aria-label="Minijuego: ¿cuál es más alto?">
+                <div class="minijuego-cabecera">
+                    <span class="minijuego-icono">📏</span>
+                    <div>
+                        <h2>¿CUÁL ES MÁS ALTO?</h2>
+                        <p>Elige el Pokémon más alto de cada duelo. ¡Solo tienes un intento!</p>
+                    </div>
+                </div>
+                <div id="altura-opciones" class="altura-opciones" aria-live="polite"><p class="nota-sitio">Abre este apartado para empezar el duelo.</p></div>
+                <div id="minijuego-altura-resultado" class="minijuego-resultado" aria-live="polite"></div>
+                <div class="minijuego-acciones">
+                    <button type="button" id="minijuego-altura-nuevo" class="minijuego-btn minijuego-btn-secundario">🎲 NUEVO DUELO</button>
+                    <button type="button" id="minijuego-altura-ver" class="minijuego-btn minijuego-btn-ver" hidden>📖 VER EN LA POKÉDEX</button>
+                </div>
+                <div class="minijuego-estadisticas">
+                    <span>🏆 Aciertos: <strong id="minijuego-altura-aciertos">0</strong></span>
+                    <span>🔢 Intentos: <strong id="minijuego-altura-intentos">0</strong></span>
+                </div>
+            </div>
+
+            <div id="minijuego-debilidades" class="minijuego-pokemon minijuego-debilidades" aria-label="Minijuego de debilidades y resistencias de tipos">
+                <div class="minijuego-cabecera">
+                    <span class="minijuego-icono">🛡️</span>
+                    <div>
+                        <h2>DEBILIDADES Y RESISTENCIAS</h2>
+                        <p>Se muestra un tipo que ataca y un tipo que defiende. Adivina el efecto. ¡Solo tienes un intento!</p>
+                    </div>
+                </div>
+
+                <div class="minijuego-pista minijuego-debilidades-enfrentamiento">
+                    <div class="debilidades-columna">
+                        <span class="etiqueta-pista">⚔️ ATACA</span>
+                        <div id="minijuego-debilidades-atacante" class="minijuego-debilidades-tipo">Cargando...</div>
+                    </div>
+                    <span class="debilidades-vs">VS</span>
+                    <div class="debilidades-columna">
+                        <span class="etiqueta-pista">🛡️ DEFIENDE</span>
+                        <div id="minijuego-debilidades-defensor" class="minijuego-debilidades-tipo">Cargando...</div>
+                    </div>
+                </div>
+
+                <div id="minijuego-debilidades-opciones" class="minijuego-debilidades-opciones"></div>
+
+                <div id="minijuego-debilidades-resultado" class="minijuego-resultado" aria-live="polite"></div>
+
+                <div class="minijuego-acciones">
+                    <button type="button" id="minijuego-debilidades-nuevo" class="minijuego-btn minijuego-btn-secundario">
+                        🎲 NUEVO ENFRENTAMIENTO
+                    </button>
+                </div>
+
+                <div class="minijuego-estadisticas">
+                    <span>🏆 Aciertos: <strong id="minijuego-debilidades-aciertos">0</strong></span>
+                    <span>🔢 Intentos: <strong id="minijuego-debilidades-intentos">0</strong></span>
+                </div>
+            </div>
+
+            <div id="minijuego-silueta" class="minijuego-pokemon minijuego-silueta" aria-label="Minijuego de adivinar Pokémon por su silueta">
+                <div class="minijuego-cabecera">
+                    <span class="minijuego-icono">🌑</span>
+                    <div>
+                        <h2>¿QUIÉN ES ESE POKÉMON?</h2>
+                        <p>Adivina el Pokémon a partir de su silueta. ¡Solo tienes un intento!</p>
+                    </div>
+                </div>
+
+                <div class="minijuego-silueta-marco">
+                    <img id="minijuego-silueta-img" src="" alt="Silueta de un Pokémon" class="minijuego-silueta-img" decoding="async">
+                </div>
+
+                <div class="minijuego-controles">
+                    <input type="text" id="minijuego-silueta-respuesta" class="minijuego-input" maxlength="40" autocomplete="off" placeholder="Escribe el nombre del Pokémon..." aria-label="Respuesta del minijuego de silueta">
+                    <button type="button" id="minijuego-silueta-adivinar" class="minijuego-btn minijuego-btn-adivinar">🎯 ADIVINAR</button>
+                </div>
+
+                <div id="minijuego-silueta-resultado" class="minijuego-resultado" aria-live="polite"></div>
+
+                <div class="minijuego-acciones">
+                    <button type="button" id="minijuego-silueta-nuevo" class="minijuego-btn minijuego-btn-secundario">🎲 NUEVO POKÉMON</button>
+                    <button type="button" id="minijuego-silueta-ver" class="minijuego-btn minijuego-btn-ver" hidden>📖 VER EN LA POKÉDEX</button>
+                </div>
+
+                <div class="minijuego-estadisticas">
+                    <span>🏆 Aciertos: <strong id="minijuego-silueta-aciertos">0</strong></span>
+                    <span>🔢 Intentos: <strong id="minijuego-silueta-intentos">0</strong></span>
+                </div>
+            </div>
+
+            <section id="records-minijuegos" class="minijuego-pokemon records-minijuegos" aria-label="Récords de los minijuegos">
+                <div class="minijuego-cabecera">
+                    <span class="minijuego-icono">🏅</span>
+                    <div>
+                        <h2>MIS RÉCORDS</h2>
+                        <p>Aciertos y rachas por cuenta, guardados en este navegador.</p>
+                    </div>
+                </div>
+                <div id="records-contenido"></div>
+                <div class="minijuego-acciones">
+                    <button type="button" id="records-reiniciar" class="minijuego-btn minijuego-btn-secundario">🗑️ REINICIAR RÉCORDS</button>
+                </div>
+            </section>
+
+            <section id="equipo-gimnasio" class="equipo-gimnasio" aria-label="Equipo de gimnasio Pokémon">
+                <div class="equipo-cabecera">
+                    <span class="equipo-icono">🏟️</span>
+                    <div>
+                        <h2>MI EQUIPO DE GIMNASIO</h2>
+                        <p>Arma tu equipo de líder de gimnasio. Solo puedes elegir 4 Pokémon.</p>
+                    </div>
+                </div>
+                <div class="equipo-selector-wrap">
+                    <label for="selector-equipo">Selecciona un Pokémon:</label>
+                    <select id="selector-equipo" class="selector-equipo"></select>
+                    <button type="button" id="btn-agregar-equipo" class="minijuego-btn minijuego-btn-adivinar">➕ AGREGAR AL EQUIPO</button>
+                </div>
+                <div id="equipo-slots" class="equipo-slots"></div>
+                <div id="equipo-mensaje" class="equipo-mensaje" aria-live="polite"></div>
+                <button type="button" id="btn-limpiar-equipo" class="minijuego-btn minijuego-btn-secundario">🗑️ VACIAR EQUIPO</button>
+                <div class="equipo-compartir">
+                    <button type="button" id="btn-equipo-enlace" class="minijuego-btn minijuego-btn-secundario">🔗 COPIAR ENLACE DEL EQUIPO</button>
+                    <button type="button" id="btn-equipo-imagen" class="minijuego-btn minijuego-btn-secundario">🖼️ DESCARGAR IMAGEN</button>
+                </div>
+                <div id="equipo-analisis" class="equipo-analisis" aria-live="polite"></div>
+            </section>
+                </div>
+            </section>
+
+            <div id="estado-cuenta-inicio" class="estado-cuenta-inicio"></div>
+            <small id="ayuda-inicio">Explora sus formas, gritos, sprites, comentarios y favoritos.</small>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         👤 CUENTA / LOGIN / REGISTER
+         Versión local de demostración: los datos se guardan en el navegador.
+         Para cuentas reales con servidor se necesitará backend y base de datos.
+         ========================================================= -->
+    <div id="modal-cuenta" class="modal-sitio" aria-hidden="true">
+        <div class="modal-contenido">
+            <button class="modal-cerrar" onclick="cerrarModal('modal-cuenta')">✕</button>
+            <h2>👤 Cuenta</h2>
+            <div id="cuenta-activa" class="cuenta-activa"></div>
+
+            <div id="formulario-cuenta">
+                <label for="cuenta-usuario">Nombre de usuario</label>
+                <input id="cuenta-usuario" class="campo-sitio" maxlength="30" placeholder="Ej.: EntrenadorNova">
+                <label for="cuenta-clave">Contraseña</label>
+                <input id="cuenta-clave" class="campo-sitio" type="password" maxlength="60" placeholder="Contraseña">
+                <div class="modal-botones">
+                    <button class="btn-modal-principal" onclick="registrarCuenta()">📝 Registrarme</button>
+                    <button class="btn-modal-secundario" onclick="iniciarSesion()">🔐 Iniciar sesión</button>
+                </div>
+                <p class="nota-sitio">Esta versión es local: las cuentas solo se guardan en este navegador (la contraseña se guarda cifrada con hash). Aun así, <strong>no uses una contraseña que ya utilices en otros sitios</strong>.</p>
+            </div>
+            <button id="btn-cerrar-sesion" class="btn-peligro" onclick="cerrarSesion()" style="display:none">🚪 Cerrar sesión</button>
+        </div>
+    </div>
+
+    <!-- 🛠️ ADMINISTRACIÓN -->
+    <div id="modal-admin" class="modal-sitio" aria-hidden="true">
+        <div class="modal-contenido modal-admin-contenido">
+            <button class="modal-cerrar" type="button" onclick="cerrarAdmin()" aria-label="Cerrar administrador">✕</button>
+            <div id="admin-login-panel">
+                <h2>🛠️ Área ADMIN</h2>
+                <p class="nota-sitio">Acceso restringido. Introduce la contraseña de administrador.</p>
+                <label for="admin-password">Contraseña</label>
+                <input id="admin-password" class="campo-sitio" type="password" maxlength="100" autocomplete="current-password" placeholder="Contraseña de administrador">
+                <button type="button" class="btn-modal-principal" onclick="iniciarAdmin()">🔐 ENTRAR AL EDITOR</button>
+                <p id="admin-login-mensaje" class="admin-mensaje" aria-live="polite"></p>
+                <p class="nota-sitio admin-seguridad-nota">Esta herramienta guarda los cambios localmente en este navegador. Para un sitio público, la autenticación real debe hacerse en el servidor.</p>
+            </div>
+            <div id="admin-editor-panel" hidden>
+                <div class="admin-editor-cabecera">
+                    <div><h2>🛠️ Editor de la web</h2><p class="nota-sitio">Modifica textos y algunos elementos visuales sin abrir Visual Studio Code.</p></div>
+                </div>
+                <div class="admin-editor-grid">
+                    <div class="admin-editor-card">
+                        <h3>🏠 Portada</h3>
+                        <label for="admin-titulo-portada">Título principal</label><input id="admin-titulo-portada" class="campo-sitio" maxlength="80" type="text">
+                        <label for="admin-subtitulo-portada">Subtítulo</label><input id="admin-subtitulo-portada" class="campo-sitio" maxlength="160" type="text">
+                        <label for="admin-boton-pokedex">Botón de Pokédex</label><input id="admin-boton-pokedex" class="campo-sitio" maxlength="50" type="text">
+                        <label for="admin-info-portada">Información inferior</label><input id="admin-info-portada" class="campo-sitio" maxlength="180" type="text">
+                    </div>
+                    <div class="admin-editor-card">
+                        <h3>📖 Pokédex</h3>
+                        <label for="admin-titulo-pokedex">Título de la Pokédex</label><input id="admin-titulo-pokedex" class="campo-sitio" maxlength="100" type="text">
+                        <label for="admin-descripcion-pokedex">Descripción</label><textarea id="admin-descripcion-pokedex" class="campo-sitio textarea-sitio" maxlength="220"></textarea>
+                        <label for="admin-footer">Texto del pie</label><input id="admin-footer" class="campo-sitio" maxlength="160" type="text">
+                    </div>
+                    <div class="admin-editor-card">
+                        <h3>🎨 Apariencia</h3>
+                        <label for="admin-color">Color principal del editor</label><input id="admin-color" class="campo-sitio campo-color-admin" type="color">
+                        <label class="admin-check"><input id="admin-arceus-fondo" type="checkbox"><span>Mantener el fondo especial de Arceus</span></label>
+                        <p class="nota-sitio">Los demás Pokémon no tendrán fondos temáticos especiales.</p>
+                    </div>
+                </div>
+                <div class="admin-editor-acciones">
+                    <button type="button" class="btn-modal-principal" onclick="guardarCambiosAdmin()">💾 GUARDAR CAMBIOS</button>
+                    <button type="button" class="btn-modal-secundario" onclick="restaurarCambiosAdmin()">↩ RESTAURAR VALORES</button>
+                    <p id="admin-editor-mensaje" class="admin-mensaje" aria-live="polite"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 📩 PETICIONES -->
+    <div id="modal-peticiones" class="modal-sitio" aria-hidden="true">
+        <div class="modal-contenido modal-ancho">
+            <button class="modal-cerrar" onclick="cerrarModal('modal-peticiones')">✕</button>
+            <h2>📩 Peticiones de Pokémon</h2>
+            <p class="nota-sitio">Pide uno o varios Pokémon para futuras actualizaciones. Las peticiones se guardan en este navegador.</p>
+            <label for="peticion-nombre">Nombre</label>
+            <input id="peticion-nombre" class="campo-sitio" maxlength="30" placeholder="Tu nombre">
+            <label for="peticion-pokemon">Pokémon que quieres solicitar</label>
+            <textarea id="peticion-pokemon" class="campo-sitio textarea-sitio" maxlength="300" placeholder="Ej.: Zeraora, Marshadow y Volcanion"></textarea>
+            <button class="btn-modal-principal" onclick="enviarPeticion()">📨 Enviar petición</button>
+            <div id="lista-peticiones" class="lista-sitio"></div>
+        </div>
+    </div>
+
+    <!-- 🚨 REPORTES -->
+    <div id="modal-reportes" class="modal-sitio" aria-hidden="true">
+        <div class="modal-contenido modal-ancho">
+            <button class="modal-cerrar" onclick="cerrarModal('modal-reportes')">✕</button>
+            <h2>🚨 Buzón de errores</h2>
+            <p class="nota-sitio">¿Encontraste una imagen, forma, sonido o función incorrecta? Repórtalo. Los reportes se guardan en este navegador.</p>
+            <label for="reporte-nombre">Nombre</label>
+            <input id="reporte-nombre" class="campo-sitio" maxlength="30" placeholder="Tu nombre">
+            <label for="reporte-pokemon">Pokémon o sección afectada</label>
+            <input id="reporte-pokemon" class="campo-sitio" maxlength="80" placeholder="Ej.: Mega Aggron">
+            <label for="reporte-descripcion">Descripción del error</label>
+            <textarea id="reporte-descripcion" class="campo-sitio textarea-sitio" maxlength="500" placeholder="Explica qué ocurre y qué debería aparecer."></textarea>
+            <button class="btn-modal-principal" onclick="enviarReporte()">📨 Enviar reporte</button>
+            <div id="lista-reportes" class="lista-sitio"></div>
+        </div>
+    </div>
+
+    <!-- ⭐ FAVORITOS -->
+    <div id="modal-favoritos" class="modal-sitio" aria-hidden="true">
+        <div class="modal-contenido modal-ancho">
+            <button class="modal-cerrar" onclick="cerrarModal('modal-favoritos')">✕</button>
+            <h2>⭐ Mis Pokémon favoritos</h2>
+            <div id="lista-favoritos" class="lista-favoritos"></div>
+        </div>
+    </div>
+
+    <!-- 🌟💥 POKÉMON CON MEGAEVOLUCIÓN O GIGANTAMAX -->
+    <div id="modal-forma-especial" class="modal-sitio" aria-hidden="true">
+        <div class="modal-contenido modal-ancho">
+            <button class="modal-cerrar" onclick="cerrarModal('modal-forma-especial')" aria-label="Cerrar">✕</button>
+            <h2 id="titulo-forma-especial">Pokémon con esta forma</h2>
+            <p class="nota-sitio">Elige un Pokémon para verlo directamente en esta forma.</p>
+            <div id="lista-forma-especial" class="lista-tipo"></div>
+        </div>
+    </div>
+
+    <!-- 🏷️ POKÉMON POR TIPO -->
+    <div id="modal-tipo" class="modal-sitio" aria-hidden="true">
+        <div class="modal-contenido modal-ancho">
+            <button class="modal-cerrar" onclick="cerrarModal('modal-tipo')">✕</button>
+            <h2 id="titulo-tipo">Pokémon de este tipo</h2>
+            <div id="lista-tipo" class="lista-tipo"></div>
+        </div>
+    </div>
+
+    <!-- 🧭 EXPLORADOR CON FILTROS -->
+    <div id="modal-explorar" class="modal-sitio" aria-hidden="true">
+        <div class="modal-contenido modal-ancho">
+            <button class="modal-cerrar" type="button" onclick="cerrarModal('modal-explorar')" aria-label="Cerrar explorador">✕</button>
+            <h2>🧭 Explorar Pokémon</h2>
+            <div class="explorar-filtros">
+                <div>
+                    <label for="explorar-texto">Nombre o número</label>
+                    <input id="explorar-texto" class="campo-sitio" type="search" maxlength="40" autocomplete="off" placeholder="Ej.: Charizard o 6">
+                </div>
+                <div>
+                    <label for="explorar-tipo">Tipo</label>
+                    <select id="explorar-tipo" class="campo-sitio"></select>
+                </div>
+                <div>
+                    <label for="explorar-gen">Generación</label>
+                    <select id="explorar-gen" class="campo-sitio"></select>
+                </div>
+                <label class="explorar-check"><input id="explorar-favs" type="checkbox"><span>Solo mis favoritos ⭐</span></label>
+            </div>
+            <p id="explorar-contador" class="nota-sitio" aria-live="polite"></p>
+            <div id="explorar-lista" class="lista-tipo"></div>
+        </div>
+    </div>
+
+    <!-- 🆚 COMPARADOR DE POKÉMON -->
+    <div id="modal-comparador" class="modal-sitio" aria-hidden="true">
+        <div class="modal-contenido modal-ancho">
+            <button class="modal-cerrar" type="button" onclick="cerrarModal('modal-comparador')" aria-label="Cerrar comparador">✕</button>
+            <h2>🆚 Comparador de Pokémon</h2>
+            <p class="nota-sitio">Compara tipos, descripción y debilidades/resistencias de dos Pokémon.</p>
+            <div class="comparador-selectores">
+                <select id="comparador-a" class="campo-sitio"></select>
+                <select id="comparador-b" class="campo-sitio"></select>
+            </div>
+            <div id="comparador-resultado"></div>
+        </div>
+    </div>
+
+    <!-- 🏆 PROGRESO Y LOGROS -->
+    <div id="modal-progreso" class="modal-sitio" aria-hidden="true">
+        <div class="modal-contenido modal-ancho">
+            <button class="modal-cerrar" type="button" onclick="cerrarModal('modal-progreso')" aria-label="Cerrar progreso">✕</button>
+            <h2>🏆 Progreso y logros</h2>
+            <div id="progreso-contenido"></div>
+            <h3>🏅 Logros</h3>
+            <div id="logros-grid"></div>
+        </div>
+    </div>
+
+    <!-- 👤 PERFIL DE USUARIO -->
+    <div id="modal-perfil" class="modal-sitio" aria-hidden="true">
+        <div class="modal-contenido modal-ancho">
+            <button class="modal-cerrar" type="button" onclick="cerrarModal('modal-perfil')" aria-label="Cerrar perfil">✕</button>
+            <h2>👤 Mi perfil</h2>
+            <div id="perfil-contenido"></div>
+        </div>
+    </div>
+
+    <!-- ✏️ EDITOR DE POSICIÓN DEL AVATAR -->
+    <div id="modal-editor-avatar" class="modal-sitio" aria-hidden="true">
+        <div class="modal-contenido">
+            <button class="modal-cerrar" type="button" onclick="cerrarModal('modal-editor-avatar')" aria-label="Cerrar editor de avatar">✕</button>
+            <h2>✏️ Ajusta tu avatar</h2>
+            <p class="nota-sitio">Arrastra la foto para moverla y usa el control para acercar o alejar.</p>
+            <div id="editor-avatar-circulo" class="editor-avatar-circulo">
+                <img id="editor-avatar-img" alt="Vista previa del avatar" draggable="false">
+            </div>
+            <input type="range" id="editor-avatar-zoom" min="1" max="2.5" step="0.01" value="1">
+            <div class="editor-avatar-botones">
+                <button type="button" class="btn-modal-secundario" onclick="centrarEdicionAvatar()">↺ Restablecer</button>
+                <button type="button" class="btn-modal-principal" onclick="guardarEdicionAvatar()">💾 Guardar avatar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ⌨️ PERSONALIZAR ATAJOS DE TECLADO -->
+    <div id="modal-atajos" class="modal-sitio" aria-hidden="true">
+        <div class="modal-contenido modal-ancho">
+            <button class="modal-cerrar" type="button" onclick="cerrarModal('modal-atajos')" aria-label="Cerrar personalización de teclas">✕</button>
+            <h2>⌨️ Personalizar teclas</h2>
+            <p class="nota-sitio">Pulsa "✏️ Cambiar" y luego presiona la tecla que quieras usar. Si esa tecla ya estaba asignada a otra acción, se intercambian entre sí.</p>
+            <div id="atajos-lista"></div>
+            <div class="editor-avatar-botones">
+                <button type="button" class="btn-modal-secundario" onclick="restablecerAtajos()">↺ Restablecer todas</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🗳️ VOTACIÓN SEMANAL -->
+    <div id="modal-votacion" class="modal-sitio" aria-hidden="true">
+        <div class="modal-contenido modal-ancho">
+            <button class="modal-cerrar" type="button" onclick="cerrarModal('modal-votacion')" aria-label="Cerrar votación">✕</button>
+            <h2>🗳️ Pokémon favorito de la semana</h2>
+            <div id="votacion-estado" class="comunidad-estado"></div>
+            <select id="votacion-select" class="campo-sitio"></select>
+            <button type="button" class="btn-modal-principal" onclick="enviarVotoSemanal()">🗳️ Votar</button>
+            <p id="votacion-mensaje" class="comunidad-form-mensaje" aria-live="polite"></p>
+            <div id="votacion-ranking"></div>
+        </div>
+    </div>
+
+    <div id="pokedex-app">
+
+    <header>
+        <h1>Mi Pokédex de Favoritos</h1>
+        <p>Una colección de mis <span data-total-pokemon>200</span> Pokémon preferidos.</p>
+        <div class="acciones-header">
+            <button type="button" class="btn-inicio" onclick="volverInicio()">🏠 Inicio</button>
+            <button type="button" class="btn-inicio" onclick="abrirModal('modal-cuenta')">👤 Cuenta</button>
+            <button type="button" class="btn-inicio" onclick="mostrarFavoritos()">⭐ Favoritos</button>
+            <button type="button" class="btn-inicio" onclick="abrirModal('modal-peticiones')">📩 Peticiones</button>
+            <button type="button" class="btn-inicio" onclick="abrirModal('modal-reportes')">🚨 Reportar</button>
+            <button type="button" class="btn-inicio" onclick="abrirExplorador()">🧭 Explorar</button>
+            <button type="button" class="btn-icono-forma" onclick="filtrarPorCategoriaForma('mega')" title="Buscar Megaevoluciones" aria-label="Buscar Megaevoluciones"><img src="" data-icono="mega" alt="Megaevoluciones" loading="lazy" decoding="async"></button>
+            <button type="button" class="btn-icono-forma" onclick="filtrarPorCategoriaForma('gigantamax')" title="Buscar Gigantamax" aria-label="Buscar Gigantamax"><img src="" data-icono="gigantamax" alt="Gigantamax" loading="lazy" decoding="async"></button>
+            <button type="button" class="btn-inicio btn-sonido-toggle" onclick="alternarSonido()" aria-pressed="false">🔊 Sonido: activado</button>
+            <button id="btn-toggle-shiny" class="btn-shiny" onclick="toggleShiny()">✨ Activar Modo Shiny</button>
+        </div>
+        <div class="pokemon-search" role="search">
+            <input id="pokemonSearchInput" type="search" placeholder="Buscar por nombre o número" aria-label="Buscar Pokémon" autocomplete="off">
+            <button type="button" id="pokemonSearchBtn">🔎 Buscar</button>
+        </div>
+    </header>
+
+    <main>
+        <section id="slider-pokemon">
+            <!-- El contenido de los Pokémon se generará dinámicamente aquí -->
+            <div id="contenedor-slides"></div>
+
+            <!-- Controles del Slider -->
+            <nav class="nav-slider">
+                <button type="button" onclick="cambiarSlide(-1)">Anterior</button>
+                <button type="button" onclick="cambiarSlide(1)">Siguiente</button>
+            </nav>
+        </section>
+
+            <!-- =========================================================
+                 🎨 GALERÍA DE DIBUJOS
+                 Los visitantes pueden guardar dibujos de sus Pokémon.
+                 Se almacenan localmente en el navegador (sin servidor).
+                 ========================================================= -->
+            <section id="seccion-dibujos" class="seccion-dibujos" hidden>
+                <div class="cabecera-dibujos">
+                    <span class="icono-dibujos">🎨</span>
+                    <div>
+                        <h2>Galería de Dibujos</h2>
+                        <p>Guarda un dibujo hecho por ti de tu Pokémon favorito. Se conserva solo en este navegador.</p>
+                    </div>
+                </div>
+
+                <div class="formulario-dibujo">
+                    <div class="campo-dibujo">
+                        <label for="pokemon-dibujo">Pokémon del dibujo</label>
+                        <select id="pokemon-dibujo">
+                            <option value="">Selecciona un Pokémon</option>
+                        </select>
+                    </div>
+
+                    <div class="campo-dibujo">
+                        <label for="autor-dibujo">Nombre del artista <span>(opcional)</span></label>
+                        <input
+                            type="text"
+                            id="autor-dibujo"
+                            maxlength="40"
+                            placeholder="Ej.: Rayniel"
+                        >
+                    </div>
+
+                    <div class="campo-dibujo campo-archivo">
+                        <label for="archivo-dibujo">Archivo del dibujo</label>
+                        <input
+                            type="file"
+                            id="archivo-dibujo"
+                            accept="image/png,image/jpeg,image/webp,image/gif"
+                        >
+                        <small>PNG, JPG, WEBP o GIF · Máximo recomendado: 8 MB</small>
+                    </div>
+
+                    <div id="vista-previa-dibujo" class="vista-previa-dibujo" aria-live="polite">
+                        <span>🖼️ Aquí aparecerá una vista previa</span>
+                    </div>
+
+                    <button
+                        type="button"
+                        id="btn-agregar-dibujo"
+                        class="btn-agregar-dibujo"
+                        onclick="agregarDibujo()"
+                    >
+                        ➕ Agregar dibujo
+                    </button>
+
+                    <p id="mensaje-dibujo" class="mensaje-dibujo" aria-live="polite"></p>
+                </div>
+
+                <div class="encabezado-galeria">
+                    <h3>🖼️ Mis dibujos (guardados en este navegador)</h3>
+                    <button
+                        type="button"
+                        id="btn-borrar-dibujos"
+                        class="btn-borrar-dibujos"
+                        onclick="borrarTodosLosDibujos()"
+                    >
+                        🗑️ Borrar mis dibujos
+                    </button>
+                </div>
+
+                <div id="galeria-dibujos" class="galeria-dibujos">
+                    <p class="galeria-vacia">Todavía no hay dibujos guardados. ¡Sube el primero! ✨</p>
+                </div>
+            </section>
+
+    </main>
+
+    <footer>
+        <p>Página creada sobre mis Pokémon favoritos.</p>
+    </footer>
+
+    </div> <!-- /#pokedex-app -->
+
+    <script defer src="js/pokemon-data.js"></script>
+<script defer src="js/app-core.js"></script>
+<script defer src="js/fondos-particulas.js"></script>
+
+
+<script defer src="js/busqueda.js"></script>
+
+
+<script defer src="js/minijuego-descripcion.js"></script>
+
+<script defer src="js/minijuego-grito.js"></script>
+
+<script defer src="js/minijuego-tipos.js"></script>
+<script defer src="js/minijuego-debilidades.js"></script>
+<script defer src="js/minijuego-silueta.js"></script>
+
+<script defer src="js/entrenamiento.js"></script>
+<script defer src="js/equipo-analisis.js"></script>
+<script defer src="js/minijuego-altura.js"></script>
+<script defer src="js/mejoras-generales.js"></script>
+<script defer src="js/admin.js"></script>
+<script defer src="js/contenido-pokedex.js"></script>
+<script defer src="js/gamificacion.js"></script>
+<script defer src="js/comunidad-extra.js"></script>
+<script defer src="js/atajos-teclado.js"></script>
+<script defer src="js/respaldo.js"></script>
+<script defer src="js/ficha-extra.js"></script>
+<script defer src="js/reto-diario.js"></script>
+<script defer src="js/combate.js"></script>
+<script defer src="js/caza-shiny.js"></script>
+<script defer src="js/envios-supabase.js"></script>
+<script>if('serviceWorker' in navigator && location.protocol.startsWith('http')){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});}</script>
+</body>
+</html>

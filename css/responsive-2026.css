@@ -1,0 +1,157 @@
+/* =========================================================
+   ✨ ADAPTACIÓN A PANTALLAS 2026
+   Portada · Minijuegos · Pokédex · Equipo · Entrenamiento ·
+   Comunidad · Admin — todo fluido entre celular y monitor grande.
+   Se carga AL FINAL: no reemplaza nada, solo pule y adapta.
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   1) TOKENS FLUIDOS: un solo valor que se ajusta solo entre
+   un mínimo (celular) y un máximo (monitor grande), en vez de
+   necesitar un @media distinto para cada salto de tamaño.
+   --------------------------------------------------------- */
+:root {
+    --space-2xs: clamp(4px, 0.6vw, 6px);
+    --space-xs:  clamp(8px, 1vw, 12px);
+    --space-sm:  clamp(12px, 1.6vw, 18px);
+    --space-md:  clamp(18px, 2.4vw, 28px);
+    --space-lg:  clamp(26px, 3.6vw, 44px);
+
+    --radio-sm: 10px;
+    --radio-md: 16px;
+    --radio-lg: 22px;
+
+    --sombra-elevada: 0 18px 40px rgba(0,0,0,.5), 0 2px 8px rgba(0,0,0,.35);
+    --sombra-suave-2026: 0 8px 22px rgba(0,0,0,.35);
+    --ease-fluido: cubic-bezier(.22,.9,.32,1);
+
+    /* Ancho de contenido según el tamaño de pantalla (se redefine más abajo) */
+    --ancho-contenido: min(94vw, 1180px);
+}
+
+/* ---------------------------------------------------------
+   2) BASE: que se vea igual de nítido en cualquier pantalla,
+   sin tocar ningún color existente.
+   --------------------------------------------------------- */
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+::-webkit-scrollbar { width: 11px; height: 11px; }
+::-webkit-scrollbar-track { background: rgba(255,255,255,.04); }
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--color-pokemon-accent, #3F63FF), var(--color-pokemon-secundario, #001284));
+    border-radius: 20px; border: 2px solid rgba(0,0,0,.35);
+}
+* { scrollbar-width: thin; scrollbar-color: var(--color-pokemon-accent, #3F63FF) rgba(255,255,255,.05); }
+::selection { background: var(--color-pokemon-accent, #3F63FF); color: #fff; }
+
+a:focus-visible, button:focus-visible, input:focus-visible,
+textarea:focus-visible, select:focus-visible, [tabindex]:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255,255,255,.14), 0 0 0 5px var(--color-pokemon-accent, #3F63FF);
+    border-radius: var(--radio-sm);
+}
+
+/* ---------------------------------------------------------
+   3) RENDIMIENTO: las listas que pueden crecer mucho (dibujos,
+   favoritos, tipos, publicaciones de la comunidad) dejan de
+   pintar lo que aún no entra en pantalla.
+   --------------------------------------------------------- */
+.galeria-dibujos > *,
+.lista-favoritos > *,
+.lista-tipo > * {
+    contain: content;
+    content-visibility: auto;
+    contain-intrinsic-size: 220px 260px;
+}
+.comunidad-feed > * {
+    contain: content;
+    content-visibility: auto;
+    contain-intrinsic-size: 100% 260px;
+}
+.equipo-slot { contain: layout style; }
+
+.tarjeta-dibujo, .equipo-slot, .badge-tipo,
+.btn-menu-inicio, .btn-entrar-pokedex, .btn-favorito, .minijuego-btn,
+.comunidad-tab, .comunidad-publicar-btn {
+    transition: transform .28s var(--ease-fluido), box-shadow .28s var(--ease-fluido);
+}
+
+/* ---------------------------------------------------------
+   4) MICROINTERACCIONES: elevación suave en botones y tarjetas
+   principales, en vez de solo cambiar de color.
+   --------------------------------------------------------- */
+.btn-menu-inicio, .btn-entrar-pokedex, .btn-admin-pequeno {
+    border-radius: var(--radio-md);
+    box-shadow: var(--sombra-suave-2026);
+}
+.btn-menu-inicio:hover, .btn-entrar-pokedex:hover, .btn-admin-pequeno:hover {
+    transform: translateY(-3px) scale(1.015);
+    box-shadow: var(--sombra-elevada);
+}
+.tarjeta-dibujo:hover, .comunidad-tab:hover, .comunidad-publicar-btn:hover {
+    transform: translateY(-2px);
+}
+.badge-tipo:hover { transform: translateY(-2px); }
+.modal-contenido { box-shadow: var(--sombra-elevada); }
+
+/* ---------------------------------------------------------
+   5) RESPONSIVIDAD REAL POR NIVELES
+   Antes solo había ajustes para celular (≤700px). Se agregan
+   los niveles que faltaban para tablet, laptop, monitores
+   grandes y ultra-anchos, para que ningún apartado (portada,
+   minijuegos, Pokédex, equipo, entrenamiento, comunidad) se
+   quede angosto ni se estire sin control.
+   --------------------------------------------------------- */
+
+/* Tablets (601px – 1023px) */
+@media (min-width: 601px) and (max-width: 1023px) {
+    .contenido-inicio { width: min(90vw, 640px); }
+    .galeria-dibujos, .lista-favoritos, .lista-tipo {
+        grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    }
+    .analisis-grid { grid-template-columns: repeat(auto-fill, minmax(128px, 1fr)); }
+}
+
+/* Laptops (≥1024px) */
+@media (min-width: 1024px) {
+    #pokedex-app, #pokedex-app > header { max-width: var(--ancho-contenido); margin-left: auto; margin-right: auto; }
+    .galeria-dibujos, .lista-favoritos, .lista-tipo {
+        grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+        gap: var(--space-md);
+    }
+    .analisis-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+    #comunidad { max-width: 1000px; }
+}
+
+/* Monitores grandes (≥1440px) */
+@media (min-width: 1440px) {
+    :root { --ancho-contenido: min(90vw, 1380px); }
+    .contenido-inicio { width: min(70vw, 900px); }
+    .galeria-dibujos, .lista-favoritos, .lista-tipo {
+        grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    }
+    #comunidad { width: min(1080px, 90vw); }
+    .equipo-gimnasio { width: min(820px, 82vw); }
+}
+
+/* Ultra-anchos (≥1920px): que no se pierda todo en el centro
+   de un monitor 2K/4K */
+@media (min-width: 1920px) {
+    :root { --ancho-contenido: min(80vw, 1680px); }
+    body { padding-left: var(--space-lg); padding-right: var(--space-lg); }
+    .contenido-inicio { width: min(56vw, 980px); }
+}
+
+/* Celular en horizontal / poca altura: que los modales y el
+   menú de inicio no queden cortados */
+@media (max-height: 480px) and (orientation: landscape) {
+    #pantalla-inicio { align-items: flex-start; padding-top: var(--space-sm); }
+    .modal-contenido { max-height: 88vh; overflow-y: auto; }
+}
+
+/* Pantallas muy angostas (<360px): que el menú no se rompa */
+@media (max-width: 360px) {
+    .btn-menu-inicio .menu-texto, .btn-entrar-pokedex .menu-texto { font-size: .85rem; }
+}

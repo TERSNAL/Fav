@@ -1,0 +1,208 @@
+/* =========================================================
+   🆕 FONDOS CINEMATOGRÁFICOS — legendarios y singulares que faltaban
+   Cada Pokémon tiene su propio escenario (degradado + dos capas ::before/::after)
+   y sus partículas propias en js/fondos-particulas.js (clase "fondo-<nombre>").
+   Requiere las animaciones fxRespirar / fxPulso / fxGirar / fxDeriva / fxOscilar / fxParpadeo de mejoras.css.
+   ========================================================= */
+@keyframes fxnVelocidad { from { background-position: 0 0; } to { background-position: -220px 0; } }
+@keyframes fxnBalanceo { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+@keyframes fxnRelampago { 0%, 62%, 100% { opacity: 0; } 64% { opacity: 1; } 68% { opacity: .15; } 72% { opacity: .95; } 80% { opacity: 0; } }
+
+.fondo-uxie::before, .fondo-uxie::after, .fondo-mesprit::before, .fondo-mesprit::after,
+.fondo-azelf::before, .fondo-azelf::after, .fondo-tornadus::before, .fondo-tornadus::after,
+.fondo-thundurus::before, .fondo-thundurus::after, .fondo-landorus::before, .fondo-landorus::after,
+.fondo-silvally::before, .fondo-silvally::after, .fondo-urshifu::before, .fondo-urshifu::after,
+.fondo-regieleki::before, .fondo-regieleki::after, .fondo-wochien::before, .fondo-wochien::after,
+.fondo-chienpao::before, .fondo-chienpao::after, .fondo-tinglu::before, .fondo-tinglu::after,
+.fondo-chiyu::before, .fondo-chiyu::after, .fondo-okidogi::before, .fondo-okidogi::after,
+.fondo-munkidori::before, .fondo-munkidori::after, .fondo-fezandipiti::before, .fondo-fezandipiti::after,
+.fondo-ogerpon::before, .fondo-ogerpon::after, .fondo-terapagos::before, .fondo-terapagos::after,
+.fondo-phione::before, .fondo-phione::after, .fondo-meloetta::before, .fondo-meloetta::after,
+.fondo-melmetal::before, .fondo-melmetal::after, .fondo-zarude::before, .fondo-zarude::after,
+.fondo-pecharunt::before, .fondo-pecharunt::after { content: ""; position: absolute; pointer-events: none; }
+
+.fondo-uxie, .fondo-mesprit, .fondo-azelf, .fondo-tornadus, .fondo-thundurus, .fondo-landorus,
+.fondo-silvally, .fondo-urshifu, .fondo-regieleki, .fondo-wochien, .fondo-chienpao, .fondo-tinglu,
+.fondo-chiyu, .fondo-okidogi, .fondo-munkidori, .fondo-fezandipiti, .fondo-ogerpon, .fondo-terapagos,
+.fondo-phione, .fondo-meloetta, .fondo-melmetal, .fondo-zarude, .fondo-pecharunt {
+    box-shadow: inset 0 0 70px 34px rgba(6,6,10,.55);
+}
+.fondo-uxie { --fx-glow: rgba(255,225,110,.45); }     .fondo-mesprit { --fx-glow: rgba(255,143,196,.45); }
+.fondo-azelf { --fx-glow: rgba(90,168,255,.45); }     .fondo-tornadus { --fx-glow: rgba(143,240,200,.45); }
+.fondo-thundurus { --fx-glow: rgba(255,214,40,.48); } .fondo-landorus { --fx-glow: rgba(242,178,74,.45); }
+.fondo-silvally { --fx-glow: rgba(200,215,235,.45); } .fondo-urshifu { --fx-glow: rgba(255,90,74,.45); }
+.fondo-regieleki { --fx-glow: rgba(255,240,90,.5); }  .fondo-wochien { --fx-glow: rgba(176,120,224,.42); }
+.fondo-chienpao { --fx-glow: rgba(155,220,255,.45); } .fondo-tinglu { --fx-glow: rgba(255,138,42,.42); }
+.fondo-chiyu { --fx-glow: rgba(255,90,26,.5); }       .fondo-okidogi { --fx-glow: rgba(143,255,80,.4); }
+.fondo-munkidori { --fx-glow: rgba(255,90,200,.45); } .fondo-fezandipiti { --fx-glow: rgba(255,176,220,.45); }
+.fondo-ogerpon { --fx-glow: rgba(143,240,106,.45); }  .fondo-terapagos { --fx-glow: rgba(90,220,210,.45); }
+.fondo-phione { --fx-glow: rgba(155,231,255,.45); }   .fondo-meloetta { --fx-glow: rgba(200,160,255,.45); }
+.fondo-melmetal { --fx-glow: rgba(190,205,225,.42); } .fondo-zarude { --fx-glow: rgba(90,255,120,.4); }
+.fondo-pecharunt { --fx-glow: rgba(255,140,216,.45); }
+
+/* ---------- UXIE (Conocimiento): anillos de memoria y motas de saber dorado ---------- */
+.fondo-uxie { background-image: radial-gradient(circle at 50% 42%, rgba(255,240,170,.55) 0 5%, transparent 36%), linear-gradient(180deg,#0d0a1f 0%,#2e2a63 55%,#f2c94c 100%); animation: fxRespirar 9s ease-in-out infinite; }
+.fondo-uxie::before { inset: 6%; border-radius: 50%; background: repeating-radial-gradient(circle at 50% 42%, transparent 0 22px, rgba(255,230,120,.22) 23px 25px); animation: fxPulso 6s ease-in-out infinite; }
+.fondo-uxie::after { inset: 0; background: radial-gradient(circle at 30% 30%, rgba(255,240,170,.65) 0 2px, transparent 3px) 0 0 / 54px 54px; animation: fxOscilar 9s ease-in-out infinite; }
+
+/* ---------- MESPRIT (Emoción): pétalos de luz rosa y latidos ---------- */
+.fondo-mesprit { background-image: radial-gradient(circle at 50% 45%, rgba(255,200,225,.55) 0 5%, transparent 38%), linear-gradient(180deg,#1a0716 0%,#6a1f52 55%,#ff8fc4 100%); animation: fxRespirar 8s ease-in-out infinite; }
+.fondo-mesprit::before { inset: 12%; border-radius: 50%; background: repeating-conic-gradient(from 0deg at 50% 45%, transparent 0 20deg, rgba(255,160,205,.2) 21deg 24deg); animation: fxGirar 22s linear infinite; }
+.fondo-mesprit::after { inset: 0; background: radial-gradient(circle at 35% 60%, rgba(255,140,190,.38), transparent 30%), radial-gradient(circle at 65% 60%, rgba(255,190,220,.32), transparent 30%); animation: fxPulso 4s ease-in-out infinite; }
+
+/* ---------- AZELF (Voluntad): retícula de diamantes y picos de cristal azul ---------- */
+.fondo-azelf { background-image: radial-gradient(circle at 50% 30%, rgba(190,225,255,.5) 0 4%, transparent 34%), linear-gradient(180deg,#02061a 0%,#0f2a78 55%,#5aa8ff 100%); animation: fxRespirar 9s ease-in-out infinite; }
+.fondo-azelf::before { inset: 0; background: repeating-linear-gradient(45deg, transparent 0 34px, rgba(120,190,255,.16) 35px 37px), repeating-linear-gradient(-45deg, transparent 0 34px, rgba(120,190,255,.16) 35px 37px); animation: fxDeriva 12s ease-in-out infinite; }
+.fondo-azelf::after { inset: auto 0 0 0; height: 38%; background: linear-gradient(180deg, transparent, rgba(90,168,255,.55)); clip-path: polygon(0 100%,0 62%,8% 40%,15% 62%,24% 25%,34% 60%,44% 30%,54% 62%,64% 22%,74% 58%,84% 34%,92% 60%,100% 45%,100% 100%); }
+
+/* ---------- TORNADUS: ciclón de viento sobre cielo verde tormenta ---------- */
+.fondo-tornadus { background-image: radial-gradient(circle at 50% 38%, rgba(240,255,250,.45) 0 4%, transparent 34%), linear-gradient(180deg,#0a2a2a 0%,#1c6a5c 50%,#a8f0d0 100%); animation: fxRespirar 7s ease-in-out infinite; }
+.fondo-tornadus::before { inset: -20%; background: repeating-conic-gradient(from 0deg at 50% 45%, transparent 0 12deg, rgba(220,255,240,.18) 13deg 16deg, transparent 17deg 30deg); animation: fxGirar 16s linear infinite; }
+.fondo-tornadus::after { inset: 0; background: repeating-linear-gradient(170deg, transparent 0 60px, rgba(255,255,255,.14) 61px 63px, transparent 64px 120px); animation: fxDeriva 5s ease-in-out infinite; }
+
+/* ---------- THUNDURUS: tormenta violeta con un rayo que cae ---------- */
+.fondo-thundurus { background-image: linear-gradient(180deg,#05020e 0%,#2a1050 55%,#6a3ad0 100%); animation: fxRespirar 6s ease-in-out infinite; }
+.fondo-thundurus::before { inset: 0 15% 30% 15%; background: linear-gradient(180deg,#fff6a0,#ffd21a); clip-path: polygon(58% 0,34% 46%,48% 46%,30% 100%,70% 40%,54% 40%,74% 0); filter: drop-shadow(0 0 10px #ffe45a); animation: fxnRelampago 4.5s linear infinite; }
+.fondo-thundurus::after { inset: 0; background: radial-gradient(ellipse at 20% 0, rgba(20,10,40,.95) 0 28%, transparent 55%), radial-gradient(ellipse at 82% 0, rgba(20,10,40,.95) 0 30%, transparent 56%); animation: fxDeriva 9s ease-in-out infinite; }
+
+/* ---------- LANDORUS: colinas de cultivo doradas y rayos de cosecha ---------- */
+.fondo-landorus { background-image: radial-gradient(circle at 50% 30%, rgba(255,230,150,.55) 0 5%, transparent 36%), linear-gradient(180deg,#2a1206 0%,#a4561c 50%,#f2b24a 100%); animation: fxRespirar 10s ease-in-out infinite; }
+.fondo-landorus::before { inset: auto 0 0 0; height: 42%; background: repeating-linear-gradient(0deg,#5a2c0e 0 10px,#7a3f14 11px 22px); clip-path: polygon(0 30%,100% 10%,100% 100%,0 100%); }
+.fondo-landorus::after { inset: 0; background: repeating-conic-gradient(from -30deg at 50% 30%, rgba(255,235,170,.14) 0 6deg, transparent 7deg 18deg); animation: fxOscilar 10s ease-in-out infinite; }
+
+/* ---------- SILVALLY: aro arcoíris de Memorias RKS sobre malla de acero ---------- */
+.fondo-silvally { background-image: radial-gradient(circle at 50% 42%, rgba(255,255,255,.4) 0 4%, transparent 34%), linear-gradient(180deg,#0a0c12 0%,#2c3340 55%,#b8c4d6 100%); animation: fxRespirar 9s ease-in-out infinite; }
+.fondo-silvally::before { inset: 8%; border-radius: 50%; background: conic-gradient(#ff5a5a,#ffb84a,#ffee5a,#5aff8a,#5ad2ff,#8a5aff,#ff5ad2,#ff5a5a); -webkit-mask: radial-gradient(circle, transparent 0 58%, #000 60% 66%, transparent 68%); mask: radial-gradient(circle, transparent 0 58%, #000 60% 66%, transparent 68%); opacity: .6; animation: fxGirar 18s linear infinite; }
+.fondo-silvally::after { inset: 0; background: repeating-linear-gradient(0deg, transparent 0 28px, rgba(200,215,235,.10) 29px 30px), repeating-linear-gradient(60deg, transparent 0 28px, rgba(200,215,235,.10) 29px 30px), repeating-linear-gradient(120deg, transparent 0 28px, rgba(200,215,235,.10) 29px 30px); }
+
+/* ---------- URSHIFU: sol naciente y trazos de tinta en el dojo (Lluvia Rauda: olas y agua) ---------- */
+.fondo-urshifu { background-image: radial-gradient(circle at 50% 38%, rgba(255,60,50,.9) 0 16%, transparent 17%), linear-gradient(180deg,#0a0606 0%,#3a0c10 60%,#150808 100%); animation: fxRespirar 9s ease-in-out infinite; }
+.fondo-urshifu::before { inset: 0; background: repeating-linear-gradient(-12deg, transparent 0 46px, rgba(0,0,0,.55) 47px 70px, transparent 71px 130px); animation: fxDeriva 10s ease-in-out infinite; }
+.fondo-urshifu::after { inset: auto 0 0 0; height: 28%; background: linear-gradient(180deg,#2a1208,#0a0503); border-top: 2px solid rgba(255,90,74,.5); }
+.fondo-urshifu.fondo-var-lluvia { background-image: radial-gradient(circle at 50% 38%, rgba(190,240,255,.9) 0 16%, transparent 17%), linear-gradient(180deg,#02101c 0%,#0c3a66 60%,#041a2c 100%); }
+.fondo-urshifu.fondo-var-lluvia::before { background: radial-gradient(circle at 50% 100%, transparent 0 18px, rgba(140,210,255,.28) 19px 21px, transparent 22px) 0 0 / 60px 30px; animation: fxnVelocidad 6s linear infinite; }
+.fondo-urshifu.fondo-var-lluvia::after { background: linear-gradient(180deg,#0c3a66,#020c16); border-top-color: rgba(140,210,255,.5); }
+
+/* ---------- REGIELEKI: circuito eléctrico y líneas de velocidad ---------- */
+.fondo-regieleki { background-image: linear-gradient(180deg,#02060c 0%,#062038 60%,#0a3a5c 100%); animation: fxRespirar 5s ease-in-out infinite; }
+.fondo-regieleki::before { inset: 0; background: repeating-linear-gradient(0deg, transparent 0 38px, rgba(255,240,90,.15) 39px 40px), repeating-linear-gradient(90deg, transparent 0 38px, rgba(255,240,90,.15) 39px 40px); }
+.fondo-regieleki::after { inset: 0; background: repeating-linear-gradient(90deg, transparent 0 90px, rgba(255,255,140,.32) 91px 93px, transparent 94px 220px) 0 0 / 220px 100%; animation: fxnVelocidad 1.4s linear infinite; }
+
+/* ---------- WO-CHIEN: bosque marchito, raíces oscuras y talismanes ---------- */
+.fondo-wochien { background-image: radial-gradient(circle at 50% 45%, rgba(140,60,180,.35), transparent 45%), linear-gradient(180deg,#040806 0%,#12281a 55%,#2c1a30 100%); animation: fxRespirar 11s ease-in-out infinite; }
+.fondo-wochien::before { inset: auto 0 0 0; height: 46%; background: #050a06; clip-path: polygon(0 100%,0 60%,6% 40%,9% 62%,14% 22%,18% 58%,24% 30%,29% 64%,36% 12%,41% 56%,48% 34%,55% 66%,62% 18%,68% 58%,75% 30%,81% 62%,88% 24%,93% 56%,100% 40%,100% 100%); }
+.fondo-wochien::after { inset: 0 0 50% 0; background: repeating-linear-gradient(90deg, transparent 0 70px, rgba(200,170,90,.4) 71px 76px, transparent 77px 140px); -webkit-mask-image: linear-gradient(180deg,#000,transparent); mask-image: linear-gradient(180deg,#000,transparent); transform-origin: 50% 0; animation: fxnBalanceo 7s ease-in-out infinite; }
+
+/* ---------- CHIEN-PAO: tormenta de hielo y filos de cristal ---------- */
+.fondo-chienpao { background-image: linear-gradient(180deg,#040a14 0%,#123a5c 55%,#dff4ff 100%); animation: fxRespirar 9s ease-in-out infinite; }
+.fondo-chienpao::before { inset: auto 0 0 0; height: 44%; background: linear-gradient(180deg,#eaf8ff,#7fbfe0); clip-path: polygon(0 100%,0 70%,8% 20%,14% 66%,22% 34%,28% 74%,38% 8%,46% 62%,54% 28%,62% 72%,72% 14%,80% 60%,88% 30%,94% 68%,100% 40%,100% 100%); }
+.fondo-chienpao::after { inset: 0; background: repeating-linear-gradient(115deg, transparent 0 40px, rgba(255,255,255,.22) 41px 43px, transparent 44px 90px); animation: fxDeriva 4s ease-in-out infinite; }
+
+/* ---------- TING-LU: tierra agrietada con fisuras al rojo y rocas pesadas ---------- */
+.fondo-tinglu { background-image: linear-gradient(180deg,#0c0806 0%,#2a1810 55%,#5a3a20 100%); animation: fxRespirar 11s ease-in-out infinite; }
+.fondo-tinglu::before { inset: 0; background: repeating-linear-gradient(28deg, transparent 0 60px, rgba(255,130,40,.4) 61px 63px, transparent 64px 140px), repeating-linear-gradient(-32deg, transparent 0 80px, rgba(255,130,40,.3) 81px 82px, transparent 83px 170px); -webkit-mask-image: linear-gradient(0deg,#000 0 55%,transparent); mask-image: linear-gradient(0deg,#000 0 55%,transparent); animation: fxRespirar 6s ease-in-out infinite; }
+.fondo-tinglu::after { inset: auto 0 0 0; height: 26%; background: linear-gradient(180deg,#3a2414,#120a06); clip-path: polygon(0 100%,0 40%,10% 20%,22% 44%,36% 14%,50% 40%,64% 16%,78% 42%,90% 22%,100% 46%,100% 100%); }
+
+/* ---------- CHI-YU: dos esferas de fuego sobre un horizonte de lava ---------- */
+.fondo-chiyu { background-image: linear-gradient(180deg,#0a0204 0%,#4a0a0a 55%,#ff5a1a 100%); animation: fxRespirar 5s ease-in-out infinite; }
+.fondo-chiyu::before { inset: 0; background: radial-gradient(circle at 26% 34%, #fff2a0 0 3%, #ff9a2a 4% 9%, rgba(255,80,20,.5) 10% 16%, transparent 17%), radial-gradient(circle at 74% 30%, #fff2a0 0 3%, #ff9a2a 4% 9%, rgba(255,80,20,.5) 10% 16%, transparent 17%); animation: fxPulso 3s ease-in-out infinite; }
+.fondo-chiyu::after { inset: auto 0 0 0; height: 30%; background: linear-gradient(0deg,#ff6a1a,rgba(255,100,30,0)); animation: fxRespirar 4s ease-in-out infinite; }
+
+/* ---------- OKIDOGI: cadenas colgantes sobre un charco tóxico ---------- */
+.fondo-okidogi { background-image: radial-gradient(ellipse at 50% 100%, rgba(140,255,80,.35), transparent 55%), linear-gradient(180deg,#0a0510 0%,#3a1250 55%,#7a2a9a 100%); animation: fxRespirar 8s ease-in-out infinite; }
+.fondo-okidogi::before { inset: 0 0 40% 0; background: repeating-linear-gradient(90deg, transparent 0 56px, #9a9ab0 57px 60px, transparent 61px 120px); -webkit-mask-image: repeating-linear-gradient(180deg,#000 0 12px,transparent 13px 18px); mask-image: repeating-linear-gradient(180deg,#000 0 12px,transparent 13px 18px); transform-origin: 50% 0; animation: fxnBalanceo 6s ease-in-out infinite; }
+.fondo-okidogi::after { inset: auto 0 0 0; height: 24%; background: linear-gradient(0deg,#8fff50,rgba(143,255,80,0)); animation: fxRespirar 5s ease-in-out infinite; }
+
+/* ---------- MUNKIDORI: espiral hipnótica rosa con toxina verde girando ---------- */
+.fondo-munkidori { background-image: radial-gradient(circle at 50% 42%, rgba(255,150,230,.5) 0 5%, transparent 36%), linear-gradient(180deg,#12041a 0%,#5a1a6a 55%,#ff5ac8 100%); animation: fxRespirar 8s ease-in-out infinite; }
+.fondo-munkidori::before { inset: 4%; border-radius: 50%; background: repeating-radial-gradient(circle at 50% 44%, transparent 0 16px, rgba(255,120,220,.28) 17px 21px); animation: fxPulso 5s ease-in-out infinite; }
+.fondo-munkidori::after { inset: -20%; background: repeating-conic-gradient(from 0deg at 50% 44%, transparent 0 24deg, rgba(120,255,160,.12) 25deg 30deg); animation: fxGirar 24s linear infinite reverse; }
+
+/* ---------- FEZANDIPITI: abanico de plumas rosas y destellos dorados ---------- */
+.fondo-fezandipiti { background-image: radial-gradient(circle at 50% 40%, rgba(255,230,140,.4) 0 4%, transparent 34%), linear-gradient(180deg,#1a0614 0%,#7a1a58 50%,#ffb0dc 100%); animation: fxRespirar 9s ease-in-out infinite; }
+.fondo-fezandipiti::before { inset: 0; background: repeating-conic-gradient(from -60deg at 50% 100%, rgba(255,210,235,.22) 0 5deg, transparent 6deg 14deg); -webkit-mask-image: linear-gradient(0deg,#000 0 60%,transparent); mask-image: linear-gradient(0deg,#000 0 60%,transparent); animation: fxOscilar 8s ease-in-out infinite; }
+.fondo-fezandipiti::after { inset: 0; background: radial-gradient(circle at 30% 30%, rgba(255,240,180,.75) 0 2px, transparent 3px) 0 0 / 64px 64px; animation: fxParpadeo 3s ease-in-out infinite; }
+
+/* ---------- OGERPON: festival del bosque con farolillos y hojas ---------- */
+.fondo-ogerpon { background-image: radial-gradient(circle at 50% 38%, rgba(255,220,120,.4) 0 4%, transparent 34%), linear-gradient(180deg,#04160a 0%,#136a34 55%,#8ff06a 100%); animation: fxRespirar 9s ease-in-out infinite; }
+.fondo-ogerpon::before { inset: 0 0 55% 0; background: radial-gradient(circle at 50% 38%, #ffe07a 0 6px, rgba(255,150,50,.55) 7px 15px, transparent 16px) 0 0 / 20% 100% repeat-x; animation: fxDeriva 8s ease-in-out infinite; }
+.fondo-ogerpon::after { inset: auto 0 0 0; height: 36%; background: #062a12; clip-path: polygon(0 100%,0 50%,5% 30%,10% 52%,15% 24%,20% 54%,26% 28%,32% 56%,38% 20%,44% 54%,50% 26%,56% 56%,62% 22%,68% 54%,74% 30%,80% 56%,86% 24%,92% 52%,100% 34%,100% 100%); }
+
+/* ---------- TERAPAGOS: cristal Teracristal hexagonal de siete tonos ---------- */
+.fondo-terapagos { background-image: radial-gradient(circle at 50% 42%, rgba(255,255,255,.5) 0 4%, transparent 34%), linear-gradient(180deg,#040820 0%,#0c3a6a 50%,#3ad0c0 100%); animation: fxRespirar 9s ease-in-out infinite; }
+.fondo-terapagos::before { inset: 14% 22%; background: conic-gradient(from 0deg, rgba(255,90,90,.38), rgba(255,220,90,.38), rgba(90,255,150,.38), rgba(90,200,255,.38), rgba(170,110,255,.38), rgba(255,90,200,.38), rgba(255,90,90,.38)); clip-path: polygon(50% 0,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%); animation: fxGirar 30s linear infinite; }
+.fondo-terapagos::after { inset: 0; background: repeating-conic-gradient(from 0deg at 50% 50%, transparent 0 28deg, rgba(255,255,255,.14) 29deg 30deg); animation: fxGirar 40s linear infinite reverse; }
+
+/* ---------- PHIONE: aguas poco profundas con rayos de sol y fondo de arena ---------- */
+.fondo-phione { background-image: linear-gradient(180deg,#5fc8e8 0%,#2a90c8 50%,#0a4a86 100%); animation: fxRespirar 8s ease-in-out infinite; }
+.fondo-phione::before { inset: 0; background: repeating-conic-gradient(from -20deg at 50% -10%, rgba(255,255,255,.28) 0 4deg, transparent 5deg 14deg); animation: fxOscilar 7s ease-in-out infinite; }
+.fondo-phione::after { inset: auto 0 0 0; height: 18%; background: linear-gradient(180deg,#f2e2a8,#c8a860); clip-path: polygon(0 100%,0 40%,15% 22%,32% 44%,50% 20%,68% 42%,85% 24%,100% 42%,100% 100%); }
+
+/* ---------- MELOETTA: escenario con pentagrama, foco de luz y melodía ---------- */
+.fondo-meloetta { background-image: linear-gradient(180deg,#120a24 0%,#4a2a7a 55%,#c8a0ff 100%); animation: fxRespirar 8s ease-in-out infinite; }
+.fondo-meloetta::before { inset: 34% 0 auto 0; height: 90px; background: repeating-linear-gradient(180deg, rgba(255,255,255,.5) 0 2px, transparent 3px 22px); animation: fxDeriva 8s ease-in-out infinite; }
+.fondo-meloetta::after { inset: 0; background: linear-gradient(180deg, rgba(255,245,210,.32), transparent 70%); clip-path: polygon(38% 0,62% 0,100% 100%,0 100%); animation: fxRespirar 5s ease-in-out infinite; }
+
+/* ---------- MELMETAL: engranaje gigante y malla de tuercas (Gigantamax: forja naranja) ---------- */
+.fondo-melmetal { background-image: radial-gradient(circle at 50% 42%, rgba(190,210,230,.4) 0 4%, transparent 38%), linear-gradient(180deg,#0a0c10 0%,#2c3238 55%,#7a8490 100%); animation: fxRespirar 9s ease-in-out infinite; }
+.fondo-melmetal::before { inset: 8% 12%; border-radius: 50%; background: repeating-conic-gradient(from 0deg, #5c6672 0 10deg, transparent 10deg 20deg); -webkit-mask: radial-gradient(circle, transparent 0 40%, #000 41% 100%); mask: radial-gradient(circle, transparent 0 40%, #000 41% 100%); opacity: .5; animation: fxGirar 30s linear infinite; }
+.fondo-melmetal::after { inset: 0; background: repeating-linear-gradient(0deg, transparent 0 34px, rgba(170,190,210,.12) 35px 36px), repeating-linear-gradient(90deg, transparent 0 34px, rgba(170,190,210,.12) 35px 36px); }
+.fondo-melmetal.fondo-var-gmax { background-image: radial-gradient(circle at 50% 42%, rgba(255,190,90,.55) 0 5%, transparent 40%), linear-gradient(180deg,#120a04 0%,#4a3018 55%,#c8843a 100%); }
+.fondo-melmetal.fondo-var-gmax::before { background: repeating-conic-gradient(from 0deg, #c8843a 0 10deg, transparent 10deg 20deg); }
+
+/* ---------- ZARUDE: selva densa con lianas colgantes y ojos entre la maleza ---------- */
+.fondo-zarude { background-image: linear-gradient(180deg,#030a05 0%,#0e3a18 55%,#2a7a2a 100%); animation: fxRespirar 10s ease-in-out infinite; }
+.fondo-zarude::before { inset: 0 0 48% 0; background: repeating-linear-gradient(90deg, transparent 0 38px, #1a5a1e 39px 43px, transparent 44px 92px), repeating-linear-gradient(90deg, transparent 0 17px, #2c8a30 18px 20px, transparent 21px 61px); -webkit-mask-image: linear-gradient(180deg,#000 0 70%,transparent); mask-image: linear-gradient(180deg,#000 0 70%,transparent); transform-origin: 50% 0; animation: fxnBalanceo 7s ease-in-out infinite; }
+.fondo-zarude::after { inset: 0; background: radial-gradient(circle at 22% 72%, #ff4a3a 0 2px, transparent 3px), radial-gradient(circle at 27% 72%, #ff4a3a 0 2px, transparent 3px), radial-gradient(circle at 74% 66%, #ff4a3a 0 2px, transparent 3px), radial-gradient(circle at 79% 66%, #ff4a3a 0 2px, transparent 3px); animation: fxParpadeo 4s ease-in-out infinite; }
+
+/* ---------- PECHARUNT: hilos de marioneta y mochis venenosos ---------- */
+.fondo-pecharunt { background-image: radial-gradient(circle at 50% 60%, rgba(255,120,200,.28), transparent 45%), linear-gradient(180deg,#0a0410 0%,#3a0a4a 55%,#8a2a7a 100%); animation: fxRespirar 8s ease-in-out infinite; }
+.fondo-pecharunt::before { inset: 0 0 30% 0; background: repeating-linear-gradient(90deg, transparent 0 46px, rgba(255,150,230,.45) 47px 48px, transparent 49px 96px); -webkit-mask-image: linear-gradient(180deg,#000,transparent); mask-image: linear-gradient(180deg,#000,transparent); animation: fxDeriva 6s ease-in-out infinite; }
+.fondo-pecharunt::after { inset: 0; background: radial-gradient(circle at 22% 78%, rgba(255,140,210,.6) 0 26px, transparent 28px), radial-gradient(circle at 78% 72%, rgba(190,90,255,.55) 0 34px, transparent 36px), radial-gradient(circle at 52% 88%, rgba(255,90,170,.55) 0 22px, transparent 24px); animation: fxPulso 5s ease-in-out infinite; }
+
+/* =========================================================
+   🎭 VARIANTES POR FORMA (formas nuevas): cada forma cambia el escenario de su Pokémon
+   ========================================================= */
+
+/* ---------- TORNADUS Forma Tótem: tormenta negra, ciclón violento ---------- */
+.fondo-tornadus.fondo-var-totem { background-image: radial-gradient(circle at 50% 40%, rgba(200,255,235,.35) 0 4%, transparent 32%), linear-gradient(180deg,#010a0a 0%,#0a3a34 50%,#3aa08a 100%); animation: fxRespirar 4s ease-in-out infinite; }
+.fondo-tornadus.fondo-var-totem::before { background: repeating-conic-gradient(from 0deg at 50% 45%, transparent 0 8deg, rgba(180,255,230,.24) 9deg 13deg, transparent 14deg 22deg); animation: fxGirar 7s linear infinite; }
+.fondo-tornadus.fondo-var-totem::after { background: repeating-linear-gradient(165deg, transparent 0 40px, rgba(255,255,255,.2) 41px 43px, transparent 44px 90px); animation: fxDeriva 2.5s ease-in-out infinite; }
+
+/* ---------- THUNDURUS Forma Tótem: cielo azul eléctrico, relámpagos seguidos ---------- */
+.fondo-thundurus.fondo-var-totem { background-image: radial-gradient(circle at 50% 30%, rgba(220,245,255,.5) 0 5%, transparent 36%), linear-gradient(180deg,#020a1c 0%,#0c3a7a 55%,#5ac8ff 100%); animation: fxRespirar 3s ease-in-out infinite; }
+.fondo-thundurus.fondo-var-totem::before { background: linear-gradient(180deg,#ffffff,#9be7ff); filter: drop-shadow(0 0 12px #9be7ff); animation: fxnRelampago 2.2s linear infinite; }
+.fondo-thundurus.fondo-var-totem::after { background: radial-gradient(ellipse at 20% 0, rgba(6,20,50,.95) 0 28%, transparent 55%), radial-gradient(ellipse at 82% 0, rgba(6,20,50,.95) 0 30%, transparent 56%), repeating-linear-gradient(100deg, transparent 0 50px, rgba(155,231,255,.18) 51px 53px, transparent 54px 120px); }
+
+/* ---------- LANDORUS Forma Tótem: campos arrasados, tierra rojiza y sol bajo ---------- */
+.fondo-landorus.fondo-var-totem { background-image: radial-gradient(circle at 50% 26%, rgba(255,210,140,.6) 0 6%, transparent 38%), linear-gradient(180deg,#1a0804 0%,#8a3210 50%,#ff8a3a 100%); }
+.fondo-landorus.fondo-var-totem::before { background: repeating-linear-gradient(0deg,#3a1408 0 10px,#5c2410 11px 22px); clip-path: polygon(0 40%,100% 6%,100% 100%,0 100%); }
+.fondo-landorus.fondo-var-totem::after { background: repeating-conic-gradient(from -40deg at 50% 26%, rgba(255,200,120,.22) 0 7deg, transparent 8deg 20deg); animation: fxOscilar 6s ease-in-out infinite; }
+
+/* ---------- MELOETTA Forma Danza: escenario rojo de combate y foco encendido ---------- */
+.fondo-meloetta.fondo-var-danza { background-image: linear-gradient(180deg,#1a0606 0%,#7a1a1a 55%,#ff8a5a 100%); }
+.fondo-meloetta.fondo-var-danza::before { background: repeating-linear-gradient(180deg, rgba(255,230,180,.55) 0 2px, transparent 3px 22px); animation: fxDeriva 4s ease-in-out infinite; }
+.fondo-meloetta.fondo-var-danza::after { background: linear-gradient(180deg, rgba(255,200,120,.4), transparent 72%); }
+
+/* ---------- OGERPON: máscaras (cada una cambia el color del festival) ---------- */
+.fondo-ogerpon.fondo-var-pozo { background-image: radial-gradient(circle at 50% 38%, rgba(190,240,255,.45) 0 4%, transparent 34%), linear-gradient(180deg,#02101c 0%,#0c4a8a 55%,#5ac8ff 100%); }
+.fondo-ogerpon.fondo-var-pozo::before { background: radial-gradient(circle at 50% 38%, #b8f0ff 0 6px, rgba(60,160,255,.55) 7px 15px, transparent 16px) 0 0 / 20% 100% repeat-x; }
+.fondo-ogerpon.fondo-var-pozo::after { background: #06284a; }
+.fondo-ogerpon.fondo-var-hogar { background-image: radial-gradient(circle at 50% 38%, rgba(255,220,140,.5) 0 4%, transparent 34%), linear-gradient(180deg,#1a0404 0%,#8a1a0a 55%,#ff8a2a 100%); }
+.fondo-ogerpon.fondo-var-hogar::before { background: radial-gradient(circle at 50% 38%, #fff0a0 0 6px, rgba(255,100,30,.6) 7px 15px, transparent 16px) 0 0 / 20% 100% repeat-x; }
+.fondo-ogerpon.fondo-var-hogar::after { background: #3a0e06; }
+.fondo-ogerpon.fondo-var-cimiento { background-image: radial-gradient(circle at 50% 38%, rgba(255,240,180,.4) 0 4%, transparent 34%), linear-gradient(180deg,#0c0c10 0%,#4a4a56 55%,#b8b8c4 100%); }
+.fondo-ogerpon.fondo-var-cimiento::before { background: radial-gradient(circle at 50% 38%, #ffe9a0 0 6px, rgba(255,200,80,.5) 7px 15px, transparent 16px) 0 0 / 20% 100% repeat-x; }
+.fondo-ogerpon.fondo-var-cimiento::after { background: #22222a; }
+
+/* ---------- TERAPAGOS: forma Teracristal (cueva de cristal) y Astral (cosmos arcoíris) ---------- */
+.fondo-terapagos.fondo-var-teracristal { background-image: radial-gradient(circle at 50% 42%, rgba(255,255,255,.55) 0 5%, transparent 36%), linear-gradient(180deg,#02051a 0%,#0a4a7a 50%,#4af0d8 100%); }
+.fondo-terapagos.fondo-var-teracristal::before { inset: 8% 14%; }
+.fondo-terapagos.fondo-var-astral { background-image: radial-gradient(circle at 50% 42%, rgba(255,255,255,.7) 0 5%, transparent 40%), conic-gradient(from 0deg at 50% 50%, #1a0a3a, #0a2a5a, #2a0a4a, #0a3a4a, #1a0a3a); animation: fxRespirar 6s ease-in-out infinite; }
+.fondo-terapagos.fondo-var-astral::before { inset: 4% 10%; animation-duration: 14s; opacity: .85; }
+.fondo-terapagos.fondo-var-astral::after { background: radial-gradient(circle at 20% 25%, #fff 0 1.5px, transparent 2.5px) 0 0 / 60px 60px, radial-gradient(circle at 70% 60%, #ffe08a 0 1.5px, transparent 2.5px) 0 0 / 90px 90px, repeating-conic-gradient(from 0deg at 50% 50%, transparent 0 28deg, rgba(255,255,255,.16) 29deg 30deg); animation: fxGirar 25s linear infinite reverse; }
+
+@media (prefers-reduced-motion: reduce) {
+    .fondo-uxie, .fondo-mesprit, .fondo-azelf, .fondo-tornadus, .fondo-thundurus, .fondo-landorus, .fondo-silvally, .fondo-urshifu, .fondo-regieleki, .fondo-wochien, .fondo-chienpao, .fondo-tinglu, .fondo-chiyu, .fondo-okidogi, .fondo-munkidori, .fondo-fezandipiti, .fondo-ogerpon, .fondo-terapagos, .fondo-phione, .fondo-meloetta, .fondo-melmetal, .fondo-zarude, .fondo-pecharunt,
+    .fondo-uxie::before, .fondo-mesprit::before, .fondo-tornadus::before, .fondo-thundurus::before, .fondo-regieleki::after, .fondo-silvally::before, .fondo-terapagos::before, .fondo-melmetal::before { animation: none !important; }
+}

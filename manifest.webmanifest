@@ -1,0 +1,16 @@
+{
+  "name": "FavoriteDex - Mi Pokédex de Favoritos",
+  "short_name": "FavoriteDex",
+  "description": "Pokédex personal con 600 Pokémon, formas especiales, minijuegos y comunidad.",
+  "start_url": "FavoriteDex.html",
+  "scope": ".",
+  "display": "standalone",
+  "background_color": "#0d0f1a",
+  "theme_color": "#1238D8",
+  "lang": "es",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
