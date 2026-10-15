@@ -43,6 +43,12 @@
             Object.keys(DEFAULTS_ANTIGUOS).forEach(k => {
                 if (guardada[k] === DEFAULTS_ANTIGUOS[k]) delete guardada[k];
             });
+            // Si el texto guardado trae un total escrito a mano (p. ej. "124 Pokémon"), se pone el total real.
+            if (TEXTO_TOTAL) {
+                ['infoPortada', 'descripcionPokedex'].forEach(k => {
+                    if (typeof guardada[k] === 'string') guardada[k] = guardada[k].replace(/(◈\s*|mis\s+)\d+(\s+Pokémon)/i, '$1' + TEXTO_TOTAL + '$2');
+                });
+            }
             return {...defaults, ...guardada};
         } catch {
             return {...defaults};
@@ -168,14 +174,14 @@
     };
 
     function aplicarConfig(c) {
-        const titulo = document.querySelector('.titulo-lateral.titulo-izquierdo');
-        const tituloDerecho = document.querySelector('.titulo-lateral.titulo-derecho');
+        const titulo = document.querySelector('.hm-titulo-a, .titulo-lateral.titulo-izquierdo');
+        const tituloDerecho = document.querySelector('.hm-titulo-b, .titulo-lateral.titulo-derecho');
         const partes = String(c.tituloPortada || defaults.tituloPortada).split(/\s+DE\s+/i);
         if (titulo) titulo.textContent = partes[0] || 'MI POKÉDEX';
         if (tituloDerecho) tituloDerecho.textContent = partes[1] ? `DE ${partes[1]}` : 'DE FAVORITOS';
-        const subtitulo = document.querySelector('.inicio-marca p');
+        const subtitulo = document.querySelector('.hm-sub, .inicio-marca p');
         if (subtitulo) subtitulo.textContent = c.subtituloPortada;
-        const boton = document.querySelector('.btn-entrar-pokedex .menu-texto');
+        const boton = document.querySelector('.hm-entrar .menu-texto, .btn-entrar-pokedex .menu-texto');
         if (boton) boton.textContent = c.botonPokedex;
         const info = document.querySelector('.inicio-pie-info');
         if (info) info.textContent = c.infoPortada;

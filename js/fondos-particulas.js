@@ -259,6 +259,15 @@
         },
         'fondo-zarude':     { colores: ['#7aff7a', '#4ac86a', '#c8ffa0', '#ffe07a'], cantidad: 56, tam: [1.4, 4.2], vel: [.05, .22], deriva: [.04, -.03], giro: .06, estilo: ['hoja', 'luciernaga', 'insecto'] },
         'fondo-pecharunt':  { colores: ['#ff8fd8', '#c070ff', '#ffd0f0', '#ff5aa8'], cantidad: 56, tam: [1.4, 4.6], vel: [.05, .22], deriva: [0, -.06], giro: .07, estilo: ['espiritu', 'toxica', 'destello'] },
+        // --- v5: Código Cero, Cosmog, Cosmoem, Meltan, Kubfu, Enamorus ---
+        'fondo-codigocero': { colores: ['#ff5a5a', '#c8d0dc', '#ffffff', '#7a8494'], cantidad: 50, tam: [1.3, 4], vel: [.10, .45], deriva: [0, 0], giro: .10, estilo: ['chispa', 'tuerca', 'astilla'] },
+        'fondo-cosmog':     { colores: ['#8fb4ff', '#c8a0ff', '#ffffff', '#6a7aff'], cantidad: 60, tam: [1.2, 4.4], vel: [.04, .18], deriva: [0, -.03], giro: .05, estilo: ['estrella', 'destello', 'aura'] },
+        'fondo-cosmoem':    { colores: ['#ffe08a', '#8fb4ff', '#ffffff', '#c8a0ff'], cantidad: 64, tam: [1.2, 4.6], vel: [.04, .20], deriva: [0, 0], giro: .06, estilo: ['estrella', 'prisma', 'destello'] },
+        'fondo-meltan':     { colores: ['#ffd86a', '#c8d0dc', '#ffffff', '#ff9a2a'], cantidad: 52, tam: [1.4, 4.4], vel: [.08, .34], deriva: [0, -.10], giro: .09, estilo: ['tuerca', 'chispa', 'brasa'] },
+        'fondo-kubfu':      { colores: ['#ffb36a', '#e8d8b8', '#ffffff', '#ff6a3a'], cantidad: 46, tam: [1.6, 4.6], vel: [.08, .34], deriva: [0, .02], giro: .07, estilo: ['impacto', 'polvo', 'hoja'] },
+        'fondo-enamorus':   { colores: ['#ffb0d8', '#ffe0f0', '#9cf0c8', '#ffffff'], cantidad: 58, tam: [1.4, 4.6], vel: [.08, .30], deriva: [.10, -.05], giro: .07, estilo: ['corazon', 'pluma', 'hoja'],
+            variantes: { totem: { colores: ['#ff6ab8', '#b06aff', '#ffd0ec', '#ffffff'], cantidad: 82, vel: [.24, .80], deriva: [.40, -.06], giro: .12, estilo: ['viento', 'corazon', 'pluma', 'destello'] } }
+        },
 
 
         // =====================================================
@@ -906,6 +915,11 @@
         const cont = document.getElementById('contenedor-slides');
         if (cont) {
             new MutationObserver(() => escanear(cont)).observe(cont, { childList: true, subtree: true });
+        }
+        // 📜 Fondo de la lista de Pokémon (nuevo look): se rescanea al cambiar de Pokémon.
+        const fondoLista = document.getElementById('dl-fondo');
+        if (fondoLista) {
+            new MutationObserver(() => escanear(fondoLista)).observe(fondoLista, { childList: true, subtree: true });
         }
         document.addEventListener('visibilitychange', () => { if (!document.hidden) arrancar(); });
     }

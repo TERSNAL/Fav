@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Pokédex de Favoritos - Comunidad</title>
-    <meta name="description" content="FavoriteDex: mi Pokédex de favoritos con 600 Pokémon, formas Mega y Gigantamax, minijuegos, equipo y comunidad.">
+    <meta name="description" content="FavoriteDex: mi Pokédex de favoritos con 606 Pokémon, formas Mega y Gigantamax, minijuegos, equipo y comunidad.">
 <meta name="theme-color" content="#1238D8">
 <meta property="og:type" content="website">
 <meta property="og:title" content="FavoriteDex - Mi Pokédex de Favoritos">
-<meta property="og:description" content="Explora 600 Pokémon con formas especiales, gritos, minijuegos y más.">
+<meta property="og:description" content="Explora 606 Pokémon con formas especiales, gritos, minijuegos y más.">
 <meta property="og:image" content="icons/icon-512.png">
 <meta name="twitter:card" content="summary">
 <link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
@@ -16,7 +16,7 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Baloo+2:wght@500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://raw.githubusercontent.com">
     <link rel="stylesheet" href="css/FavoriteDex.css">
     <link rel="stylesheet" href="css/mejoras.css">
@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="css/contenido-nuevo.css">
 <link rel="stylesheet" href="css/fondos-nuevos.css">
 <link rel="stylesheet" href="css/extras.css">
+<link rel="stylesheet" href="css/legal.css">
+<link rel="stylesheet" href="css/nuevo-look.css">
     <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script defer src="supabase-config.js"></script>
 </head>
@@ -38,70 +40,58 @@
         <div class="velo-inicio"></div>
 
         <div class="contenido-inicio">
-            <div id="inicio-presentacion">
-                <div class="inicio-cinta-superior">
-                    <span>POKÉDEX</span>
-                    <span class="inicio-punto">◆</span>
-                    <span>ENTRENADORES</span>
-                    <span class="inicio-punto">◆</span>
-                    <span>COMUNIDAD</span>
-                </div>
+            <div id="inicio-presentacion" class="hm">
+                <div class="hm-col hm-izq">
+                    <div class="hm-cinta"><span>POKÉDEX</span><i>◆</i><span>ENTRENADORES</span><i>◆</i><span>COMUNIDAD</span></div>
 
-                <div class="inicio-marca">
-                    <div class="inicio-marca-centro">
-                        <h1 aria-label="Mi Pokédex de Favoritos">
-                            <span class="titulo-lateral titulo-izquierdo">MI POKÉDEX</span>
-                            <span class="pokeball-logo" aria-hidden="true">◓</span>
-                            <span class="titulo-lateral titulo-derecho">DE FAVORITOS</span>
-                        </h1>
-                        <p>Explora, descubre y disfruta de tus Pokémon favoritos.</p>
-                    </div>
-<div class="inicio-linea-decorativa"><span></span><i>✦</i><span></span></div>
+                    <h1 class="hm-titulo" aria-label="Mi Pokédex de Favoritos">
+                        <span class="hm-titulo-a">MI POKÉDEX</span>
+                        <span class="hm-titulo-b">DE FAVORITOS</span>
+                    </h1>
+                    <p class="hm-sub">Explora, descubre y disfruta de tus Pokémon favoritos.</p>
 
-                <button type="button" class="btn-entrar-pokedex menu-pokemon" onclick="abrirPokedex()"><span class="menu-icono">🔴</span><span class="menu-texto">VER POKÉMONES</span><span class="flecha-entrada">→</span></button>
-
-                <div class="inicio-toolbar-rapida" role="group" aria-label="Accesos rápidos">
-                    <button type="button" class="btn-inicio-extra" onclick="abrirExplorador()">🧭 Explorar y filtrar</button>
-                    <button type="button" class="btn-admin-pequeno menu-admin" onclick="abrirAdmin()"><span class="menu-icono">🛠️</span><span class="menu-texto">Admin</span></button>
-                    <button type="button" class="btn-inicio-extra btn-sonido-toggle" onclick="alternarSonido()" aria-pressed="false">🔊 Sonido: activado</button>
-                </div>
-
-                <div class="inicio-menu-desplegable">
-                    <button type="button" class="btn-menu-desplegable-toggle" id="toggle-menu-inicio" onclick="alternarMenuInicio()" aria-expanded="false" aria-controls="menu-inicio-lista">
-                        <span class="menu-icono">☰</span><span class="menu-texto">Más opciones</span><span class="flecha-menu-desplegable">▾</span>
+                    <button type="button" class="hm-entrar nl-btn" onclick="abrirPokedex()">
+                        <span class="hm-entrar-ball" aria-hidden="true"></span>
+                        <span class="menu-texto">VER POKÉMONES</span>
+                        <span class="hm-entrar-flecha" aria-hidden="true">→</span>
                     </button>
-                    <nav class="menu-inicio" id="menu-inicio-lista" aria-label="Menú principal" hidden>
-                        <button type="button" class="btn-menu-inicio menu-login" onclick="abrirModal('modal-cuenta')"><span class="menu-icono">👤</span><span class="menu-texto">Login / Register</span></button>
-                        <button type="button" class="btn-menu-inicio menu-comunidad" onclick="abrirComunidad()"><span class="menu-icono">👥</span><span class="menu-texto">Comunidad</span></button>
-                        <button type="button" class="btn-menu-inicio menu-favoritos" onclick="mostrarFavoritos()"><span class="menu-icono">⭐</span><span class="menu-texto">Mis favoritos</span></button>
-                        <button type="button" class="btn-menu-inicio menu-juegos" onclick="abrirCentroEntrenador()"><span class="menu-icono">🎮</span><span class="menu-texto">Minijuegos y equipo</span></button>
-                        <button type="button" class="btn-menu-inicio menu-votacion menu-destacado" onclick="abrirVotacionSemanal()"><span class="menu-icono">🗳️</span><span class="menu-texto">Pokémon de la semana</span></button>
-                        <button type="button" class="btn-menu-inicio menu-perfil" onclick="abrirPerfil()"><span class="menu-icono">👤</span><span class="menu-texto">Mi perfil</span></button>
-                        <button type="button" class="btn-menu-inicio menu-comparar" onclick="abrirComparador()"><span class="menu-icono">🆚</span><span class="menu-texto">Comparar Pokémon</span></button>
-                        <button type="button" class="btn-menu-inicio menu-progreso" onclick="abrirProgreso()"><span class="menu-icono">🏆</span><span class="menu-texto">Progreso y logros</span></button>
-                        <button type="button" class="btn-menu-inicio menu-peticiones" onclick="abrirModal('modal-peticiones')"><span class="menu-icono">📩</span><span class="menu-texto">Peticiones</span></button>
-                        <button type="button" class="btn-menu-inicio menu-reportes" onclick="abrirModal('modal-reportes')"><span class="menu-icono">🚨</span><span class="menu-texto">Reportar error</span></button>
-                        <button type="button" class="btn-menu-inicio menu-respaldo" onclick="abrirRespaldo()"><span class="menu-icono">💾</span><span class="menu-texto">Respaldo de mi progreso</span></button>
-                        <button type="button" class="btn-menu-inicio menu-atajos" onclick="abrirAtajosTeclado()"><span class="menu-icono">⌨️</span><span class="menu-texto">Personalizar teclas</span></button>
-                    </nav>
-                </div>
 
-                <div class="inicio-pie-info">
-                    <span>◈ <span data-total-pokemon>200</span> Pokémon</span>
-                    <span>◈ Formas especiales</span>
-                    <span>◈ Gritos y sprites</span>
-                </div>
-
-                <div id="pokemon-del-dia" class="pokemon-del-dia" hidden>
-                    <img id="pdd-img" alt="" width="84" height="84" decoding="async">
-                    <div class="pdd-texto">
-                        <small>🌟 POKÉMON DEL DÍA</small>
-                        <strong id="pdd-nombre"></strong>
-                        <span id="pdd-tipos"></span>
+                    <div id="pokemon-del-dia" class="pokemon-del-dia hm-dia" hidden>
+                        <img id="pdd-img" alt="" width="84" height="84" decoding="async">
+                        <div class="pdd-texto">
+                            <small>🌟 POKÉMON DEL DÍA</small>
+                            <strong id="pdd-nombre"></strong>
+                            <span id="pdd-tipos"></span>
+                        </div>
+                        <button type="button" id="pdd-ver" class="hm-dia-ver nl-btn">VER FICHA →</button>
                     </div>
-                    <button type="button" id="pdd-ver" class="btn-inicio-extra">VER FICHA →</button>
+
+                    <div class="hm-pie">
+                        <span class="inicio-pie-info">◈ <span data-total-pokemon>606</span> Pokémon · ◈ Formas especiales · ◈ Gritos y sprites</span>
+                        <span class="hm-pie-botones">
+                            <button type="button" class="hm-mini btn-sonido-toggle nl-btn" onclick="alternarSonido()" aria-pressed="false">🔊 Sonido: activado</button>
+                            <button type="button" class="hm-mini menu-admin nl-btn" onclick="abrirAdmin()">🛠️ Admin</button>
+                        </span>
+                    </div>
                 </div>
-                </div> <!-- /.inicio-marca -->
+
+                <nav class="hm-col hm-der" id="menu-inicio-lista" aria-label="Menú principal">
+                    <div class="hm-lista">
+                        <button type="button" class="hm-card nl-btn" style="--c:#3f63ff" onclick="abrirExplorador()"><span class="hm-ico">🧭</span><span class="hm-txt"><b>Explorar y filtrar</b><small>Por tipo, generación y favoritos</small></span></button>
+                        <button type="button" class="hm-card nl-btn" style="--c:#ff4d6d" onclick="abrirComunidad()"><span class="hm-ico">👥</span><span class="hm-txt"><b>Comunidad</b><small>Comparte tus partidas y capturas</small></span></button>
+                        <button type="button" class="hm-card nl-btn" style="--c:#ffb703" onclick="mostrarFavoritos()"><span class="hm-ico">⭐</span><span class="hm-txt"><b>Mis favoritos</b><small>Tu colección personal</small></span></button>
+                        <button type="button" class="hm-card nl-btn" style="--c:#2ec4b6" onclick="abrirCentroEntrenador()"><span class="hm-ico">🎮</span><span class="hm-txt"><b>Minijuegos y equipo</b><small>Adivina, compite y arma tu equipo</small></span></button>
+                        <button type="button" class="hm-card hm-destacada nl-btn" style="--c:#b517ff" onclick="abrirVotacionSemanal()"><span class="hm-ico">🗳️</span><span class="hm-txt"><b>Pokémon de la semana</b><small>Vota por el favorito de la comunidad</small></span></button>
+                        <button type="button" class="hm-card nl-btn" style="--c:#4cc9f0" onclick="abrirComparador()"><span class="hm-ico">🆚</span><span class="hm-txt"><b>Comparar Pokémon</b><small>Estadísticas lado a lado</small></span></button>
+                        <button type="button" class="hm-card nl-btn" style="--c:#f77f00" onclick="abrirProgreso()"><span class="hm-ico">🏆</span><span class="hm-txt"><b>Progreso y logros</b><small>Tus medallas y avances</small></span></button>
+                        <button type="button" class="hm-card nl-btn" style="--c:#7bd957" onclick="abrirPerfil()"><span class="hm-ico">👤</span><span class="hm-txt"><b>Mi perfil</b><small>Avatar, equipo y estadísticas</small></span></button>
+                        <button type="button" class="hm-card menu-login nl-btn" style="--c:#6c8cff" onclick="abrirModal('modal-cuenta')"><span class="hm-ico">🔑</span><span class="hm-txt"><b>Login / Register</b><small>Entra o crea tu cuenta</small></span></button>
+                        <button type="button" class="hm-card nl-btn" style="--c:#ef476f" onclick="abrirModal('modal-peticiones')"><span class="hm-ico">📩</span><span class="hm-txt"><b>Peticiones</b><small>Pide nuevos Pokémon o formas</small></span></button>
+                        <button type="button" class="hm-card nl-btn" style="--c:#e63946" onclick="abrirModal('modal-reportes')"><span class="hm-ico">🚨</span><span class="hm-txt"><b>Reportar error</b><small>Ayúdame a corregir la web</small></span></button>
+                        <button type="button" class="hm-card nl-btn" style="--c:#8d99ae" onclick="abrirRespaldo()"><span class="hm-ico">💾</span><span class="hm-txt"><b>Respaldo de mi progreso</b><small>Descarga o restaura tus datos</small></span></button>
+                        <button type="button" class="hm-card nl-btn" style="--c:#adb5bd" onclick="abrirAtajosTeclado()"><span class="hm-ico">⌨️</span><span class="hm-txt"><b>Personalizar teclas</b><small>Atajos de teclado</small></span></button>
+                    </div>
+                </nav>
             </div> <!-- /#inicio-presentacion -->
 
             <section id="comunidad" aria-label="Comunidad Pokémon">
@@ -418,6 +408,7 @@
                 <input id="cuenta-usuario" class="campo-sitio" maxlength="30" placeholder="Ej.: EntrenadorNova">
                 <label for="cuenta-clave">Contraseña</label>
                 <input id="cuenta-clave" class="campo-sitio" type="password" maxlength="60" placeholder="Contraseña">
+                <label class="acepto-legal" for="cuenta-acepto"><input type="checkbox" id="cuenta-acepto"><span>Tengo al menos 13 años y acepto los <a href="legal/terminos.html" target="_blank" rel="noopener">Términos y Condiciones</a> y la <a href="legal/privacidad.html" target="_blank" rel="noopener">Política de Privacidad</a> (solo para registrarme).</span></label>
                 <div class="modal-botones">
                     <button class="btn-modal-principal" onclick="registrarCuenta()">📝 Registrarme</button>
                     <button class="btn-modal-secundario" onclick="iniciarSesion()">🔐 Iniciar sesión</button>
@@ -637,12 +628,70 @@
         </div>
     </div>
 
+    <!-- =========================================================
+         📜 LISTA DE POKÉMON (nuevo look)
+         Scroll con tarjetas en arco; el Pokémon centrado se muestra
+         a la izquierda con su imagen, grito y fondo/partículas.
+         Un clic abre su ficha completa.
+         ========================================================= -->
+    <section id="pokedex-lista" aria-label="Lista de Pokémon">
+        <div id="dl-fondo" aria-hidden="true"></div>
+        <div class="dl-velo" aria-hidden="true"></div>
+
+        <div class="dl-detalle" id="dl-detalle" aria-live="polite">
+            <div class="dl-info">
+                <h2 class="dl-nombre" id="dl-nombre">Pokédex</h2>
+                <p class="dl-sub" id="dl-sub"></p>
+                <div class="dl-tipos" id="dl-tipos"></div>
+                <div class="dl-chips" id="dl-chips"></div>
+                <div class="dl-cajas">
+                    <div class="dl-caja"><small>descripción</small><p id="dl-desc"></p></div>
+                    <div class="dl-caja"><small>por qué es mi favorito</small><p id="dl-fav"></p></div>
+                </div>
+                <div class="dl-acciones">
+                    <button type="button" class="dl-btn nl-btn" id="dl-btn-grito">🔊 grito</button>
+                    <button type="button" class="dl-btn nl-btn" id="dl-btn-fav">☆ favorito</button>
+                    <button type="button" class="dl-btn nl-btn" id="dl-btn-ficha">ℹ ficha</button>
+                </div>
+            </div>
+            <div class="dl-escena" id="dl-escena">
+                <img id="dl-img" alt="" decoding="async">
+                <div class="dl-sombra"></div>
+            </div>
+        </div>
+
+        <div class="dl-col">
+            <div class="dl-barra">
+                <label class="dl-buscar"><span aria-hidden="true">🔎</span><input id="dl-buscar" type="search" placeholder="escribe para buscar" autocomplete="off" aria-label="Buscar Pokémon"><em id="dl-contador"></em></label>
+                <div class="dl-filtros" id="dl-filtros">
+                    <button type="button" class="dl-chip activo nl-btn" data-f="todos">todos</button>
+                    <button type="button" class="dl-chip nl-btn" data-f="legendarios">legendarios</button>
+                    <button type="button" class="dl-chip nl-btn" data-f="singulares">singulares</button>
+                    <button type="button" class="dl-chip nl-btn" data-f="formas">con formas</button>
+                    <button type="button" class="dl-chip nl-btn" data-f="favoritos">♥ favoritos</button>
+                    <button type="button" class="dl-chip dl-orden nl-btn" id="dl-orden">orden: pokédex</button>
+                </div>
+            </div>
+            <div class="dl-lista" id="dl-lista" tabindex="0" role="listbox" aria-label="Pokémon"></div>
+            <p class="dl-vacio" id="dl-vacio" hidden>No hay Pokémon con ese filtro.</p>
+        </div>
+
+        <nav class="dl-pie" aria-label="Acciones de la lista">
+            <button type="button" class="dl-pie-btn dl-volver nl-btn" onclick="volverInicio()">‹ inicio</button>
+            <button type="button" class="dl-pie-btn nl-btn" id="dl-aleatorio">🔀 aleatorio</button>
+            <button type="button" class="dl-pie-btn dl-oculto-movil nl-btn" onclick="abrirExplorador()">🧭 explorar</button>
+            <button type="button" class="dl-pie-btn btn-sonido-toggle nl-btn" onclick="alternarSonido()" aria-pressed="false">🔊 Sonido: activado</button>
+            <button type="button" class="dl-pie-btn dl-abrir nl-btn" id="dl-abrir">▶ abrir</button>
+        </nav>
+    </section>
+
     <div id="pokedex-app">
 
     <header>
         <h1>Mi Pokédex de Favoritos</h1>
-        <p>Una colección de mis <span data-total-pokemon>200</span> Pokémon preferidos.</p>
+        <p>Una colección de mis <span data-total-pokemon>606</span> Pokémon preferidos.</p>
         <div class="acciones-header">
+            <button type="button" class="btn-inicio btn-a-lista" onclick="volverALista()">☰ Lista</button>
             <button type="button" class="btn-inicio" onclick="volverInicio()">🏠 Inicio</button>
             <button type="button" class="btn-inicio" onclick="abrirModal('modal-cuenta')">👤 Cuenta</button>
             <button type="button" class="btn-inicio" onclick="mostrarFavoritos()">⭐ Favoritos</button>
@@ -751,6 +800,8 @@
 
     <footer>
         <p>Página creada sobre mis Pokémon favoritos.</p>
+        <p class="enlaces-legales"><a href="legal/terminos.html">Términos y Condiciones</a> · <a href="legal/privacidad.html">Política de Privacidad</a> · <a href="mailto:[TU-CORREO]">Contacto</a></p>
+        <p class="nota-sitio">FavoriteDex es un proyecto de fans sin fines de lucro y no está afiliado a Nintendo, Game Freak, Creatures ni The Pokémon Company. Pokémon y sus nombres son marcas de sus respectivos dueños.</p>
     </footer>
 
     </div> <!-- /#pokedex-app -->
@@ -786,6 +837,8 @@
 <script defer src="js/combate.js"></script>
 <script defer src="js/caza-shiny.js"></script>
 <script defer src="js/envios-supabase.js"></script>
+<script defer src="js/aviso-legal.js"></script>
+<script defer src="js/lista-pokedex.js"></script>
 <script>if('serviceWorker' in navigator && location.protocol.startsWith('http')){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});}</script>
 </body>
 </html>

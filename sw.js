@@ -1,8 +1,8 @@
 /* Service worker de FavoriteDex: la web abre rápido y sigue funcionando sin conexión.
    Estrategia: red primero para tus archivos (siempre ves la última versión) con copia
    guardada de respaldo; las imágenes y gritos externos se guardan al verlos. */
-const VERSION = 'favoritedex-v8';
-const SHELL = ['FavoriteDex.html','css/FavoriteDex.css','css/mejoras.css','css/responsive-2026.css','css/contenido-nuevo.css','css/fondos-nuevos.css','css/extras.css','icons/favicon.svg'];
+const VERSION = 'favoritedex-v13';
+const SHELL = ['FavoriteDex.html','css/FavoriteDex.css','css/mejoras.css','css/responsive-2026.css','css/contenido-nuevo.css','css/fondos-nuevos.css','css/extras.css','css/legal.css','css/nuevo-look.css','js/lista-pokedex.js','legal/terminos.html','legal/privacidad.html','icons/favicon.svg'];
 const EXTERNOS = ['raw.githubusercontent.com','play.pokemonshowdown.com','images.wikidexcdn.net'];
 
 self.addEventListener('install', e => {

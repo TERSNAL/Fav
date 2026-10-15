@@ -415,7 +415,9 @@ document.addEventListener('click', function (e) {
         480: 'uxie', 481: 'mesprit', 482: 'azelf', 641: 'tornadus', 642: 'thundurus', 645: 'landorus',
         773: 'silvally', 892: 'urshifu', 894: 'regieleki', 1001: 'wochien', 1002: 'chienpao', 1003: 'tinglu',
         1004: 'chiyu', 1014: 'okidogi', 1015: 'munkidori', 1016: 'fezandipiti', 1017: 'ogerpon', 1024: 'terapagos',
-        489: 'phione', 648: 'meloetta', 809: 'melmetal', 893: 'zarude', 1025: 'pecharunt'
+        489: 'phione', 648: 'meloetta', 809: 'melmetal', 893: 'zarude', 1025: 'pecharunt',
+        // --- Ampliación 2026 (v5): legendarios y singulares que faltaban ---
+        772: 'codigocero', 789: 'cosmog', 790: 'cosmoem', 808: 'meltan', 891: 'kubfu', 905: 'enamorus'
     };
     const IDS_FONDOS_CINEMATICOS = new Set(Object.keys(FONDOS_POR_ID).map(Number));
 
@@ -488,7 +490,7 @@ document.addEventListener('click', function (e) {
         if (id === 890 && cap.includes('eternamax')) return 'eternamax';
         if (id === 892 && cap.includes('lluvia')) return 'lluvia';        // Urshifu Estilo Lluvia Rauda
         // --- Formas nuevas: cada una cambia el escenario de su Pokémon ---
-        if ((id === 641 || id === 642 || id === 645) && cap.includes('tótem')) return 'totem'; // Forma Tótem (Therian)
+        if ((id === 641 || id === 642 || id === 645 || id === 905) && cap.includes('tótem')) return 'totem'; // Forma Tótem (Therian)
         if (id === 648 && cap.includes('danza')) return 'danza';                              // Meloetta Forma Danza
         if (id === 1017) {                                                                     // Máscaras de Ogerpon
             if (cap.includes('pozo')) return 'pozo';
@@ -2060,6 +2062,8 @@ function toggleShiny() {
         const clave = document.getElementById('cuenta-clave').value;
         if (usuario.length < 2) return alert('El nombre debe tener al menos 2 caracteres.');
         if (clave.length < 4) return alert('La contraseña debe tener al menos 4 caracteres.');
+        const acepto = document.getElementById('cuenta-acepto');
+        if (acepto && !acepto.checked) return alert('Para registrarte debes aceptar los Términos y Condiciones y la Política de Privacidad.');
         if (existeUsuario(obtenerUsuarios(), usuario)) return alert('Ese nombre de usuario ya existe.');
         const salt = generarSal();
         const hash = await derivarClave(clave, salt);
@@ -2102,6 +2106,7 @@ function toggleShiny() {
         usuarioActual = '';
         localStorage.removeItem('pokedex_usuario_actual');
         actualizarCuentaUI();
+        document.dispatchEvent(new Event('sesion-cerrada'));
     }
 
     function actualizarCuentaUI() {

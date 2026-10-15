@@ -206,3 +206,57 @@
     .fondo-uxie, .fondo-mesprit, .fondo-azelf, .fondo-tornadus, .fondo-thundurus, .fondo-landorus, .fondo-silvally, .fondo-urshifu, .fondo-regieleki, .fondo-wochien, .fondo-chienpao, .fondo-tinglu, .fondo-chiyu, .fondo-okidogi, .fondo-munkidori, .fondo-fezandipiti, .fondo-ogerpon, .fondo-terapagos, .fondo-phione, .fondo-meloetta, .fondo-melmetal, .fondo-zarude, .fondo-pecharunt,
     .fondo-uxie::before, .fondo-mesprit::before, .fondo-tornadus::before, .fondo-thundurus::before, .fondo-regieleki::after, .fondo-silvally::before, .fondo-terapagos::before, .fondo-melmetal::before { animation: none !important; }
 }
+
+
+/* =========================================================
+   🆕 v5 — CÓDIGO CERO, COSMOG, COSMOEM, MELTAN, KUBFU, ENAMORUS
+   ========================================================= */
+@keyframes fxnEscaneo { from { background-position: 0 0; } to { background-position: 0 100%; } }
+@keyframes fxnFlotar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+
+.fondo-codigocero::before, .fondo-codigocero::after, .fondo-cosmog::before, .fondo-cosmog::after,
+.fondo-cosmoem::before, .fondo-cosmoem::after, .fondo-meltan::before, .fondo-meltan::after,
+.fondo-kubfu::before, .fondo-kubfu::after, .fondo-enamorus::before, .fondo-enamorus::after { content: ""; position: absolute; pointer-events: none; }
+.fondo-codigocero, .fondo-cosmog, .fondo-cosmoem, .fondo-meltan, .fondo-kubfu, .fondo-enamorus { box-shadow: inset 0 0 70px 34px rgba(6,6,10,.55); }
+.fondo-codigocero { --fx-glow: rgba(255,90,90,.4); }   .fondo-cosmog { --fx-glow: rgba(143,180,255,.45); }
+.fondo-cosmoem { --fx-glow: rgba(255,224,138,.42); }   .fondo-meltan { --fx-glow: rgba(255,216,106,.45); }
+.fondo-kubfu { --fx-glow: rgba(255,179,106,.42); }     .fondo-enamorus { --fx-glow: rgba(255,176,216,.45); }
+
+/* ---------- CÓDIGO CERO: laboratorio sintético con rejilla y barrido de escáner rojo ---------- */
+.fondo-codigocero { background-image: radial-gradient(circle at 50% 40%, rgba(255,90,90,.35) 0 4%, transparent 34%), linear-gradient(180deg,#07090e 0%,#1d2530 55%,#58606e 100%); animation: fxRespirar 8s ease-in-out infinite; }
+.fondo-codigocero::before { inset: 0; background: repeating-linear-gradient(0deg, transparent 0 22px, rgba(255,90,90,.13) 23px 24px), repeating-linear-gradient(90deg, transparent 0 22px, rgba(160,175,200,.11) 23px 24px); animation: fxDeriva 10s ease-in-out infinite; }
+.fondo-codigocero::after { inset: 0; background: linear-gradient(180deg, transparent 0 44%, rgba(255,80,80,.30) 50%, transparent 56%) 0 0 / 100% 200%; animation: fxnEscaneo 5s linear infinite; }
+
+/* ---------- COSMOG: nebulosa suave con estrellas titilantes ---------- */
+.fondo-cosmog { background-image: radial-gradient(circle at 50% 46%, rgba(190,210,255,.55) 0 5%, transparent 38%), linear-gradient(180deg,#04041a 0%,#171a52 55%,#5a4aa8 100%); animation: fxRespirar 9s ease-in-out infinite; }
+.fondo-cosmog::before { inset: -10%; background: radial-gradient(circle at 28% 30%, rgba(150,120,255,.38), transparent 36%), radial-gradient(circle at 72% 64%, rgba(90,170,255,.34), transparent 38%); animation: fxDeriva 14s ease-in-out infinite; }
+.fondo-cosmog::after { inset: 0; background: radial-gradient(circle at 18% 22%, #fff 0 1.5px, transparent 2.5px) 0 0 / 70px 70px, radial-gradient(circle at 64% 58%, #c8d8ff 0 1.2px, transparent 2.2px) 0 0 / 46px 46px; animation: fxParpadeo 4s ease-in-out infinite; }
+
+/* ---------- COSMOEM: crisálida cósmica con órbitas y sol/luna al fondo ---------- */
+.fondo-cosmoem { background-image: radial-gradient(circle at 50% 44%, rgba(255,236,170,.5) 0 5%, transparent 36%), linear-gradient(180deg,#03031a 0%,#101a5c 50%,#3a2a8a 100%); animation: fxRespirar 8s ease-in-out infinite; }
+.fondo-cosmoem::before { inset: 6%; border-radius: 50%; background: repeating-radial-gradient(circle at 50% 44%, transparent 0 26px, rgba(200,215,255,.2) 27px 29px); animation: fxPulso 6s ease-in-out infinite; }
+.fondo-cosmoem::after { inset: 0; background: radial-gradient(circle at 22% 26%, #fff 0 1.5px, transparent 2.5px) 0 0 / 64px 64px, radial-gradient(circle at 70% 62%, #ffe08a 0 1.4px, transparent 2.4px) 0 0 / 88px 88px, repeating-conic-gradient(from 0deg at 50% 44%, transparent 0 26deg, rgba(255,230,160,.12) 27deg 28deg); animation: fxGirar 40s linear infinite reverse; }
+
+/* ---------- MELTAN: metal fundido con chispas eléctricas ---------- */
+.fondo-meltan { background-image: radial-gradient(circle at 50% 56%, rgba(255,200,90,.5) 0 5%, transparent 36%), linear-gradient(180deg,#0a0b0e 0%,#33373e 55%,#b8963f 100%); animation: fxRespirar 7s ease-in-out infinite; }
+.fondo-meltan::before { inset: 0; background: radial-gradient(circle at 20% 86%, rgba(255,170,60,.5) 0 18px, transparent 20px) 0 0 / 120px 120px, radial-gradient(circle at 66% 72%, rgba(255,210,110,.4) 0 12px, transparent 14px) 0 0 / 90px 90px; animation: fxDeriva 9s ease-in-out infinite; }
+.fondo-meltan::after { inset: 0; background: repeating-linear-gradient(115deg, transparent 0 46px, rgba(255,236,140,.16) 47px 49px); animation: fxParpadeo 3s ease-in-out infinite; }
+
+/* ---------- KUBFU: torre de entrenamiento entre la bruma del amanecer ---------- */
+.fondo-kubfu { background-image: radial-gradient(circle at 50% 70%, rgba(255,160,90,.45) 0 6%, transparent 40%), linear-gradient(180deg,#0b1020 0%,#3a3252 52%,#e08a52 100%); animation: fxRespirar 9s ease-in-out infinite; }
+.fondo-kubfu::before { inset: auto 0 0 0; height: 58%; background: linear-gradient(180deg, rgba(14,10,22,.0), rgba(14,10,22,.85)); clip-path: polygon(0 100%,0 70%,18% 70%,18% 52%,26% 52%,26% 36%,34% 36%,34% 22%,42% 22%,42% 8%,50% 0,58% 8%,58% 22%,66% 22%,66% 36%,74% 36%,74% 52%,82% 52%,82% 70%,100% 70%,100% 100%); }
+.fondo-kubfu::after { inset: 0; background: repeating-linear-gradient(90deg, transparent 0 60px, rgba(255,200,150,.07) 61px 63px), radial-gradient(ellipse at 50% 100%, rgba(255,220,180,.28), transparent 60%); animation: fxOscilar 10s ease-in-out infinite; }
+
+/* ---------- ENAMORUS: vientos de primavera, pétalos y nubes ---------- */
+.fondo-enamorus { background-image: radial-gradient(circle at 50% 40%, rgba(255,230,242,.55) 0 5%, transparent 38%), linear-gradient(180deg,#1a0a2a 0%,#b84a94 50%,#ffc0dc 100%); animation: fxRespirar 8s ease-in-out infinite; }
+.fondo-enamorus::before { inset: -20%; background: repeating-conic-gradient(from 0deg at 50% 45%, transparent 0 14deg, rgba(255,210,235,.16) 15deg 18deg, transparent 19deg 34deg); animation: fxGirar 34s linear infinite; }
+.fondo-enamorus::after { inset: auto 0 0 0; height: 34%; background: radial-gradient(ellipse at 20% 100%, rgba(255,255,255,.7) 0 30%, transparent 62%), radial-gradient(ellipse at 55% 100%, rgba(255,235,245,.65) 0 34%, transparent 66%), radial-gradient(ellipse at 90% 100%, rgba(255,255,255,.6) 0 28%, transparent 60%); animation: fxnFlotar 7s ease-in-out infinite; }
+.fondo-enamorus.fondo-var-totem { background-image: radial-gradient(circle at 50% 40%, rgba(255,220,245,.6) 0 5%, transparent 40%), linear-gradient(180deg,#0e0420 0%,#7a2a8a 50%,#ff5ab0 100%); animation-duration: 5s; }
+.fondo-enamorus.fondo-var-totem::before { background: repeating-conic-gradient(from 0deg at 50% 45%, transparent 0 10deg, rgba(255,120,210,.22) 11deg 15deg, transparent 16deg 28deg); animation-duration: 14s; }
+.fondo-enamorus.fondo-var-totem::after { background: radial-gradient(ellipse at 25% 100%, rgba(120,40,140,.75) 0 32%, transparent 64%), radial-gradient(ellipse at 70% 100%, rgba(90,30,120,.7) 0 36%, transparent 66%); }
+
+@media (prefers-reduced-motion: reduce) {
+    .fondo-codigocero, .fondo-cosmog, .fondo-cosmoem, .fondo-meltan, .fondo-kubfu, .fondo-enamorus,
+    .fondo-codigocero::before, .fondo-codigocero::after, .fondo-cosmog::before, .fondo-cosmog::after, .fondo-cosmoem::before, .fondo-cosmoem::after,
+    .fondo-meltan::before, .fondo-meltan::after, .fondo-kubfu::after, .fondo-enamorus::before, .fondo-enamorus::after { animation: none !important; }
+}

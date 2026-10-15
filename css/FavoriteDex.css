@@ -2538,13 +2538,13 @@ body.en-comunidad .menu-comunidad {
 /* =========================================================
    🔵 TODOS LOS BOTONES — AZUL #001284
    ========================================================= */
-button:not(.btn-favorito) {
+button:not(.btn-favorito):not(.nl-btn) {
     background: linear-gradient(135deg, #000A5C, #001284, #3F63FF) !important;
     border-color: #D7E2F0 !important;
     color: #FFFFFF !important;
 }
 
-button:not(.btn-favorito):hover {
+button:not(.btn-favorito):not(.nl-btn):hover {
     background: linear-gradient(135deg, #001284, #3F63FF, #6F8BFF) !important;
     border-color: #EEF4FA !important;
 }

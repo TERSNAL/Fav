@@ -1,7 +1,7 @@
 {
   "name": "FavoriteDex - Mi Pokédex de Favoritos",
   "short_name": "FavoriteDex",
-  "description": "Pokédex personal con 600 Pokémon, formas especiales, minijuegos y comunidad.",
+  "description": "Pokédex personal con 606 Pokémon, formas especiales, minijuegos y comunidad.",
   "start_url": "FavoriteDex.html",
   "scope": ".",
   "display": "standalone",

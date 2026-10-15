@@ -1342,6 +1342,30 @@
                 "gif": "https://play.pokemonshowdown.com/sprites/ani/tauros-paldea-combat.gif",
                 "gifShiny": "https://play.pokemonshowdown.com/sprites/ani-shiny/tauros-paldea-combat.gif",
                 "btn": "🐂 Ver forma de Paldea"
+            },
+            {
+                "cap": "Tauros de Paldea (Fuego)",
+                "btn": "🔥 Ver Raza Fuego de Paldea",
+                "png": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10251.png",
+                "pngShiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10251.png",
+                "gif": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/10251.gif",
+                "gifShiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/10251.gif",
+                "altura": 1.4,
+                "oficial": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10251.png",
+                "oficialShiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/10251.png",
+                "grito": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10251.ogg"
+            },
+            {
+                "cap": "Tauros de Paldea (Agua)",
+                "btn": "💧 Ver Raza Agua de Paldea",
+                "png": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10252.png",
+                "pngShiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10252.png",
+                "gif": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/10252.gif",
+                "gifShiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/10252.gif",
+                "altura": 1.4,
+                "oficial": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10252.png",
+                "oficialShiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/10252.png",
+                "grito": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10252.ogg"
             }
         ]
     },
@@ -11988,6 +12012,114 @@
                 "gifShiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/1025.gif",
                 "cap": "Pecharunt, el Pokémon",
                 "grito": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/1025.ogg"
+            }
+        ]
+    },
+    {
+        "id": 772,
+        "nombre": "Código Cero",
+        "tipo": "Normal",
+        "desc": "Fue creado artificialmente para enfrentarse a los Ultraentes; la máscara que lleva reprime su verdadero poder.",
+        "formas": [
+            {
+                "png": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/772.png",
+                "pngShiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/772.png",
+                "gif": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/772.gif",
+                "gifShiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/772.gif",
+                "cap": "Código Cero, el Pokémon",
+                "grito": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/772.ogg"
+            }
+        ]
+    },
+    {
+        "id": 789,
+        "nombre": "Cosmog",
+        "tipo": "Psíquico",
+        "desc": "Su cuerpo es como un gas flotante y delicado; se cree que esta pequeña nebulosa es el germen de una estrella.",
+        "formas": [
+            {
+                "png": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/789.png",
+                "pngShiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/789.png",
+                "gif": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/789.gif",
+                "gifShiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/789.gif",
+                "cap": "Cosmog, el Pokémon",
+                "grito": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/789.ogg"
+            }
+        ]
+    },
+    {
+        "id": 790,
+        "nombre": "Cosmoem",
+        "tipo": "Psíquico",
+        "desc": "Permanece inmóvil dentro de su coraza, esperando el momento de despertar con la luz del sol o de la luna.",
+        "formas": [
+            {
+                "png": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/790.png",
+                "pngShiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/790.png",
+                "gif": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/790.gif",
+                "gifShiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/790.gif",
+                "cap": "Cosmoem, el Pokémon",
+                "grito": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/790.ogg"
+            }
+        ]
+    },
+    {
+        "id": 808,
+        "nombre": "Meltan",
+        "tipo": "Acero",
+        "desc": "Disuelve objetos de metal y se alimenta de ellos; la electricidad que acumula mantiene líquido su cuerpo.",
+        "formas": [
+            {
+                "png": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/808.png",
+                "pngShiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/808.png",
+                "gif": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/808.gif",
+                "gifShiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/808.gif",
+                "cap": "Meltan, el Pokémon",
+                "grito": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/808.ogg"
+            }
+        ]
+    },
+    {
+        "id": 891,
+        "nombre": "Kubfu",
+        "tipo": "Lucha",
+        "desc": "Se esfuerza cada día en su entrenamiento, y solo alcanza su verdadero poder dentro de una torre de combate.",
+        "formas": [
+            {
+                "png": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/891.png",
+                "pngShiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/891.png",
+                "gif": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/891.gif",
+                "gifShiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/891.gif",
+                "cap": "Kubfu, el Pokémon",
+                "grito": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/891.ogg"
+            }
+        ]
+    },
+    {
+        "id": 905,
+        "nombre": "Enamorus",
+        "tipo": "Hada / Volador",
+        "desc": "Su llegada anuncia la primavera: esparce vientos cálidos que despiertan a las plantas y alegran a las personas.",
+        "formas": [
+            {
+                "png": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/905.png",
+                "pngShiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/905.png",
+                "gif": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/905.gif",
+                "gifShiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/905.gif",
+                "cap": "Enamorus, el Pokémon",
+                "grito": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/905.ogg"
+            },
+            {
+                "cap": "Enamorus Forma Tótem",
+                "btn": "🌸 Ver Forma Tótem",
+                "png": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10249.png",
+                "pngShiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10249.png",
+                "gif": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/10249.gif",
+                "gifShiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/10249.gif",
+                "altura": 1.6,
+                "oficial": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10249.png",
+                "oficialShiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/10249.png",
+                "grito": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10249.ogg"
             }
         ]
     }
