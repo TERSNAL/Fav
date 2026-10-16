@@ -840,5 +840,77 @@
 <script defer src="js/aviso-legal.js"></script>
 <script defer src="js/lista-pokedex.js"></script>
 <script>if('serviceWorker' in navigator && location.protocol.startsWith('http')){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});}</script>
+
+<div class="minijuegos-container">
+  <h2 class="section-title">Minijuegos Pokédex</h2>
+  
+  <div class="minijuegos-scroll-list" id="minijuegosList">
+    <!-- Minijuego 1: Silueta -->
+    <article class="minijuego-card active" data-game="silueta" onclick="selectGame('silueta')">
+      <div class="minijuego-type-tag fuego">
+        <span class="icon">🎯</span>
+        <span class="id">#01</span>
+      </div>
+      <div class="minijuego-info">
+        <h3 class="minijuego-title">Adivina la Silueta</h3>
+        <p class="minijuego-desc">Identifica al Pokémon observando únicamente su sombra antes de que se agote el tiempo.</p>
+        <span class="minijuego-meta">Gen I - IX • Desafío de Visión</span>
+      </div>
+      <div class="minijuego-thumb">
+        <img src="icons/icon-192.png" alt="Adivina la Silueta" />
+      </div>
+    </article>
+
+    <!-- Minijuego 2: Grito -->
+    <article class="minijuego-card" data-game="grito" onclick="selectGame('grito')">
+      <div class="minijuego-type-tag agua">
+        <span class="icon">🔊</span>
+        <span class="id">#02</span>
+      </div>
+      <div class="minijuego-info">
+        <h3 class="minijuego-title">Reconoce el Grito</h3>
+        <p class="minijuego-desc">Escucha atentamente el sonido característico y selecciona el Pokémon correcto.</p>
+        <span class="minijuego-meta">Audio • Reto Auditivo</span>
+      </div>
+      <div class="minijuego-thumb">
+        <img src="icons/icon-192.png" alt="Reconoce el Grito" />
+      </div>
+    </article>
+
+    <!-- Minijuego 3: Tipos -->
+    <article class="minijuego-card" data-game="tipos" onclick="selectGame('tipos')">
+      <div class="minijuego-type-tag planta">
+        <span class="icon">⚔️</span>
+        <span class="id">#03</span>
+      </div>
+      <div class="minijuego-info">
+        <h3 class="minijuego-title">Tabla de Tipos</h3>
+        <p class="minijuego-desc">Demuestra tus conocimientos eligiendo las debilidades y fortalezas elementales.</p>
+        <span class="minijuego-meta">Estrategia • Quiz Competitivo</span>
+      </div>
+      <div class="minijuego-thumb">
+        <img src="icons/icon-192.png" alt="Tabla de Tipos" />
+      </div>
+    </article>
+
+    <!-- Minijuego 4: Caza Shiny -->
+    <article class="minijuego-card" data-game="shiny" onclick="selectGame('shiny')">
+      <div class="minijuego-type-tag electrico">
+        <span class="icon">✨</span>
+        <span class="id">#04</span>
+      </div>
+      <div class="minijuego-info">
+        <h3 class="minijuego-title">Caza Shiny</h3>
+        <p class="minijuego-desc">Pon a prueba tu suerte y reflejos para capturar Pokémon variocolor raros.</p>
+        <span class="minijuego-meta">Reflejos • Colección</span>
+      </div>
+      <div class="minijuego-thumb">
+        <img src="icons/icon-192.png" alt="Caza Shiny" />
+      </div>
+    </article>
+  </div>
+</div>
+
+
 </body>
 </html>
